@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
         :city,
         :zipcode,
         :phone,
-        :min_consultation
-        :sex
+        :min_consultation,
+        :sex,
         :cardnumberend
       ])
   end
