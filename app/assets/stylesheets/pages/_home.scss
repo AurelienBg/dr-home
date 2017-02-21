@@ -2,3 +2,17 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+
+
+
+// background: #6190E8; /* fallback for old browsers */
+// background: -webkit-linear-gradient(to left, #6190E8 , #A7BFE8); /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.banner {
+  background: linear-gradient(to left, #6190E8 , #A7BFE8);
+  color: white;
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

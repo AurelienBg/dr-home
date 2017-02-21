@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h1 class="title">Edit user</h1>
+      <%= simple_form_for(@user) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :specialty, collection: User::SPECIALTY %>
+      <%= f.input :address %>
+      <%= f.input :city %>
+      <%= f.input :zipcode %>
+      <%= f.input :phone %>
+      <%= f.input :min_consultation %>
+      <%= f.input :sex %>
+      <%= f.input :cardnumber %>
+      <%= f.submit class: 'second-btn' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
