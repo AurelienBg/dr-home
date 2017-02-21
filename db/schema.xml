@@ -37,20 +37,11 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="586" y="89" name="consultations">
+</datatypes><table x="599" y="52" name="consultations">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="date" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="location" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="estamited_price" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="illness" null="1" autoincrement="0">
+<row name="estimated_price" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
@@ -62,10 +53,10 @@
 <default>NULL</default><relation table="doctors" row="id" />
 </row>
 <row name="start_time" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>DATETIME</datatype>
 <default>NULL</default></row>
 <row name="end_time" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>DATETIME</datatype>
 <default>NULL</default></row>
 <row name="status" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -74,7 +65,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="249" y="36" name="doctors">
+<table x="366" y="47" name="doctors">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -133,7 +124,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="885" y="67" name="demands">
+<table x="849" y="53" name="demands">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -172,6 +163,15 @@
 <default>NULL</default></row>
 <row name="photo" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="illness" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
+<row name="request_date" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="due_date" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
