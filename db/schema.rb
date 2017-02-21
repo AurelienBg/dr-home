@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220165959) do
+ActiveRecord::Schema.define(version: 20170221105904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "consultations", force: :cascade do |t|
+    t.integer  "estimated_price"
+    t.string   "illness"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "status"
+    t.integer  "user_id"
+    t.integer  "demand_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["demand_id"], name: "index_consultations_on_demand_id", using: :btree
+    t.index ["user_id"], name: "index_consultations_on_user_id", using: :btree
+  end
+
+  create_table "demands", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "birthday"
+    t.string   "sex"
+    t.float    "lat"
+    t.float    "long"
+    t.string   "photo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.date     "request_time"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +60,28 @@ ActiveRecord::Schema.define(version: 20170220165959) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "specialty"
+    t.string   "address"
+    t.string   "city"
+    t.string   "zipcode"
+    t.string   "fav_address"
+    t.string   "fav_city"
+    t.string   "fav_zipcode"
+    t.string   "phone"
+    t.integer  "min_consultation"
+    t.string   "sex"
+    t.float    "lat"
+    t.float    "long"
+    t.float    "fav_lat"
+    t.float    "fav_long"
+    t.string   "photo"
+    t.string   "cardnumber"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "consultations", "demands"
+  add_foreign_key "consultations", "users"
 end
