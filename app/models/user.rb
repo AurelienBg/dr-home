@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :send_welcome_email
+
   # geocoded_by :address
 
   has_many :consultations
@@ -23,4 +25,8 @@ class User < ApplicationRecord
   validates :sex, presence: true
   validates :cardnumber, presence: true, uniqueness: true
 # mount_uploader :photo, PhotoUploader
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
 end
