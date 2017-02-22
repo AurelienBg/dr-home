@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 
 // *****************
 // Removing require_tree to exclude the active_admin.js file
@@ -9,3 +11,5 @@
 // *****************
 
 //= require ./cable
+//= require ./google_maps_autocomplete
+
