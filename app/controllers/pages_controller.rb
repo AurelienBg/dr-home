@@ -11,5 +11,8 @@ class PagesController < ApplicationController
         marker.lat user.latitude
         marker.lng user.longitude
       end
+    min_consultation = @user.min_consultation
+    @date = Date.new(2017, 2, 23)
+    @next_round = Demand.where(city: @user.fav_city, due_date: @date).first(min_consultation)
   end
 end

@@ -48,12 +48,14 @@
   // font-weight: bold;
 }
 
-.tab-parameters {
+.tab-parameters, .tab-next-round {
   display: flex;
-  .left {
-    width: 50%;
-  }
-  .map {
-    width: 50%;
-  }
+}
+
+.left {
+  width: 50%;
+}
+
+.map {
+  width: 50%;
 }
