@@ -13,5 +13,18 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
-  permit_params :first_name, :last_name,:specialty, :address, :city, :zipcode, :phone, :min_consultation, :sex, :cardnumberend
+  index do
+    selectable_column
+    column :first_name
+    column :last_name
+    column :email
+    column :specialty
+    column :city
+    column :cardnumberend
+    column :created_at
+    column :admin
+    actions
+  end
+
+  permit_params :first_name, :last_name,:specialty, :address, :city, :zipcode, :phone, :min_consultation, :sex, :cardnumber
 end
