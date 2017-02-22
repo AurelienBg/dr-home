@@ -29,8 +29,14 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs "Identity" do
-      f.input :name
       f.input :email
+      f.input :first_name
+      f.input :last_name
+      f.input :specialty
+      f.input :address
+      f.input :zipcode
+      f.input :city
+      f.input :cardnumber
     end
     f.inputs "Admin" do
       f.input :admin
