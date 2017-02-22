@@ -1,0 +1,12 @@
+# using 3 workers running in parralele
+:concurrency: 3
+:timeout: 60
+:verbose: true
+:queues:  # Queue priority: https://github.com/mperham/sidekiq/wiki/Advanced-Options
+  - default
+  - mailers
+
+# comments:
+# 1. add may a critical queue later...
+# 2. for current queues. to add a ponderation user the following syntax :
+#  eg.  [critical, 5] to check 5 times mor often than others
