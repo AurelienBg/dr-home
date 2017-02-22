@@ -13,5 +13,18 @@ ActiveAdmin.register Consultation do
 #   permitted
 # end
 
+  index do
+    selectable_column
+    column :id
+    column :estimated_price
+    column :start_time
+    column :end_time
+    column :status
+    column :user_id
+    column :demand_id
+    column :created_at
+    actions
+  end
+
   permit_params :estimated_price, :start_time, :end_time, :status, :user_id, :demand_id, :created_at, :updated_at
 end

@@ -15,6 +15,7 @@ ActiveAdmin.register Demand do
 
   index do
     selectable_column
+    column :id
     column :first_name
     column :last_name
     column :email
