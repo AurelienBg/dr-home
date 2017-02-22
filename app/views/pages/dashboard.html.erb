@@ -3,7 +3,7 @@
 <div class="profile-header-wrapper">
   <div class="container profile-header-container">
     <div class="profile-header-infos">
-      <h1>Bienvenue <%= '#{@user.first_name }' unless @user.first_name.nil? %>!</h1>
+      <h1>Bienvenue <%= @user.first_name unless @user.first_name.nil? %>!</h1>
       <h2><%= Time.now.strftime('%e/%l/%Y') %></h2>
     </div>
     <div class="tabs">
@@ -37,7 +37,7 @@
       <% end %>
     </div>
     <div class="map">
-
+      <div id="map" style="width: 100%; height: 600px;"></div>
     </div>
   </div>
   <!-- end tab 1 -->
@@ -80,5 +80,22 @@
 
   });
   </script>
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
 <% end %>
+
+
 

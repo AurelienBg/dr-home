@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170222174456) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,8 +52,8 @@ ActiveRecord::Schema.define(version: 20170222174456) do
     t.string   "email"
     t.datetime "birthday"
     t.string   "sex"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "lat"
+    t.float    "long"
     t.string   "photo"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -88,8 +87,8 @@ ActiveRecord::Schema.define(version: 20170222174456) do
     t.string   "phone"
     t.integer  "min_consultation"
     t.string   "sex"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "lat"
+    t.float    "long"
     t.float    "fav_lat"
     t.float    "fav_long"
     t.string   "photo"
