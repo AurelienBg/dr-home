@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
   end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end
