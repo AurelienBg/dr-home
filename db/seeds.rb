@@ -12,7 +12,10 @@ Demand.destroy_all
 
 users = [
 User.create!(
-  email: "jc@gmail.com", password: "aurelien", first_name: "jc", last_name: "Dupont",
+  email: "jc@gmail.com",
+  password: "aurelien",
+  first_name: "jc",
+  last_name: "Dupont",
   specialty: "generalist",
   address: "16 villa Gaudelet",
   city: "Paris",
@@ -22,8 +25,24 @@ User.create!(
   sex: "M",
   cardnumber: "M-028d082938238")
 ]
-
 puts  "creating a user with the following email :#{users[0].email}"
+
+2.times do
+  User.create! \
+    email: Faker::Internet.email,
+    password: "test000",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    specialty: "generalist",
+    address: "16 villa Gaudelet",
+    city: Faker::Address.street_address,
+    zipcode: "75005",
+    phone: "+33 6 7612 1703",
+    min_consultation: 5,
+    sex: "M",
+    cardnumber: Faker::Name.last_name
+    puts  "creating a user with the following email :#{User.last.email}"
+  end
 
 # Demand
 demands = [
@@ -38,6 +57,27 @@ Demand.new(
   email: "pierre@gmail.com",
   request_time: Date.today)
 ]
-
 puts "creating a demand for : #{demands[0].first_name} #{demands[0].last_name} "
 
+20.times do
+  Demand.create! \
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    zipcode: "75006",
+    illness: "Pain in the stomach",
+    phone: "+33 1 6712 3033",
+    email: Faker::Internet.email,
+    request_time: Date.today
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
+    # user: User.first,
+    # user: users[1],
+    # photo: 'app/assets/images/' + pix.sample,
+    # capacity: Garden::GCAPACITY.sample,
+    # size: rand(1..1000),
+    # price_per_hour: rand(10..100000),
+    # f_bbq: [true, false].sample,
+  puts "creating a demand for : #{Demand.last.first_name} #{Demand.last.last_name} "
+end
