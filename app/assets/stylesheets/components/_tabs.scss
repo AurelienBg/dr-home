@@ -43,7 +43,17 @@
 .tab-content {
   padding-top: 50px;
 }
-.tab-content p {
-  font-size: 30px;
-  font-weight: bold;
+.tab-content h3 {
+  font-size: 20px;
+  // font-weight: bold;
+}
+
+.tab-parameters {
+  display: flex;
+  .left {
+    width: 50%;
+  }
+  .map {
+    width: 50%;
+  }
 }
