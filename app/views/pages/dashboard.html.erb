@@ -3,8 +3,8 @@
 <div class="profile-header-wrapper">
   <div class="container profile-header-container">
     <div class="profile-header-infos">
-      <h1>Bienvenue <%= @user.first_name unless @user.first_name.nil? %>!</h1>
-      <h2><%= Time.now.strftime('%e/%l/%Y') %></h2>
+      <h1>Bienvenue <%= @user.first_name unless @user.first_name.nil? %></h1>
+      <h2><%= Time.now.strftime('%d.%m.%Y') %></h2>
     </div>
     <div class="tabs">
       <a class="tab active" data-target="#parameters">
@@ -51,7 +51,18 @@
           <div class="col-xs-3">
             <p>8h30</p>
           </div>
-          <div class="col-xs-9">
+          <div class="col-xs-9 demand-info">
+            <p>Madame Michelle - Torticolli</p>
+            <p>40bis avenue de l'Est - 94100 Saint-Maur</p>
+            <p>Départ à 9h</p>
+          </div>
+        </div>
+        <div class="row">
+          <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 0 auto 11px auto;"></div>
+          <div class="col-xs-3">
+            <p>8h30</p>
+          </div>
+          <div class="col-xs-9 demand-info">
             <p>Madame Michelle - Torticolli</p>
             <p>40bis avenue de l'Est - 94100 Saint-Maur</p>
             <p>Départ à 9h</p>
@@ -71,15 +82,21 @@
   </div>
   <!-- end Onglet Prochaine tournée -->
 
-  <!-- tab 3 -->
+
+  <!-- Onglet toutes les tournées -->
   <div class="tab-content hidden" id="all">
-    <p>Contact me if you want.</p>
+    <div class="card">
+
+    </div>
+    <div class="card">
+
+    </div>
   </div>
-  <!-- end tab 3 -->
+  <!-- end Onglet toutes les tournées -->
 
   <!-- tab 4 -->
   <div class="tab-content hidden" id="month">
-    <p>Contact me if you want.</p>
+    <p>Simple calendar</p>
   </div>
   <!-- end tab 4 -->
 
