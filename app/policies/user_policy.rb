@@ -1,7 +1,7 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
 
@@ -10,8 +10,13 @@ class UserPolicy < ApplicationPolicy
   end
 
   # current_user <=> user
+  def edit?
+    true
+  end
+
+
   def update?
-    is_user_owner_or_admin?
+    true
   end
 
   def destroy?

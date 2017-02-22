@@ -11,4 +11,7 @@ class Demand < ApplicationRecord
   validates :phone, presence: true
   validates :email, presence: true
   validates :request_time, presence: true
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
