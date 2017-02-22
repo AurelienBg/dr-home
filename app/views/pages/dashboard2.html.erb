@@ -1,54 +1,47 @@
 
 <!-- Tabs -->
 <div class="profile-header-wrapper">
-  <div class="container profile-header-container">
+  <div class="container profile-header-container text-center">
     <div class="profile-header-infos">
-      <h1>Bienvenue <%= '#{@user.first_name }' unless @user.first_name.nil? %>!</h1>
-      <h2><%= Time.now.strftime('%e/%l/%Y') %></h2>
+      <h1><%= @user.email %></h1>
+      <h2>co-founder @LeWagon</h2>
     </div>
     <div class="tabs">
-      <a class="tab active" data-target="#parameters">
-        <h3>Paramètres</h3>
+      <a class="tab active" data-target="#bio">
+        <h3>Bio</h3>
       </a>
-      <a class="tab" data-target="#next">
-        <h3>Prochaine tournée</h3>
+      <a class="tab" data-target="#projects">
+        <h3>Projects</h3>
       </a>
-      <a class="tab" data-target="#all">
-        <h3>Toutes les tournées</h3>
-      </a>
-      <a class="tab" data-target="#month">
-        <h3>Ce mois-ci</h3>
+      <a class="tab" data-target="#contact">
+        <h3>Contact</h3>
       </a>
     </div>
   </div>
 </div>
 <!-- end tabs -->
 
+
+
 <div class="container text-center">
 
 <!-- tab 1 -->
-  <div class="tab-content" id="parameters">
+  <div class="tab-content" id="bio">
     <p>This is my bio.</p>
   </div>
 <!-- end tab 1 -->
 
 <!-- tab 2 -->
-  <div class="tab-content hidden" id="next">
+  <div class="tab-content hidden" id="projects">
     <p>Here are my projects.</p>
   </div>
 <!-- end tab 2 -->
 
 <!-- tab 3 -->
-  <div class="tab-content hidden" id="all">
+  <div class="tab-content hidden" id="contact">
     <p>Contact me if you want.</p>
   </div>
 <!-- end tab 3 -->
-
-<!-- tab 4 -->
-  <div class="tab-content hidden" id="month">
-    <p>Contact me if you want.</p>
-  </div>
-<!-- end tab 4 -->
 </div>
 
 <!-- **************************** -->
