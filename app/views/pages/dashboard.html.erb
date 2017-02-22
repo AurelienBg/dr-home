@@ -30,8 +30,8 @@
   <div class="tab-content tab-parameters" id="parameters">
     <div class="left">
       <div class="title"><h3>Qu'avez-vous en tête ?</h3></div>
-      <%= simple_form_for(@user) do |f| %>
-      <%= f.input :fav_city, label: 'Je veux travailler à ', input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' }, collection: [10, 20, 50, 100] %>
+      <%= simple_form_for(@user, class: 'form-inline') do |f| %>
+      <%= f.input :fav_city, label: 'Je veux travailler à ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' }, collection: [10, 20, 50, 100] %>
 
       <%= f.submit "Enregistrer mes changements", class: "btn btn-primary" %>
       <% end %>
