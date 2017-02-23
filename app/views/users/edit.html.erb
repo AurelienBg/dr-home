@@ -14,7 +14,7 @@
       <%= f.input :photo, as: :attachinary %>
       <%= f.input :first_name %>
       <%= f.input :last_name %>
-      <%= f.input :sex %>
+      <%= f.input :sex, collection: User::SEX %>
       <%= f.input :address %>
       <%= f.input :city %>
       <%= f.input :zipcode %>
