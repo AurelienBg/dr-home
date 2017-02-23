@@ -10,7 +10,9 @@
 // background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 .top {
-  height: 300px;
+  height: 315px;
+  background-image: url("drhome-home-background.png");
+  background-size: cover;
 }
 
 .recap {
@@ -33,6 +35,7 @@ color: black
   display: flex;
   align-items: center;
   padding: 30px;
+  opacity: 0.7;
   h2 {
   color: white;
   font-size: 24px;
@@ -86,10 +89,6 @@ margin-top: 30px;
   width: 50%;
 }
 
-#banner {
-  background-image: url("drhome-home-backgroundpic.jpg");
-  opacity: 0.3;
-}
 
 .marbled {
   display: flex;
@@ -98,3 +97,4 @@ margin-top: 30px;
     font-size: 24px;
   }
 }
+
