@@ -7,17 +7,34 @@ class RoutificJob < ApplicationJob
   def perform
     puts "Starting Routific call"
     visits = {
-  "order_1" => {
-    "start" => "9:00",
-    "end" => "12:00",
-    "duration" => 10,
-    "location" => {
-      "name" => "6800 Cambie",
-      "lat" => 49.227107,
-      "lng" => -123.1163085
-    }
-  }
-}
+            "order_1" => {
+              "start" => "9:00",
+              "end" => "12:00",
+              "duration" => 10,
+              "location" => {
+                "name" => "6800 Cambie",
+                "lat" => 49.227107,
+                "lng" => -123.1163085
+              }
+            }
+          }
+
+    # visits = {}
+    # demands_of_the_day = Demand.where(Date.today < due_date)
+    # n = 1
+    # demands_of_the_day.each do |demand|
+    #   visits['order_#{n}'] =  {
+    #           "start" => "9:00",
+    #           "end" => "19:00",
+    #           "duration" => 20,
+    #           "location" => {
+    #             "name" => demand.address,
+    #             "lat" => demand.latitude,
+    #             "lng" => demand.longitude
+    #           }
+    #         }
+    #         n += 1
+    # end
 
 fleet = {
   "vehicle_1" => {
@@ -43,13 +60,13 @@ data = {
 
     # data = hash
     puts data
-          # binding.pry
     Routific.setToken(ENV['ROUTIFIC_API'])
-
     # buid_data_hash (methdo prive qui genere le hasg input)
     route_consultations = Routific.getRoute(data)
+    # binding.pry
+
     # p routes = JSON.parse(route_consultations)
-    p route_consultations.class
+    p route_consultations
     # build the consiltation fron the route_consultations hash
     # consultations = ???
 
