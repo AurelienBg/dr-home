@@ -10,7 +10,7 @@
 // background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 .top {
-  height: 315px;
+  height: calc(100vh - 230px);
   background-image: url("drhome-home-background.png");
   background-size: cover;
 }
@@ -67,7 +67,7 @@ margin-top: 30px;
 }
 
 .presentation-picture {
-  padding-left: 0;
+  padding: 0;
   img {
     width: 100%;
   }
