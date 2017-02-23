@@ -7,11 +7,9 @@
 # this file is here to facilitate running it.
 #
 
-require "pathname"
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile",
-  Pathname.new(__FILE__).realpath)
-
-require "rubygems"
-require "bundler/setup"
-
-load Gem.bin_path("sidekiq", "sidekiq")
+:concurrency: 3
+:timeout: 60
+:verbose: true
+:queues:  # Queue priority: https://github.com/mperham/sidekiq/wiki/Advanced-Options
+  - default
+  - mailers
