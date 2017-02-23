@@ -1,0 +1,156 @@
+
+<!-- Tabs -->
+<div class="profile-header-wrapper">
+  <div class="container profile-header-container">
+    <div class="profile-header-infos">
+      <h1>Bienvenue <%= @user.first_name unless @user.first_name.nil? %></h1>
+      <h2><%= Time.now.strftime('%d.%m.%Y') %></h2>
+    </div>
+    <div class="tabs">
+      <a class="tab active" data-target="#parameters">
+        <h3>Paramètres</h3>
+      </a>
+      <a class="tab" data-target="#next">
+        <h3>Prochaine tournée</h3>
+      </a>
+      <a class="tab" data-target="#all">
+        <h3>Toutes les tournées</h3>
+      </a>
+      <a class="tab" data-target="#month">
+        <h3>Ce mois-ci</h3>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- end tabs -->
+
+<div class="container text-center">
+
+  <!-- Onglet Paramètres -->
+  <div class="tab-content tab-parameters" id="parameters">
+    <div class="left">
+      <div class="title"><h3>Qu'avez-vous en tête ?</h3></div>
+      <%= simple_form_for(@user, class: 'form-inline', url: user_path(current_user), html: {method: :patch}) do |f| %>
+      <%= f.input :fav_distance, label: 'Je veux travailler à ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' }, collection: [10, 20, 50, 100] %>
+      <%= f.input :fav_city, label: 'de ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' } %>
+      <%= f.submit "Enregistrer mes changements", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="map">
+      <div id="map" style="width: 100%; height: 600px;"></div>
+    </div>
+  </div>
+  <!-- end tab 1 -->
+
+  <!-- Onglet Prochaine tournée -->
+  <div class="tab-content tab-next-round hidden" id="next">
+    <div class="left">
+      <div class="title"><h3>Votre journée du <%= @date %></h3></div>
+      <div class="demand-card">
+        <div class="row">
+          <div class="col-xs-3">
+            <p>8h30</p>
+          </div>
+          <div class="col-xs-9 demand-info">
+            <p>Madame Michelle - Torticolli</p>
+            <p>40bis avenue de l'Est - 94100 Saint-Maur</p>
+            <p>Départ à 9h</p>
+          </div>
+        </div>
+        <div class="row">
+          <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 0 auto 11px auto;"></div>
+          <div class="col-xs-3">
+            <p>8h30</p>
+          </div>
+          <div class="col-xs-9 demand-info">
+            <p>Madame Michelle - Torticolli</p>
+            <p>40bis avenue de l'Est - 94100 Saint-Maur</p>
+            <p>Départ à 9h</p>
+          </div>
+        </div>
+
+
+
+        <%#= @next_round.each do %>
+
+        <%# end %>
+      </div>
+    </div>
+    <div class="map">
+      <div id="map2" style="width: 100%; height: 600px;"></div>
+    </div>
+  </div>
+  <!-- end Onglet Prochaine tournée -->
+
+
+  <!-- Onglet toutes les tournées -->
+  <div class="tab-content hidden" id="all">
+    <div class="card">
+
+    </div>
+    <div class="card">
+
+    </div>
+  </div>
+  <!-- end Onglet toutes les tournées -->
+
+  <!-- tab 4 -->
+  <div class="tab-content hidden" id="month">
+    <p>Simple calendar</p>
+  </div>
+  <!-- end tab 4 -->
+
+</div>
+
+<!-- **************************** -->
+<!-- Javascript -->
+<% content_for(:after_js) do %>
+  <script>
+    $(function(){
+
+    $(".tab").on("click", function(e){
+      // Change active tab
+      $(".tab").removeClass('active');
+      $(this).addClass('active');
+      // Hide all tab-content (use class="hidden")
+      $(".tab-content").addClass('hidden');
+      // Show target tab-content (use class="hidden")
+      $($(this).data('target')).removeClass('hidden');
+    });
+
+  });
+  </script>
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
+    <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map2' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
+<% end %>
+
+
+
