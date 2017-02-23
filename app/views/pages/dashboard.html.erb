@@ -33,7 +33,7 @@
       <% end %>
     </div>
     <div class="map">
-      <div id="map" style="width: 100%; height: 100vh;"></div>
+      <div id="map" style="width: 100%; height: calc(100vh - 146px);"></div>
     </div>
   </div>
   <!-- end tab 1 -->
@@ -62,7 +62,7 @@
               <p>8h30</p>
             </div>
             <div class="col-xs-9 demand-info">
-              <p><%= demand.sex == "M" ? "Monsieur" : "Madame" %> <%= demand.first_name %> <%= demand.last_name %> - Torticolli</p>
+              <p><%= demand.sex %> <%= demand.first_name %> <%= demand.last_name %> - Torticolli</p>
               <p><%= demand.address %> - <%= demand.zipcode %> <%= demand.city %></p>
               <p>Départ à 9h</p>
             </div>
@@ -114,9 +114,10 @@
   </script>
   <script>
     $(document).ready(function() {
+      var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
       var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map2' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.buildMap({ internal: { id: 'map2' }, provider: { styles: styles } }, function() {
+        markers = handler.addMarkers(<%= raw @hash2.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         if (markers.length == 0) {
