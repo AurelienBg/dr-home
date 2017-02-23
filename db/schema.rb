@@ -87,14 +87,12 @@ ActiveRecord::Schema.define(version: 20170222183627) do
     t.string   "phone"
     t.integer  "min_consultation"
     t.string   "sex"
-    t.float    "lat"
-    t.float    "long"
+    t.float    "latitude"
+    t.float    "longitude"
     t.float    "fav_lat"
     t.float    "fav_long"
     t.string   "photo"
     t.string   "cardnumber"
-    t.float    "latitude"
-    t.float    "longitude"
     t.boolean  "admin",                  default: false, null: false
     t.integer  "fav_distance",           default: 50,    null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
