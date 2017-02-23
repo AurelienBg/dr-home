@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/activeadmin/activeadmin.git
-  revision: 8166ae9143f2d6b2d41233558ddc12b4c615014a
+  remote: https://github.com/activeadmin/activeadmin.git
+  revision: d75bbca61925d59a0d4269e74890e157df670b72
   specs:
     activeadmin (1.0.0.pre4)
       arbre (~> 1.0, >= 1.0.2)
@@ -18,7 +18,7 @@ GIT
       sprockets (< 4.1)
 
 GIT
-  remote: git://github.com/activeadmin/inherited_resources.git
+  remote: https://github.com/activeadmin/inherited_resources.git
   revision: 615b0d5c37a4bfc86ad18ec22b90d161fd996130
   specs:
     inherited_resources (1.7.0)
