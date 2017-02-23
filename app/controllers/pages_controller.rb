@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     @date = Date.new(2017, 2, 23)
 
     # @matched_demand = Demand.near(get_user_coord(@user), @user.fav_distance)
-    @next_round = Demand.where(due_date: @date).near(get_user_coord(@user), @user.fav_distance).first(set_min_consultation(@user.min_consultation))
+    @next_round = Demand.where(due_date: @date).near(get_user_coord(@user), @user.radius).first(set_min_consultation(@user.min_nb_consult))
     # call_road_API
   end
 
