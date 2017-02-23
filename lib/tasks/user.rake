@@ -1,5 +1,5 @@
 namespace :user do
-  desc: "Enrich all user profiles"
+  # desc: "Enrich all user profiles"
   task enrich: :environment do
     # TO DO ..
     # puts "task starting"

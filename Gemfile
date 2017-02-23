@@ -18,6 +18,9 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 
+# Gemfile for Routific
+gem 'routific'
+
 # Gemfile for Front
 gem 'sass-rails'
 gem 'jquery-rails'
