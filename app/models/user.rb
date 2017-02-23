@@ -22,6 +22,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_attachment :photo 
+  has_attachment :photo_id
+  has_attachment :photo_prof_doc
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 

@@ -21,7 +21,7 @@
 #   city: "Paris",
 #   zipcode: "75005",
 #   phone: "+33 6 7612 1703",
-#   min_consultation: 5,
+#   min_nb_consult: 5,
 #   sex: "M",
 #   cardnumber: "M-028d082938238",
 #   admin: true)
