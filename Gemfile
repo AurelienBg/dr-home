@@ -9,10 +9,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem "pundit"
+
 # Gemfile for Admin
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
+# Gemfile for Redis
+gem 'sidekiq'
+gem 'sidekiq-failures'
+
+# Gemfile for Front
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

@@ -19,6 +19,9 @@ Bundler.require(*Rails.groups)
 
 module DrHome
   class Application < Rails::Application
+    # adding jobs managenent on Redis
+    config.active_job.queue_adapter = :sidekiq
+
     config.generators do |generate|
       generate.assets false
     end

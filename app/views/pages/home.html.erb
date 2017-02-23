@@ -1,3 +1,64 @@
 <div class="banner text-center">
-  <h1 style="font-family: 'Nunito', sans-serif; font-weight: lighter;">Dr Home</h1>
+  <div class="container-fluid">
+    <div class="row top">
+      <div class="col-md-3 col-md-offset-1">
+        <div class="card">
+          <div class="greycard">
+            <div class="motto">
+            <h2> Dr Home le premier site freelance pour les médecins</h2>
+            </div>
+          </div>
+          <div class="bouton">
+            <%= link_to "Créer votre compte!", "#", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-md-offset-4 login_home_wrapper">
+        <form class="loginhome" action="#">
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" placeholder="ines@gmail.com">
+            <input type="password" class="form-control" id="password" placeholder="*******">
+          </div>
+            <input type="submit" value="Enregistrez-vous" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+    <div class="row recap">
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "drhome-womanpic.png", class: "icon" %>
+          <p>On vous trouve vos patients </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "calendar.png", class: "icon" %>
+          <p>Selon vos disponibilités</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "mapselector.png", class: "icon" %>
+          <p>En fonction d’où vous vous trouvez</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "mapsphone.png", class: "icon" %>
+          <p>Pour une tournée de patients optimisée</p>
+       </div>
+      </div>
+    </div>
+    <div class="row marbled">
+      <div class="col-md-6 presentation-picture">
+        <%= image_tag "girlwithcoffee.jpeg", class: "image" %>
+      </div>
+      <div class="col-md-6">
+        <div class="texte">
+          <h3>Exercez en toute flexibilité et indépendence sans coûts fixes. Trouvez des patients où que vous soyez. Pas besoin de secretariat ou de cabinet.</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

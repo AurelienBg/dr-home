@@ -5,14 +5,96 @@
 
 
 
-// background: #6190E8; /* fallback for old browsers */
+// background: #CCCCCC; /* fallback for old browsers */
 // background: -webkit-linear-gradient(to left, #6190E8 , #A7BFE8); /* Chrome 10-25, Safari 5.1-6 */
 // background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-.banner {
-  background: linear-gradient(to left, #6190E8 , #A7BFE8);
+
+.top {
+  height: 315px;
+  background-image: url("drhome-home-background.png");
+  background-size: cover;
+}
+
+.recap {
+background-color: white;
+height: 160px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.card-recap {
+color: black
+}
+
+.greycard {
+  height: 220px;
+  background-color: #9B9B9B;
   color: white;
-  height: calc(100vh - 70px);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  opacity: 0.7;
+  h2 {
+  color: white;
+  font-size: 24px;
+
+  }
+
+}
+
+.login_home_wrapper {
+  height: 100%;
+  display:flex;
+  align-items: center;
   justify-content: center;
 }
+
+.loginhome{
+  width: 100%;
+
+}
+.bouton {
+margin-top: 30px;
+}
+
+.banner {
+  color: black;
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+}
+
+.presentation-picture {
+  padding-left: 0;
+  img {
+    width: 100%;
+  }
+}
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.texte {
+  padding: 30px;
+}
+
+.flexboxhome {
+  display: flex;
+}
+
+.diamond {
+  width: 50%;
+}
+
+
+.marbled {
+  display: flex;
+  align-items: center;
+  h3 {
+    font-size: 24px;
+  }
+}
+
