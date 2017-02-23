@@ -27,7 +27,7 @@
 <div class="container text-center">
 
   <!-- Onglet Paramètres -->
-  <div class="tab-content tab-parameters" id="parameters">
+  <div class="tab-content tab-parameters hidden" id="parameters">
     <div class="left">
       <div class="title"><h3>Qu'avez-vous en tête ?</h3></div>
       <%= simple_form_for(@user, class: 'form-inline', url: user_path(current_user), html: {method: :patch}) do |f| %>
@@ -43,7 +43,7 @@
   <!-- end tab 1 -->
 
   <!-- Onglet Prochaine tournée -->
-  <div class="tab-content tab-next-round hidden" id="next">
+  <div class="tab-content tab-next-round" id="next">
     <div class="left">
       <div class="title"><h3>Votre journée du <%= @date %></h3></div>
       <div class="demand-card">
