@@ -1,0 +1,66 @@
+
+<!-- Tabs -->
+<div class="profile-header-wrapper">
+  <div class="container profile-header-container text-center">
+    <div class="profile-header-infos">
+      <h1><%= @user.email %></h1>
+      <h2>co-founder @LeWagon</h2>
+    </div>
+    <div class="tabs">
+      <a class="tab active" data-target="#bio">
+        <h3>Bio</h3>
+      </a>
+      <a class="tab" data-target="#projects">
+        <h3>Projects</h3>
+      </a>
+      <a class="tab" data-target="#contact">
+        <h3>Contact</h3>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- end tabs -->
+
+
+
+<div class="container text-center">
+
+<!-- tab 1 -->
+  <div class="tab-content" id="bio">
+    <p>This is my bio.</p>
+  </div>
+<!-- end tab 1 -->
+
+<!-- tab 2 -->
+  <div class="tab-content hidden" id="projects">
+    <p>Here are my projects.</p>
+  </div>
+<!-- end tab 2 -->
+
+<!-- tab 3 -->
+  <div class="tab-content hidden" id="contact">
+    <p>Contact me if you want.</p>
+  </div>
+<!-- end tab 3 -->
+</div>
+
+<!-- **************************** -->
+<!-- Javascript -->
+<% content_for(:after_js) do %>
+  <script>
+    $(function(){
+
+    $(".tab").on("click", function(e){
+      // Change active tab
+      $(".tab").removeClass('active');
+      $(this).addClass('active');
+      // Hide all tab-content (use class="hidden")
+      $(".tab-content").addClass('hidden');
+      // Show target tab-content (use class="hidden")
+      $($(this).data('target')).removeClass('hidden');
+    });
+
+  });
+  </script>
+<% end %>
+
