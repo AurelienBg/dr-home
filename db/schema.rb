@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223133845) do
+ActiveRecord::Schema.define(version: 20170223173903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20170223133845) do
     t.string   "photo"
     t.string   "cardnumber"
     t.boolean  "admin",                  default: false, null: false
-    t.integer  "radius",                 default: 50,    null: false
+    t.integer  "radius",                 default: 10
     t.boolean  "validated",              default: false, null: false
     t.integer  "duration_consult"
     t.string   "photo_id"
