@@ -70,56 +70,74 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="first_name" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="last_name" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
-<row name="specialty" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="sex" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="address" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="city" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="zipcode" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="latitude" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="longitude" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="fav_address" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="fav_city" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="fav_zipcode" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="phone" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="min_consultation" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="sex" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="photo" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
 <row name="cardnumber" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="lat" null="1" autoincrement="0">
+<row name="specialty" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
+<row name="radius" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="long" null="1" autoincrement="0">
+<row name="min_nb_consult" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="duration_consult" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="photo_profile" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="photo_ID" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="photo_prof_doc" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="validated?" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>'false'</default></row>
+<row name="admin?" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>'false'</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

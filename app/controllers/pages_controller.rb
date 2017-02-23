@@ -8,11 +8,11 @@ class PagesController < ApplicationController
   def dashboard
     @user = current_user
     @hash = Gmaps4rails.build_markers(@user) do |user, marker|
-      marker.lat user.latitude
-      marker.lng user.longitude
-    end
-    min_consultation = @user.min_consultation
+        marker.lat user.latitude
+        marker.lng user.longitude
+      end
+    min_nb_consult = @user.min_nb_consult
     @date = Date.new(2017, 2, 23)
-    @next_round = Demand.where(city: @user.fav_city, due_date: @date).first(min_consultation)
+    @next_round = Demand.where(city: @user.fav_city, due_date: @date).first(min_nb_consult)
   end
 end
