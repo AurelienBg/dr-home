@@ -29,6 +29,7 @@ User.destroy_all
 # ]
 # puts  "creating a user with the following email :#{users[0].email}"
 
+
 10.times do
   User.create! \
     email: Faker::Internet.email,
@@ -46,6 +47,7 @@ User.destroy_all
     admin: [true, false].sample
     puts  "creating a user with the following email :#{User.last.email}"
   end
+
 
 Demand
 demands = [
@@ -136,6 +138,7 @@ end
 #   puts "Demand for : #{new.address} #{new.city} is #{new.valid?}"
 #   new.save
 # end
+
 
 
 # HASH Routific
