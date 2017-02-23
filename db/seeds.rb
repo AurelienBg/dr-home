@@ -10,23 +10,24 @@ Consultation.destroy_all
 Demand.destroy_all
 User.destroy_all
 
-users = [
-User.create!(
-  email: "jc@gmail.com",
-  password: "aurelien",
-  first_name: "jc",
-  last_name: "Dupont",
-  specialty: "generalist",
-  address: "16 villa Gaudelet",
-  city: "Paris",
-  zipcode: "75005",
-  phone: "+33 6 7612 1703",
-  min_consultation: 5,
-  sex: "M",
-  cardnumber: "M-028d082938238",
-  admin: true)
-]
-puts  "creating a user with the following email :#{users[0].email}"
+
+# users = [
+# User.create!(
+#   email: "jc@gmail.com",
+#   password: "aurelien",
+#   first_name: "jc",
+#   last_name: "Dupont",
+#   specialty: "generalist",
+#   address: "16 villa Gaudelet",
+#   city: "Paris",
+#   zipcode: "75005",
+#   phone: "+33 6 7612 1703",
+#   min_nb_consult: 5,
+#   sex: "M",
+#   cardnumber: "M-028d082938238",
+#   admin: true)
+# ]
+# puts  "creating a user with the following email :#{users[0].email}"
 
 10.times do
   User.create! \
