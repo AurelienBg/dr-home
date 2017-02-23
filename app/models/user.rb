@@ -45,6 +45,7 @@ class User < ApplicationRecord
   
   def profile_completed?
     first_name && last_name && specialty && address && phone && sex && min_nb_consult && duration_consult && cardnumber && photo_id && photo_prof_doc
+  end
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
