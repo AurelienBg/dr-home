@@ -16,16 +16,16 @@
     </form> -->
 
     <!-- Different navigation if login or not -->
-    <% unless params[:controller] == "pages" && params[:action] == "home" %>
+    <%# unless params[:controller] == "pages" && params[:action] == "home" %>
       <% if user_signed_in? %>
 
         <!-- Notification -->
-        <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-          <div class="badge-container">
+        <%#= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
+<!--           <div class="badge-container">
             <i class="fa fa-envelope-o"></i>
             <div class="badge badge-blue">3</div>
-          </div>
-        <% end %>
+          </div> -->
+        <%# end %>
 
         <!-- Profile picture and dropdown -->
         <div class="navbar-wagon-item">
@@ -58,6 +58,7 @@
 
       <% end %>
 
+    <% if current_user %>
       <!-- Button (call-to-action) -->
       <%= link_to t(".top_call_to_action", default: "Dashboard"), dashboard_path, class: "navbar-btn", style: 'text-decoration: none;' %>
     <% end %>
