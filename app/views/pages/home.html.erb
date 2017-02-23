@@ -1,14 +1,20 @@
 <div class="banner text-center">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="motto">
-          <h2> Dr.Home le premier site freelance pour les médecins</h2>
+    <div class="row top">
+      <div class="col-md-3 col-md-offset-1">
+        <div class="card">
+          <div class="greycard">
+            <div class="motto">
+            <h2> Dr.Home le premier site freelance pour les médecins</h2>
+            </div>
+          </div>
+          <div class="bouton">
+            <%= link_to "Créer votre compte!", "#", class: "btn btn-primary" %>
+          </div>
         </div>
-          <%= link_to "Créer votre compte!", "#", class: "bttn-lg" %>
       </div>
-      <div class="col-md-3 col-md-offset-6">
-        <form action="#">
+      <div class="col-md-3 col-md-offset-4 login_home_wrapper">
+        <form class="loginhome" action="#">
           <div class="form-group">
             <input type="email" class="form-control" id="email" placeholder="ines@gmail.com">
             <input type="password" class="form-control" id="password" placeholder="*******">
@@ -17,26 +23,34 @@
         </form>
       </div>
     </div>
-    <div class="row">
+    <div class="row recap">
       <div class="col-md-3">
-        <%= image_tag "drhome-womanpic.png", class: "icon" %>
-        <p>On vous trouve vos patients </p>
+        <div class="card-recap">
+          <%= image_tag "drhome-womanpic.png", class: "icon" %>
+          <p>On vous trouve vos patients </p>
+        </div>
       </div>
       <div class="col-md-3">
-        <p>Selon vos disponibilités</p>
-        <%= image_tag "calendar.png", class: "icon" %>
+        <div class="card-recap">
+          <%= image_tag "calendar.png", class: "icon" %>
+          <p>Selon vos disponibilités</p>
+        </div>
       </div>
       <div class="col-md-3">
-        <p>En fonction d’où vous vous trouvez</p>
-        <%= image_tag "mapselector.png", class: "icon" %>
+        <div class="card-recap">
+          <%= image_tag "mapselector.png", class: "icon" %>
+          <p>En fonction d’où vous vous trouvez</p>
+        </div>
       </div>
       <div class="col-md-3">
-       <p>Pour vous proposer la tournée de patients la plus optimisée</p>
-       <%= image_tag "mapsphone.png", class: "icon" %>
+        <div class="card-recap">
+          <%= image_tag "mapsphone.png", class: "icon" %>
+          <p>Pour une tournée de patients optimisée</p>
+       </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row marbled">
+      <div class="col-md-6 presentation-picture">
         <%= image_tag "girlwithcoffee.jpeg", class: "image" %>
       </div>
       <div class="col-md-6">
