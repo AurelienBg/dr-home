@@ -9,10 +9,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem "pundit"
+
 # Gemfile for Admin
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
+# Gemfile for Redis
+gem 'sidekiq'
+gem 'sidekiq-failures'
+
+# Gemfile for Routific
+gem 'routific'
+
+# Gemfile for Front
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
@@ -28,6 +37,10 @@ gem "gmaps4rails"
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
+gem 'cloudinary'
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+gem 'coffee-rails'
 
 gem "letter_opener", group: :development
 

@@ -7,6 +7,11 @@ Rails.application.routes.draw do
 
   get 'dashboard' => 'pages#dashboard'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  mount Attachinary::Engine => "/attachinary"
+
+  # Sidekiq Web UI, only for admins.
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
-
-
