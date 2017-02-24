@@ -71,7 +71,7 @@
   <div class="tab-content tab-infos_pro hidden" id="infos_pro">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <%= f.error_notification %>
+        <%#= f.error_notification %>
         <p type="Numéro RPPS:"><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
         <div>
           <p type="Spécialité:"><%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"} %></p>
@@ -94,7 +94,7 @@
   <div class="tab-content tab-configurations hidden" id="configurations">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-        <%= f.error_notification %>
+        <%#= f.error_notification %>
         <p type="Adresse d'exercice:"><%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %></p>
         <p type="Ville:"><%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Code postal:"><%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %></p>
