@@ -9,7 +9,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem "pundit"
-gem 'apiary'
 
 # Gemfile for Admin
 gem 'activeadmin', github: 'activeadmin/activeadmin'
@@ -48,7 +47,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
 
-  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
   gem 'listen', '~> 3.0.5'
