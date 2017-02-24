@@ -104,3 +104,57 @@ class RoutificJob < ApplicationJob
     end
   end
 end
+
+# HASH Routific
+# {
+#   "visits": {
+#     "order_1": {
+#       "location": {
+#         "name": "patient1",
+#         "lat": 49.48.1724849,
+#         "lng": 2.254809000000023
+#       },
+#       "start": "9:00",
+#       "end": "12:00",
+#       "duration": 20
+#     },
+#     "order_2": {
+#       "location": {
+#         "name": "patient2",
+#         "lat": 48.1701705,
+#         "lng": 2.2505178000000114
+#       },
+#       "start": "9:00",
+#       "end": "12:00",
+#       "duration": 15
+#     },
+#     "order_3": {
+#       "location": {
+#         "name": "patient3",
+#         "lat": 48.10240659999999,
+#         "lng": 2.237859399999934
+#       },
+#       "start": "8:00",
+#       "end": "9:00",
+#       "duration": 15
+#     }
+#   },
+#   "fleet": {
+#     "vehicle_1": {
+#       "start_location": {
+#         "id": "home",
+#         "name": "800 Kingsway",
+#         "lat": 47.83273699999999,
+#         "lng": 1.9290619999999308
+#       },
+#       "end_location": {
+#         "id": "Home",
+#         "name": "800 Kingsway",
+#         "lat": 47.83273699999999,
+#         "lng": 1.9290619999999308
+#       },
+#       "shift_start": "8:00",
+#       "shift_end": "12:00"
+#     }
+#   }
+# }
