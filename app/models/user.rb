@@ -1,18 +1,18 @@
 class User < ApplicationRecord
-  SPECIALTY = ['Chirurgien-dentiste', 
-    'Médecin généraliste', 
-    'Pédiatre', 
-    'Gynécologue', 
-    'Ophtalmologue', 
-    'ORL', 
-    'Dermatologue', 
-    'Chirurgien urologue', 
-    'Allergologue', 
-    'Cardiologue', 
-    'Psychiatre', 
-    'Neurologue', 
-    'Rhumatologue', 
-    'Stomatologue', 
+  SPECIALTY = ['Chirurgien-dentiste',
+    'Médecin généraliste',
+    'Pédiatre',
+    'Gynécologue',
+    'Ophtalmologue',
+    'ORL',
+    'Dermatologue',
+    'Chirurgien urologue',
+    'Allergologue',
+    'Cardiologue',
+    'Psychiatre',
+    'Neurologue',
+    'Rhumatologue',
+    'Stomatologue',
     'Endocrinologue',
     'Gastro-entérologue et hépatologue',
     'Chirurgien orthopédiste',
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_attachment :photo 
+  has_attachment :photo
   has_attachment :photo_id
   has_attachment :photo_prof_doc
 
@@ -38,11 +38,11 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
-  validates :min_nb_consult, :numericality => { :greater_than_or_equal_to => 1 }
-  validates :duration_consult, :numericality => { :greater_than_or_equal_to => 10 }
+  validates :min_nb_consult, :numericality => { :greater_than_or_equal_to => 1 }, on: :update
+  validates :duration_consult, :numericality => { :greater_than_or_equal_to => 10 }, on: :update
   # validates :cardnumber, presence: true, uniqueness: true
 
-  
+
   def profile_completed?
     first_name && last_name && specialty && address && phone && sex && min_nb_consult && duration_consult && cardnumber && photo_id && photo_prof_doc
   end
