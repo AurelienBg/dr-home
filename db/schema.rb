@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222183627) do
+ActiveRecord::Schema.define(version: 20170223173903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 20170222183627) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.string   "attachinariable_type"
+    t.integer  "attachinariable_id"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
   create_table "consultations", force: :cascade do |t|
@@ -85,16 +100,18 @@ ActiveRecord::Schema.define(version: 20170222183627) do
     t.string   "fav_city"
     t.string   "fav_zipcode"
     t.string   "phone"
-    t.integer  "min_consultation"
+    t.integer  "min_nb_consult"
     t.string   "sex"
     t.float    "latitude"
     t.float    "longitude"
-    t.float    "fav_lat"
-    t.float    "fav_long"
     t.string   "photo"
     t.string   "cardnumber"
     t.boolean  "admin",                  default: false, null: false
-    t.integer  "fav_distance",           default: 50,    null: false
+    t.integer  "radius",                 default: 10
+    t.boolean  "validated",              default: false, null: false
+    t.integer  "duration_consult"
+    t.string   "photo_id"
+    t.string   "photo_prof_doc"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

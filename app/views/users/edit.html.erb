@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 <!-- Tabs -->
@@ -5,6 +6,36 @@
   <div class="container profile-header-container">
     <div class="profile-header-infos">
       <h1>Création de votre compte</h1>
+=======
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h1 class="title">Edit user</h1>
+      <%= simple_form_for(@user) do |f| %>
+      <%= f.error_notification %>
+
+
+      <% if @user.photo %>
+        <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill %>
+      <% else %>
+        <%= image_tag 'http://placehold.it/400x300', class: "avatar-square-huge"%>
+      <% end %>
+      <%= f.input :photo, as: :attachinary %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :sex, collection: User::SEX %>
+      <%= f.input :address %>
+      <%= f.input :city %>
+      <%= f.input :zipcode %>
+      <%= f.input :phone %>
+      <%= f.input :specialty, collection: User::SPECIALTY %>
+      <%= f.input :min_nb_consult %>
+      <%= f.input :duration_consult %>
+      <%= f.input :cardnumber %>
+      <%= f.input :photo_id, as: :attachinary, label: "Carte d'identité" %>
+      <%= f.input :photo_prof_doc, as: :attachinary, label: "Carte professionnelle" %>
+      <%= f.submit "Enregistrer", class: 'secondary-btn' %>
+>>>>>>> 6b2c0bd976e2e919ff0d94ede49084f50f4e2ac5
     </div>
     <div class="tabs">
       <a class="tab active" data-target="#infos_perso">

@@ -1,50 +1,90 @@
 <div class="banner text-center">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="motto">
-          <h2> Dr.Home le premier site freelance pour les médecins</h2>
+    <div class="row top">
+      <div class="col-md-3 col-md-offset-1">
+        <div class="card">
+          <div class="greycard">
+            <div class="motto">
+            <h2> Dr Home le premier site freelance pour les médecins</h2>
+            </div>
+          </div>
+          <div class="bouton">
+            <%= link_to "Créer votre compte!", new_user_registration_path, class: "btn btn-primary"%>
+
+          </div>
         </div>
-          <%= link_to "Créer votre compte!", "#", class: "bttn-lg" %>
       </div>
-      <div class="col-md-3 col-md-offset-6">
-        <form action="#">
+      <% unless current_user %>
+      <div class="col-md-3 col-md-offset-4 login_home_wrapper">
+        <%= simple_form_for(User.new, url: session_path(User.new), html:{class: "loginhome"}) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email, required: false, autofocus: true, placeholder: 'ines@gmail.com', label: false %>
+            <%= f.input :password, required: false, placeholder: '******', label: false %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Enregistrez-vous", class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+      <!-- <div class="col-md-3 col-md-offset-4 login_home_wrapper">
+        <form class="loginhome" action="#">
           <div class="form-group">
             <input type="email" class="form-control" id="email" placeholder="ines@gmail.com">
             <input type="password" class="form-control" id="password" placeholder="*******">
           </div>
             <input type="submit" value="Enregistrez-vous" class="btn btn-primary">
         </form>
+      </div> -->
+    </div>
+    <div class="row recap">
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "drhome-womanpic.png", class: "icon" %>
+          <p>On vous trouve vos patients </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "calendar.png", class: "icon" %>
+          <p>Selon vos disponibilités</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "mapselector.png", class: "icon" %>
+          <p>En fonction d’où vous vous trouvez</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-recap">
+          <%= image_tag "mapsphone.png", class: "icon" %>
+          <p>Pour une tournée de patients optimisée</p>
+       </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-3">
-        <%= image_tag "drhome-womanpic.png", class: "icon" %>
-        <p>On vous trouve vos patients </p>
-      </div>
-      <div class="col-md-3">
-        <p>Selon vos disponibilités</p>
-        <%= image_tag "calendar.png", class: "icon" %>
-      </div>
-      <div class="col-md-3">
-        <p>En fonction d’où vous vous trouvez</p>
-        <%= image_tag "mapselector.png", class: "icon" %>
-      </div>
-      <div class="col-md-3">
-       <p>Pour vous proposer la tournée de patients la plus optimisée</p>
-       <%= image_tag "mapsphone.png", class: "icon" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row marbled">
+      <div class="col-md-6 presentation-picture">
         <%= image_tag "girlwithcoffee.jpeg", class: "image" %>
       </div>
       <div class="col-md-6">
         <div class="texte">
-          <h3>Exercez en toute flexibilité et indépendence sans coûts fixes. Trouvez des patients où que vous soyez.Pas besoin de secretariat ou de cabinet.</h3>
+          <h3>Exercez en toute flexibilité et indépendence sans coûts fixes. Trouvez des patients où que vous soyez. Pas besoin de secretariat ou de cabinet.</h3>
         </div>
       </div>
     </div>
+     <div class="row marbled">
+        <div class="col-md-6">
+          <div class="texte">
+            <h3>Nous vous proposons la tournée de patient la plus optimisée en fonction de vos critères.</h3>
+          </div>
+        </div>
+        <div class="col-md-6 presentation-picture">
+          <%= image_tag "road.jpg", class: "image" %>
+        </div>
+    </div>
   </div>
 </div>
+
 

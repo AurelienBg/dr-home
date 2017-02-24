@@ -6,9 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Consultation.destroy_all
-# Demand.destroy_all
-# User.destroy_all
+Consultation.destroy_all
+Demand.destroy_all
+User.destroy_all
+
 
 # users = [
 # User.create!(
@@ -21,107 +22,55 @@
 #   city: "Paris",
 #   zipcode: "75005",
 #   phone: "+33 6 7612 1703",
-#   min_consultation: 5,
+#   min_nb_consult: 5,
 #   sex: "M",
 #   cardnumber: "M-028d082938238",
 #   admin: true)
 # ]
 # puts  "creating a user with the following email :#{users[0].email}"
 
-# 10.times do
-#   User.create! \
-#     email: Faker::Internet.email,
-#     password: "aurelien",
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     specialty: User::SPECIALTY.sample,
-#     address: Faker::Address.street_address,
-#     city: Faker::Address.city,
-#     zipcode: Faker::Address.zip_code,
-#     phone: Faker::PhoneNumber.phone_number,
-#     min_consultation: rand(5..20),
-#     sex: ["M", "F"].sample,
-#     cardnumber: Faker::Code.isbn,
-#     admin: [true, false].sample
-#     puts  "creating a user with the following email :#{User.last.email}"
-#   end
 
-# Demand
-# demands = [
-# Demand.new(
-#   first_name: "Pierre",
-#   last_name: "Papillard",
-#   address: "12 rue de Four",
-#   city: "Paris",
-#   zipcode: "75006",
-#   illness: "Pain in the stomach",
-#   phone: "+33 1 6712 3033",
-#   email: "pierre@gmail.com",
-#   request_time: Date.today)
-# ]
-# puts "creating a demand for : #{demands[0].first_name} #{demands[0].last_name} "
-
-# 50.times do
-#   Demand.create! \
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     address: Faker::Address.street_address,
-#     city: 'Paris',
-#     zipcode: Faker::Address.zip_code,
-#     phone: Faker::PhoneNumber.phone_number,
-#     email: Faker::Internet.email,
-#     illness: Faker::Lorem.sentence(3),
-#     birthday: Faker::Date.between(80.years.ago, Date.today),
-#     sex: ["M", "F"].sample,
-#     # lat: Faker::Address.latitude,
-#     # long: Faker::Address.longitude,
-#     photo: Faker::LoremPixel.image("50x60", false, 'people'),
-#     request_time: Faker::Date.between(20.days.ago, Date.today),
-#     due_date: Faker::Date.between(Date.today, Date.today + 10 )
-#   puts "creating a demand for : #{Demand.last.first_name} #{Demand.last.last_name} "
-# end
-
-
-# 20.times do
-#   Consultation.create! \
-#     estimated_price: rand(30..120),
-#     start_time: Faker::Date.forward(2),
-#     end_time: Faker::Date.forward(3),
-#     status: ["pending", "accepted", "refused"].sample,
-#     user_id: [ User.first, User.last ].sample,
-#     demand_id: [ Demand.last ].sample,
-#     created_at: Date.today,
-#     updated_at: Date.today
-#   puts "creating a consultation for : #{Demand.last.first_name} #{Demand.last.last_name} "
-# end
-
-
-
-# **********************************
-
-rue = [
-        "rue d'avron",
-        "rue des amiraux",
-        "rue championnet",
-        "rue jean pierre timbaud",
-        "rue oberkampf",
-        "avenue montaigne",
-        "rue saint-maur",
-        "rue du louvre",
-        "rue du faubourg saint antoine",
-        "rue de vaugirard",
-        "rue maubeuge",
-        "avenue des champs elysées",
-        "rue dutot",
-        "boulevard richard lenoir"]
-
-50.times do
-  new = Demand.new \
+10.times do
+  User.create! \
+    email: Faker::Internet.email,
+    password: "aurelien",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: "#{rand(1..25)} #{rue.sample}",
+    specialty: User::SPECIALTY.sample,
+    address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    zipcode: Faker::Address.zip_code,
+    phone: Faker::PhoneNumber.phone_number,
+    min_consultation: rand(5..20),
+    sex: ["M", "F"].sample,
+    cardnumber: Faker::Code.isbn,
+    admin: [true, false].sample
+    puts  "creating a user with the following email :#{User.last.email}"
+  end
+
+
+Demand
+demands = [
+Demand.new(
+  first_name: "Pierre",
+  last_name: "Papillard",
+  address: "12 rue de Four",
+  city: "Paris",
+  zipcode: "75006",
+  illness: "Pain in the stomach",
+  phone: "+33 1 6712 3033",
+  email: "pierre@gmail.com",
+  request_time: Date.today)
+]
+puts "creating a demand for : #{demands[0].first_name} #{demands[0].last_name} "
+
+50.times do
+  Demand.create! \
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    address: Faker::Address.street_address,
     city: 'Paris',
-    zipcode: '75',
+    zipcode: Faker::Address.zip_code,
     phone: Faker::PhoneNumber.phone_number,
     email: Faker::Internet.email,
     illness: Faker::Lorem.sentence(3),
@@ -132,7 +81,116 @@ rue = [
     photo: Faker::LoremPixel.image("50x60", false, 'people'),
     request_time: Faker::Date.between(20.days.ago, Date.today),
     due_date: Faker::Date.between(Date.today, Date.today + 10 )
-  puts "Demand for : #{new.address} #{new.city} is #{new.valid?}"
-  new.save
+  puts "creating a demand for : #{Demand.last.first_name} #{Demand.last.last_name} "
 end
 
+
+20.times do
+  Consultation.create! \
+    estimated_price: rand(30..120),
+    start_time: Faker::Date.forward(2),
+    end_time: Faker::Date.forward(3),
+    status: ["pending", "accepted", "refused"].sample,
+    user_id: [ User.first, User.last ].sample,
+    demand_id: [ Demand.last ].sample,
+    created_at: Date.today,
+    updated_at: Date.today
+  puts "creating a consultation for : #{Demand.last.first_name} #{Demand.last.last_name} "
+end
+
+
+
+# **********************************
+
+# rue = [
+#         "rue d'avron",
+#         "rue des amiraux",
+#         "rue championnet",
+#         "rue jean pierre timbaud",
+#         "rue oberkampf",
+#         "avenue montaigne",
+#         "rue saint-maur",
+#         "rue du louvre",
+#         "rue du faubourg saint antoine",
+#         "rue de vaugirard",
+#         "rue maubeuge",
+#         "avenue des champs elysées",
+#         "rue dutot",
+#         "boulevard richard lenoir"]
+
+# 50.times do
+#   new = Demand.new \
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     address: "#{rand(1..25)} #{rue.sample}",
+#     city: 'Paris',
+#     zipcode: '75',
+#     phone: Faker::PhoneNumber.phone_number,
+#     email: Faker::Internet.email,
+#     illness: Faker::Lorem.sentence(3),
+#     birthday: Faker::Date.between(80.years.ago, Date.today),
+#     sex: ["M", "F"].sample,
+#     # lat: Faker::Address.latitude,
+#     # long: Faker::Address.longitude,
+#     photo: Faker::LoremPixel.image("50x60", false, 'people'),
+#     request_time: Faker::Date.between(20.days.ago, Date.today),
+#     due_date: Faker::Date.between(Date.today, Date.today + 10 )
+#   puts "Demand for : #{new.address} #{new.city} is #{new.valid?}"
+#   new.save
+# end
+
+
+
+# HASH Routific
+{
+  "visits": {
+    "order_1": {
+      "location": {
+        "name": "patient1",
+        "lat": 49.48.1724849,
+        "lng": 2.254809000000023
+      },
+      "start": "9:00",
+      "end": "12:00",
+      "duration": 20
+    },
+    "order_2": {
+      "location": {
+        "name": "patient2",
+        "lat": 48.1701705,
+        "lng": 2.2505178000000114
+      },
+      "start": "9:00",
+      "end": "12:00",
+      "duration": 15
+    },
+    "order_3": {
+      "location": {
+        "name": "patient3",
+        "lat": 48.10240659999999,
+        "lng": 2.237859399999934
+      },
+      "start": "8:00",
+      "end": "9:00",
+      "duration": 15
+    }
+  },
+  "fleet": {
+    "vehicle_1": {
+      "start_location": {
+        "id": "home",
+        "name": "800 Kingsway",
+        "lat": 47.83273699999999,
+        "lng": 1.9290619999999308
+      },
+      "end_location": {
+        "id": "Home",
+        "name": "800 Kingsway",
+        "lat": 47.83273699999999,
+        "lng": 1.9290619999999308
+      },
+      "shift_start": "8:00",
+      "shift_end": "12:00"
+    }
+  }
+}
