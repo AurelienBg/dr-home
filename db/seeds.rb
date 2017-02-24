@@ -60,9 +60,9 @@ Demand.new(
   illness: "Pain in the stomach",
   phone: "+33 1 6712 3033",
   email: "pierre@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"18/05/1989",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"",
   latitude:""),
 Demand.new(
@@ -74,9 +74,9 @@ Demand.new(
   illness: "Gastro",
   phone: "+33 1 4567 9987",
   email: "jmichon@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"15/04/1968",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"1.9081556797027588",
   latitude:"47.90067848547314"),
 Demand.new(
@@ -88,9 +88,9 @@ Demand.new(
   illness: "Grippe",
   phone: "+33 1 3456 9984",
   email: "mdeschamps@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"22/03/1969",
-  sexe:"Feminin",
+  sex:"F",
   longitude:"1.907651424407959",
   latitude:"47.900397965395456"),
 Demand.new(
@@ -102,9 +102,9 @@ Demand.new(
   illness: "varicelle",
   phone: "+33 1 4678 9867",
   email: "rmartin@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"02/05/1999",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"1.9081127643585205",
   latitude:"47.90038357970946"),
 Demand.new(
@@ -116,9 +116,9 @@ Demand.new(
   illness: "varicelle",
   phone: "+33 1 7689 4565",
   email: "prisbn@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"12/09/1995",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"1.9081127643585205",
   latitude:"47.90038357970946"),
 Demand.new(
@@ -130,9 +130,9 @@ Demand.new(
   illness: "fievre",
   phone: "+33 1 4678 9898",
   email: "hudupont@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"07/08/1994",
-  sexe:"Femme",
+  sex:"Femme",
   longitude:"-1.2564754486083984",
   latitude:"48.996086101032176"),
 Demand.new(
@@ -144,9 +144,9 @@ Demand.new(
   illness: "gastro",
   phone: "+33 1 4678 9867",
   email: "dlev@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"02/04/1978",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"1.9081127643585205",
   latitude:"47.90038357970946"),
 Demand.new(
@@ -158,9 +158,9 @@ Demand.new(
   illness: "insolation",
   phone: "+33 1 4678 9867",
   email: "clebrun@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"12/08/1988",
-  sexe:"Feminin",
+  sex:"F",
   longitude:"-1.2576448917388916",
   latitude:"48.995501835467444"),
 Demand.new(
@@ -172,9 +172,9 @@ Demand.new(
   illness: "rhume",
   phone: "+33 1 5676 3454",
   email: "pchomont@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"24/12/2001",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"-1.2797248363494873",
   latitude:"48.98848307378626"),
 Demand.new(
@@ -186,9 +186,9 @@ Demand.new(
   illness: "nausées",
   phone: "+33 1 4523 4545",
   email: "ccmit@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"11/04/1996",
-  sexe:"Feminin",
+  sex:"F",
   longitude:"-1.273437738418579",
   latitude:"448.98689896373105"),
 Demand.new(
@@ -200,9 +200,9 @@ Demand.new(
   illness: "gastro",
   phone: "+33 1 4576 8909",
   email: "campillard@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"08/09/1998",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"-1.2773323059082031",
   latitude:"48.97981561568688"),
 Demand.new(
@@ -214,9 +214,9 @@ Demand.new(
   illness: "angine",
   phone: "+33 1 7865 3454",
   email: "bprisa@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"22/07/1987",
-  sexe:"Feminin",
+  sex:"F",
   longitude:"-1.445324420928955",
   latitude:"48.919355000421646"),
 Demand.new(
@@ -228,9 +228,9 @@ Demand.new(
   illness: "fievre",
   phone: "+33 1 2345 7689",
   email: "malinsalin@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"02/12/2000",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"-1.5197181701660156",
   latitude:"48.912826144403944"),
 Demand.new(
@@ -242,11 +242,11 @@ Demand.new(
   illness: "toux grasse",
   phone: "+33 1 8754 6576",
   email: "priset@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"02/11/1976",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"1.9081127643585205",
-  latitude:"47.90038357970946",)
+  latitude:"47.90038357970946"),
 Demand.new(
   first_name: "Manon",
   last_name: "Panon",
@@ -256,11 +256,11 @@ Demand.new(
   illness: "rhume",
   phone: "+33 1 3465 7645",
   email: "mpanon@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"23/12/1954",
-  sexe:"Feminin",
+  sex:"F",
   longitude:"-1.5303611755371094",
-  latitude:"48.91296716542893",)
+  latitude:"48.91296716542893"),
 Demand.new(
   first_name: "Clement",
   last_name: "Delaunet",
@@ -270,14 +270,14 @@ Demand.new(
   illness: "infection pulmonaire",
   phone: "+33 1 3456 6543",
   email: "cdel@gmail.com",
-  request_time: Date.today),
+  request_time: Date.today,
   birthday:"06/05/1989",
-  sexe:"Masculin",
+  sex:"M",
   longitude:"1.9081127643585205",
-  latitude:"47.90038357970946")
+  latitude:"47.90038357970946"),
 ]
 
-Demand.each do |demand|
+demands.each do |demand|
   demand.save!
   puts "creating a demand for : #{demand.first_name} #{demand.last_name} "
 end
@@ -292,7 +292,7 @@ end
 #     phone: Faker::PhoneNumber.phone_number,
 #     email: Faker::Internet.email,
 #     illness: Faker::Lorem.sentence(3),
-#     birthday: Faker::Date.between(80.years.ago, Date.today),
+#     birthday: Faker::Date.between(80.years.ago, Date.today,
 #     sex: ["M", "F"].sample,
 #     # lat: Faker::Address.latitude,
 #     # long: Faker::Address.longitude,
