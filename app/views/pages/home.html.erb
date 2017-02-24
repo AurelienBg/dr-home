@@ -9,8 +9,9 @@
             <!-- <h2> Dr Home le premier site freelance pour les médecins</h2> -->
           </div>
           <!-- <div class="bouton"> -->
+          <% unless current_user %>
             <%= link_to "Créez votre compte!", new_user_registration_path, class: "primary-btn"%>
-
+          <% end %>
           <!-- </div> -->
         </div>
       </div>

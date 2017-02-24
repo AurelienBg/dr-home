@@ -30,18 +30,18 @@
           <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill if @user.photo %>
           <p type="Photo:"><%= f.input :photo, as: :attachinary, label: false %></p>
 
-          <div class="radio">
-            <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-              Monsieur
-            </label>
-          </div>
-          <div class="radio">
+          <!-- <div class="radio"> -->
+            <!-- <label> -->
+              <!-- <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> -->
+              <p type="Vous êtes..."><%= f.input :sex, as: :radio_buttons, collection: ['Monsieur', 'Madame'], label: false, input_html: {checked: false}, item_label_class: "radio-inline" %></p>
+            <!-- </label> -->
+          <!-- </div> -->
+<!--           <div class="radio">
             <label>
               <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
               Madame
             </label>
-          </div>
+          </div> -->
           <p type="Nom:"><%= f.input :first_name, label: false, placeholder: 'Paillard', input_html: {class: "simple_form_field"} %></p>
           <p type="Prénom:"><%= f.input :last_name, label: false, placeholder: 'Boris', input_html: {class: "simple_form_field"} %></p>
         </div>

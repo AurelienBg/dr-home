@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def update
 
     if @user.update(user_params)
-      redirect_to dashboard_path, notice: 'User was successfully updated.'
+      redirect_to dashboard_path
     else
       render :edit
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name,:specialty, :address, :city, :zipcode, :phone, :min_nb_consult, :duration_consult, :sex, :cardnumber, :fav_city, :radius, :photo_id, :photo_prof_doc, :validated, :photo)
+    params.require(:user).permit(:first_name, :last_name,:specialty, :address, :city, :zipcode, :phone, :min_nb_consult, :duration_consult, :sex, :cardnumber, :fav_address, :fav_zipcode, :fav_city, :radius, :photo_id, :photo_prof_doc, :validated, :photo)
   end
 end
 
