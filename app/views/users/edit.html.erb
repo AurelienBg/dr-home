@@ -1,92 +1,67 @@
-<<<<<<< HEAD
-
-
 <!-- Tabs -->
 <div class="profile-header-wrapper">
   <div class="container profile-header-container">
     <div class="profile-header-infos">
       <h1>Création de votre compte</h1>
-=======
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <h1 class="title">Edit user</h1>
-      <%= simple_form_for(@user) do |f| %>
-      <%= f.error_notification %>
-
-
-      <% if @user.photo %>
-        <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill %>
-      <% else %>
-        <%= image_tag 'http://placehold.it/400x300', class: "avatar-square-huge"%>
-      <% end %>
-      <%= f.input :photo, as: :attachinary %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :sex, collection: User::SEX %>
-      <%= f.input :address %>
-      <%= f.input :city %>
-      <%= f.input :zipcode %>
-      <%= f.input :phone %>
-      <%= f.input :specialty, collection: User::SPECIALTY %>
-      <%= f.input :min_nb_consult %>
-      <%= f.input :duration_consult %>
-      <%= f.input :cardnumber %>
-      <%= f.input :photo_id, as: :attachinary, label: "Carte d'identité" %>
-      <%= f.input :photo_prof_doc, as: :attachinary, label: "Carte professionnelle" %>
-      <%= f.submit "Enregistrer", class: 'secondary-btn' %>
->>>>>>> 6b2c0bd976e2e919ff0d94ede49084f50f4e2ac5
-    </div>
-    <div class="tabs">
-      <a class="tab active" data-target="#infos_perso">
-        <h3>1. Informations personnelles</h3>
-      </a>
-      <a class="tab" data-target="#infos_pro">
-        <h3>2. Informations professionnelles</h3>
-      </a>
-      <a class="tab" data-target="#configurations">
-        <h3>3. Configurations du compte</h3>
-      </a>
+      <div class="tabs">
+        <a class="tab active" data-target="#infos_perso" id="first">
+          <h3>1. Informations personnelles</h3>
+        </a>
+        <a class="tab" data-target="#infos_pro" id="next">
+          <h3>2. Informations professionnelles</h3>
+        </a>
+        <a class="tab" data-target="#configurations" id="third">
+          <h3>3. Configuration du compte</h3>
+        </a>
+      </div>
     </div>
   </div>
 </div>
 <!-- end tabs -->
-<div class="container">
+<div class="container edit-profile-page">
   <!-- tab 1. infos perso -->
-  <div class="tab-content tab-infos_perso" id="infos_perso">
+  <div class="tab-content tab-infos_perso " id="infos_perso">
     <div class="row">
-      <div class="col-xs-12">
-        <h1 class="title"></h1>
-        <%= simple_form_for(@user) do |f| %>
-        <%= f.error_notification %>
-        <% if @user.photo %>
-          <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill %>
-        <% else %>
-          <%= image_tag 'http://placehold.it/400x300', class: "avatar-square-huge"%>
-        <% end %>
-        <%= f.input :photo, as: :attachinary %>
+      <!-- <div class="col-xs-12"> -->
+      <%= simple_form_for(@user) do |f| %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.error_notification %>
+          <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill if @user.photo %>
+          <p type="Photo:"><%= f.input :photo, as: :attachinary, label: false %></p>
+
           <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-            Monsieur
-          </label>
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+              Monsieur
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+              Madame
+            </label>
+          </div>
+          <p type="Nom:"><%= f.input :first_name, label: false, placeholder: 'Paillard', input_html: {class: "simple_form_field"} %></p>
+          <p type="Prénom:"><%= f.input :last_name, label: false, placeholder: 'Boris', input_html: {class: "simple_form_field"} %></p>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            Madame
-          </label>
+        <div class="col-sm-6">
+          <p type="Téléphone:"><%= f.input :phone, label: false, placeholder: '06 .. .. .. ..', input_html: {class: "simple_form_field"} %></p>
+          <p type="Email:"><%= f.input :email, label: false, placeholder: 'lewagon@gmail.com', input_html: {class: "simple_form_field"} %></p>
+          <p type="Adresse:"><%= f.input :address, label: false, placeholder: '16 villa Gaudelet', input_html: {class: "simple_form_field"} %></p>
+          <p type="Ville:"><%= f.input :city, label: false, placeholder: 'Paris', input_html: {class: "simple_form_field"} %></p>
+          <p type="Code postal:"><%= f.input :zipcode, label: false, placeholder: '75011', input_html: {class: "simple_form_field"} %></p>
         </div>
-        <p type="Nom:"><%= f.input :first_name, label: false, placeholder: 'Paillard', input_html: {class: "simple_form_field"} %></p>
-        <p type="Prénom:"><%= f.input :last_name, label: false, placeholder: 'Boris', input_html: {class: "simple_form_field"} %></p>
-        <p type="Téléphone:"><%= f.input :phone, label: false, placeholder: '06 .. .. .. ..', input_html: {class: "simple_form_field"} %></p>
-        <p type="Email:"><%= f.input :email, label: false, placeholder: 'lewagon@gmail.com', input_html: {class: "simple_form_field"} %></p>
-        <p type="Adresse:"><%= f.input :address, label: false, placeholder: '16 villa Gaudelet', input_html: {class: "simple_form_field"} %></p>
-        <p type="City:"><%= f.input :city, label: false, placeholder: 'Paris', input_html: {class: "simple_form_field"} %></p>
-        <p type="Zipcode:"><%= f.input :zipcode, label: false, placeholder: '75011', input_html: {class: "simple_form_field"} %></p>
-        <%= f.submit "Enregistrer", class: 'secondary-btn' %>
+        <!-- </div> -->
       </div>
-      <% end %>
+      <div class="row" style="margin: 10px 0 40px;">
+        <div class="col-sm-4 col-sm-offset-4">
+          <a class="next" data-target="#infos_pro">
+            <div class="btn second-btn">Suivant</div>
+          </a>
+        </div>
+      </div>
+      <%# end %>
     </div>
   </div>
 
@@ -95,21 +70,21 @@
   <!-- tab 2. infos pro -->
   <div class="tab-content tab-infos_pro hidden" id="infos_pro">
     <div class="row">
-      <div class="col-xs-12">
-        <h1 class="title"></h1>
-        <%= simple_form_for(@user) do |f| %>
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         <%= f.error_notification %>
         <p type="Numéro RPPS:"><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
         <div>
-        <p type="Spécialitée:"><%= f.input :specialty, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Spécialitée:"><%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"} %></p>
-        <p type="Carte professionnelle"<%= f.input :photo_prof_doc, as: :attachinary, label: "Carte professionnelle" %></p>
-        <p style="font-weight: bold"> Votre carte professionnelle
-        <%= image_tag 'http://placehold.it/400x300', class: "avatar-square-huge"%>
-        </p>
-        <%= f.submit "Enregistrer", class: 'secondary-btn' %>
+          <p type="Spécialité:"><%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"} %></p>
+          <p type="Carte professionnelle:"><%= f.input :photo_prof_doc, as: :attachinary, label: false %></p>
+        </div>
       </div>
-      <% end %>
+    </div>
+    <div class="row" style="margin: 10px 0 40px;">
+      <div class="col-sm-4 col-sm-offset-4">
+        <a class="third" data-target="#configurations">
+          <div class="btn second-btn">Suivant</div>
+        </a>
+      </div>
     </div>
   </div>
   <!-- Fin tab.2 -->
@@ -118,21 +93,30 @@
   <!-- tab 3. configuration -->
   <div class="tab-content tab-configurations hidden" id="configurations">
     <div class="row">
-      <div class="col-xs-12">
-        <h1 class="title"></h1>
-        <%= simple_form_for(@user) do |f| %>
+      <div class="col-xs-12 col-sm-6">
         <%= f.error_notification %>
-        <p type="Adresse d'exercice:"><%= f.input :fav_address, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Adresse d'exercice:"><%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %></p>
         <p type="Ville:"><%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Code postal:"><%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Distance d'éloignement:"><%= f.input :fav_distance, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Distance d'éloignement (en km):"><%= f.input :radius, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Nombre minimun de consultations par jour:"><%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Durée d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
-        <%= f.submit "Enregistrer", class: 'secondary-btn' %>
+        <p type="Durée moyenne d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
+
       </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="">
+          <div id="map" style="width: 100%; height: calc(100vh - 229px);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= f.button :submit, "Enregistrer", class: 'primary-btn', style: 'padding: 10px 10px; border-radius: 2px; background-color: #31639C; text-decoration: none; font-weight: lighter; border: none; color: white; transition: all 0.4s ease; margin-bottom: 45px' %>
       <% end %>
+      </div>
     </div>
   </div>
+
   <!-- Fin tab.3 -->
 </div>
 
@@ -142,18 +126,49 @@
   <script>
     $(function(){
 
-    $(".tab").on("click", function(e){
-      // Change active tab
-      $(".tab").removeClass('active');
-      $(this).addClass('active');
-      // Hide all tab-content (use class="hidden")
-      $(".tab-content").addClass('hidden');
-      // Show target tab-content (use class="hidden")
-      $($(this).data('target')).removeClass('hidden');
-    });
-    $(".simple_form_field").removeClass("form-control")
+      $(".tab").on("click", function(e){
+        // Change active tab
+        $(".tab").removeClass('active');
+        $(this).addClass('active');
+        // Hide all tab-content (use class="hidden")
+        $(".tab-content").addClass('hidden');
+        // Show target tab-content (use class="hidden")
+        $($(this).data('target')).removeClass('hidden');
+      });
+      $(".simple_form_field").removeClass("form-control");
 
-  });
+      $(".next").on("click", function(e){
+        // Change active tab
+        $("#first").removeClass('active');
+        $('#next').addClass('active');
+        // Hide all tab-content (use class="hidden")
+        $(".tab-content").addClass('hidden');
+        // Show target tab-content (use class="hidden")
+        $($(this).data('target')).removeClass('hidden');
+      });
+
+      $(".third").on("click", function(e){
+        // Change active tab
+        $("#next").removeClass('active');
+        $('#third').addClass('active');
+        // Hide all tab-content (use class="hidden")
+        $(".tab-content").addClass('hidden');
+        // Show target tab-content (use class="hidden")
+        $($(this).data('target')).removeClass('hidden');
+      });
+      var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' }, provider: { styles: styles } }, function() {
+        // markers = handler.addMarkers(<%#= raw @hash.to_json %>);
+        // handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        // if (markers.length == 0) {
+          handler.getMap().setZoom(14);
+        // } else if (markers.length == 1) {
+        //   handler.getMap().setZoom(14);
+        // }
+      });
+      });
   </script>
 <% end %>
 
