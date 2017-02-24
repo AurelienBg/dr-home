@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
 
   def profile_completed?
-    first_name && last_name && specialty && address && phone && sex && min_nb_consult && duration_consult && cardnumber && photo_id && photo_prof_doc
+    first_name && last_name && specialty && address && phone && sex && min_nb_consult && duration_consult && cardnumber
   end
 
   def send_welcome_email
