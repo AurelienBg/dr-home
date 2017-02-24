@@ -307,6 +307,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bundler
   cloudinary
   coffee-rails
   devise
