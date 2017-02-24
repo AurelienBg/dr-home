@@ -10,7 +10,7 @@ Consultation.destroy_all
 Demand.destroy_all
 User.destroy_all
 
-
+# Seed of User
 users = [
 User.create!(
   email: "jc@gmail.com",
@@ -28,8 +28,6 @@ User.create!(
   admin: true)
 ]
 puts  "creating a user with the following email :#{users[0].email}"
-
-
 
 
 # 10.times do
@@ -51,7 +49,7 @@ puts  "creating a user with the following email :#{users[0].email}"
 #   end
 
 
-Demand
+# Seed of Demand
 demands = [
 Demand.new(
   first_name: "Pierre",
@@ -66,12 +64,7 @@ Demand.new(
   birthday:"18/05/1989",
   sexe:"Masculin",
   longitude:"",
-  latitude:"",
-]
-puts "creating a demand for : #{demands[0].first_name} #{demands[0].last_name} "
-
-Demand
-demands = [
+  latitude:""),
 Demand.new(
   first_name: "Jean",
   last_name: "Michon",
@@ -85,12 +78,7 @@ Demand.new(
   birthday:"15/04/1968",
   sexe:"Masculin",
   longitude:"1.9081556797027588",
-  latitude:"47.90067848547314",
-]
-puts "creating a demand for : #{demands[1].first_name} #{demands[1].last_name} "
-
-Demand
-demands = [
+  latitude:"47.90067848547314"),
 Demand.new(
   first_name: "Marguerite",
   last_name: "Deschamps",
@@ -104,12 +92,7 @@ Demand.new(
   birthday:"22/03/1969",
   sexe:"Feminin",
   longitude:"1.907651424407959",
-  latitude:"47.900397965395456",
-]
-puts "creating a demand for : #{demands[2].first_name} #{demands[2].last_name} "
-
-Demand
-demands = [
+  latitude:"47.900397965395456"),
 Demand.new(
   first_name: "Renaud",
   last_name: "Martin",
@@ -123,12 +106,7 @@ Demand.new(
   birthday:"02/05/1999",
   sexe:"Masculin",
   longitude:"1.9081127643585205",
-  latitude:"47.90038357970946",
-]
-puts "creating a demand for : #{demands[3].first_name} #{demands[3].last_name} "
-
-Demand
-demands = [
+  latitude:"47.90038357970946"),
 Demand.new(
   first_name: "Philippe",
   last_name: "Risoli",
@@ -142,12 +120,7 @@ Demand.new(
   birthday:"12/09/1995",
   sexe:"Masculin",
   longitude:"1.9081127643585205",
-  latitude:"47.90038357970946",
-]
-puts "creating a demand for : #{demands[4].first_name} #{demands[4].last_name} "
-
-Demand
-demands = [
+  latitude:"47.90038357970946"),
 Demand.new(
   first_name: "Huguette",
   last_name: "Dupont",
@@ -161,12 +134,7 @@ Demand.new(
   birthday:"07/08/1994",
   sexe:"Femme",
   longitude:"-1.2564754486083984",
-  latitude:"48.996086101032176",
-]
-puts "creating a demand for : #{demands[5].first_name} #{demands[5].last_name} "
-
-Demand
-demands = [
+  latitude:"48.996086101032176"),
 Demand.new(
   first_name: "Damien",
   last_name: "Lefevre",
@@ -180,12 +148,7 @@ Demand.new(
   birthday:"02/04/1978",
   sexe:"Masculin",
   longitude:"1.9081127643585205",
-  latitude:"47.90038357970946",
-]
-puts "creating a demand for : #{demands[6].first_name} #{demands[6].last_name} "
-
-Demand
-demands = [
+  latitude:"47.90038357970946"),
 Demand.new(
   first_name: "Chantal",
   last_name: "Lebrun",
@@ -199,12 +162,7 @@ Demand.new(
   birthday:"12/08/1988",
   sexe:"Feminin",
   longitude:"-1.2576448917388916",
-  latitude:"48.995501835467444",
-]
-puts "creating a demand for : #{demands[7].first_name} #{demands[7].last_name} "
-
-Demand
-demands = [
+  latitude:"48.995501835467444"),
 Demand.new(
   first_name: "Pierre",
   last_name: "Chomont",
@@ -218,12 +176,7 @@ Demand.new(
   birthday:"24/12/2001",
   sexe:"Masculin",
   longitude:"-1.2797248363494873",
-  latitude:"48.98848307378626",
-]
-puts "creating a demand for : #{demands[8].first_name} #{demands[8].last_name} "
-
-Demand
-demands = [
+  latitude:"48.98848307378626"),
 Demand.new(
   first_name: "Clementine",
   last_name: "Cremit",
@@ -237,12 +190,7 @@ Demand.new(
   birthday:"11/04/1996",
   sexe:"Feminin",
   longitude:"-1.273437738418579",
-  latitude:"448.98689896373105",
-]
-puts "creating a demand for : #{demands[9].first_name} #{demands[9].last_name} "
-
-Demand
-demands = [
+  latitude:"448.98689896373105"),
 Demand.new(
   first_name: "Boris",
   last_name: "Campaillard",
@@ -256,12 +204,7 @@ Demand.new(
   birthday:"08/09/1998",
   sexe:"Masculin",
   longitude:"-1.2773323059082031",
-  latitude:"48.97981561568688",
-]
-puts "creating a demand for : #{demands[10].first_name} #{demands[10].last_name} "
-
-Demand
-demands = [
+  latitude:"48.97981561568688"),
 Demand.new(
   first_name: "Berthe",
   last_name: "Prisa",
@@ -275,12 +218,7 @@ Demand.new(
   birthday:"22/07/1987",
   sexe:"Feminin",
   longitude:"-1.445324420928955",
-  latitude:"48.919355000421646",
-]
-puts "creating a demand for : #{demands[11].first_name} #{demands[11].last_name} "
-
-Demand
-demands = [
+  latitude:"48.919355000421646"),
 Demand.new(
   first_name: "Martin",
   last_name: "Salin",
@@ -294,12 +232,7 @@ Demand.new(
   birthday:"02/12/2000",
   sexe:"Masculin",
   longitude:"-1.5197181701660156",
-  latitude:"48.912826144403944",
-]
-puts "creating a demand for : #{demands[12].first_name} #{demands[12].last_name} "
-
-Demand
-demands = [
+  latitude:"48.912826144403944"),
 Demand.new(
   first_name: "Jules",
   last_name: "Priset",
@@ -313,12 +246,7 @@ Demand.new(
   birthday:"02/11/1976",
   sexe:"Masculin",
   longitude:"1.9081127643585205",
-  latitude:"47.90038357970946",
-]
-puts "creating a demand for : #{demands[13].first_name} #{demands[13].last_name} "
-
-Demand
-demands = [
+  latitude:"47.90038357970946",)
 Demand.new(
   first_name: "Manon",
   last_name: "Panon",
@@ -332,12 +260,7 @@ Demand.new(
   birthday:"23/12/1954",
   sexe:"Feminin",
   longitude:"-1.5303611755371094",
-  latitude:"48.91296716542893",
-]
-puts "creating a demand for : #{demands[14].first_name} #{demands[14].last_name} "
-
-Demand
-demands = [
+  latitude:"48.91296716542893",)
 Demand.new(
   first_name: "Clement",
   last_name: "Delaunet",
@@ -351,44 +274,46 @@ Demand.new(
   birthday:"06/05/1989",
   sexe:"Masculin",
   longitude:"1.9081127643585205",
-  latitude:"47.90038357970946",
+  latitude:"47.90038357970946")
 ]
-puts "creating a demand for : #{demands[15].first_name} #{demands[15].last_name} "
 
-50.times do
-  Demand.create! \
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    address: Faker::Address.street_address,
-    city: 'Paris',
-    zipcode: Faker::Address.zip_code,
-    phone: Faker::PhoneNumber.phone_number,
-    email: Faker::Internet.email,
-    illness: Faker::Lorem.sentence(3),
-    birthday: Faker::Date.between(80.years.ago, Date.today),
-    sex: ["M", "F"].sample,
-    # lat: Faker::Address.latitude,
-    # long: Faker::Address.longitude,
-    photo: Faker::LoremPixel.image("50x60", false, 'people'),
-    request_time: Faker::Date.between(20.days.ago, Date.today),
-    due_date: Faker::Date.between(Date.today, Date.today + 10 )
-  puts "creating a demand for : #{Demand.last.first_name} #{Demand.last.last_name} "
+Demand.each do |demand|
+  demand.save!
+  puts "creating a demand for : #{demand.first_name} #{demand.last_name} "
 end
 
+# 50.times do
+#   Demand.create! \
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     address: Faker::Address.street_address,
+#     city: 'Paris',
+#     zipcode: Faker::Address.zip_code,
+#     phone: Faker::PhoneNumber.phone_number,
+#     email: Faker::Internet.email,
+#     illness: Faker::Lorem.sentence(3),
+#     birthday: Faker::Date.between(80.years.ago, Date.today),
+#     sex: ["M", "F"].sample,
+#     # lat: Faker::Address.latitude,
+#     # long: Faker::Address.longitude,
+#     photo: Faker::LoremPixel.image("50x60", false, 'people'),
+#     request_time: Faker::Date.between(20.days.ago, Date.today),
+#     due_date: Faker::Date.between(Date.today, Date.today + 10 )
+#   puts "creating a demand for : #{Demand.last.first_name} #{Demand.last.last_name} "
+# end
 
-20.times do
-  Consultation.create! \
-    estimated_price: rand(30..120),
-    start_time: Faker::Date.forward(2),
-    end_time: Faker::Date.forward(3),
-    status: ["pending", "accepted", "refused"].sample,
-    user_id: [ User.first, User.last ].sample,
-    demand_id: [ Demand.last ].sample,
-    created_at: Date.today,
-    updated_at: Date.today
-  puts "creating a consultation for : #{Demand.last.first_name} #{Demand.last.last_name} "
-end
-
+# 20.times do
+#   Consultation.create! \
+#     estimated_price: rand(30..120),
+#     start_time: Faker::Date.forward(2),
+#     end_time: Faker::Date.forward(3),
+#     status: ["pending", "accepted", "refused"].sample,
+#     user_id: [ User.first, User.last ].sample,
+#     demand_id: [ Demand.last ].sample,
+#     created_at: Date.today,
+#     updated_at: Date.today
+#   puts "creating a consultation for : #{Demand.last.first_name} #{Demand.last.last_name} "
+# end
 
 
 # **********************************
