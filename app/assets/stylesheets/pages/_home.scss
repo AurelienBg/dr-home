@@ -10,7 +10,7 @@
 // background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 .top {
-  height: calc(100vh - 230px);
+  height: 63vh;
   background-image: url("drhome-home-background.png");
   background-size: cover;
 }
@@ -22,6 +22,16 @@ display: flex;
 align-items: center;
 justify-content: center;
 
+}
+
+
+
+.texte-animation {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-recap {
