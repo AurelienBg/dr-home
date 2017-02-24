@@ -28,8 +28,12 @@
         <h1 class="title"></h1>
         <%= simple_form_for(@user) do |f| %>
         <%= f.error_notification %>
-        <p style="font-weight: bold"> Your photo </p>
+        <% if @user.photo %>
+          <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill %>
+        <% else %>
           <%= image_tag 'http://placehold.it/400x300', class: "avatar-square-huge"%>
+        <% end %>
+        <%= f.input :photo, as: :attachinary %>
           <div class="radio">
           <label>
             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
@@ -66,22 +70,9 @@
         <%= f.error_notification %>
         <p type="Numéro RPPS:"><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
         <div>
-          <p type="Spécialitée:"><%= f.input :specialty, label: false, input_html: {class: "simple_form_field"} %></p>
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Dropdown
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Another action</a></li>
-      <li><a href="#">Something else here</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Separated link</a></li>
-    </ul>
-  </div>
-        </div>
         <p type="Spécialitée:"><%= f.input :specialty, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Spécialitée:"><%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"} %></p>
+        <p type="Carte professionnelle"<%= f.input :photo_prof_doc, as: :attachinary, label: "Carte professionnelle" %></p>
         <p style="font-weight: bold"> Votre carte professionnelle
         <%= image_tag 'http://placehold.it/400x300', class: "avatar-square-huge"%>
         </p>
@@ -104,8 +95,8 @@
         <p type="Ville:"><%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Code postal:"><%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Distance d'éloignement:"><%= f.input :fav_distance, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Nombre de consultations par jour:"><%= f.input :consultations, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Durée d'une consultation:"><%= f.input :min_consultation, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Nombre minimun de consultations par jour:"><%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Durée d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
         <%= f.submit "Enregistrer", class: 'secondary-btn' %>
       </div>
       <% end %>
