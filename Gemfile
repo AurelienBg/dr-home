@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem "pundit"
+gem 'apiary'
 
 # Gemfile for Admin
 gem 'activeadmin', github: 'activeadmin/activeadmin'
