@@ -1,16 +1,16 @@
 <div class="banner text-center">
   <div class="container-fluid">
-    <div class="row top" style="background-image:url(<%= asset_path('woman_doctor_background.png')%>);background-size:cover">
-      <div class="col-md-5 col-md-offset-1" style="height: 100%;">
+    <div class="row top" style="background-image:url(<%= asset_path('drhome-home-background.png')%>);background-size:cover">
+      <div class="col-md-6 col-md-offset-1" style="height: 100%;">
         <div class="texte-animation">
           <div class="tricker hidden-xs">
-            <h2>le premier site freelance pour médecin</h2>
-            <h2>Dr Home</h2>
-            <!-- <h2> Dr Home le premier site freelance pour les médecins</h2> -->
+            <h2>Bienvenue sur Dr Home</h2>
+            <h2>le premier site pour les médecins freelance</h2>
           </div>
           <!-- <div class="bouton"> -->
+          <% unless current_user %>
             <%= link_to "Créez votre compte!", new_user_registration_path, class: "primary-btn"%>
-
+          <% end %>
           <!-- </div> -->
         </div>
       </div>
@@ -28,15 +28,6 @@
         <% end %>
       </div>
       <% end %>
-      <!-- <div class="col-md-3 col-md-offset-4 login_home_wrapper">
-        <form class="loginhome" action="#">
-          <div class="form-group">
-            <input type="email" class="form-control" id="email" placeholder="ines@gmail.com">
-            <input type="password" class="form-control" id="password" placeholder="*******">
-          </div>
-            <input type="submit" value="Enregistrez-vous" class="btn btn-primary">
-        </form>
-      </div> -->
     </div>
     <div class="row recap">
       <div class="col-md-3">
