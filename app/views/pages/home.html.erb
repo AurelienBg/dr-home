@@ -2,11 +2,10 @@
   <div class="container-fluid">
     <div class="row top">
       <div class="col-md-5 col-md-offset-1" style="height: 100%;">
-        <div class="">
-          <div class="tricker">
+        <div class="texte-animation">
+          <div class="tricker hidden-xs">
             <h2>Dr Home</h2>
-            <h2>Le premier site freelance</h2>
-            <h2>Pour Médecin</h2>
+            <h2>le premier site freelance pour médecin</h2>
             <!-- <h2> Dr Home le premier site freelance pour les médecins</h2> -->
           </div>
           <!-- <div class="bouton"> -->
@@ -16,7 +15,7 @@
         </div>
       </div>
       <% unless current_user %>
-      <div class="col-md-3 col-md-offset-2 login_home_wrapper">
+      <div class="col-md-3 col-md-offset-1 login_home_wrapper">
         <%= simple_form_for(User.new, url: session_path(User.new), html:{class: "loginhome"}) do |f| %>
           <div class="form-inputs">
             <%= f.input :email, required: false, autofocus: true, placeholder: 'ines@gmail.com', label: false %>
