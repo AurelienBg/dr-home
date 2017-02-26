@@ -44,5 +44,6 @@ ActiveAdmin.register User do
     f.actions
   end
 
-  permit_params :first_name, :last_name,:specialty, :address, :city, :zipcode, :phone, :min_nb_consult, :duration_consult, :sex, :cardnumber, :fav_city, :radius, :photo_id, :photo_prof_doc, :validated
+  # permit_params :first_name, :last_name,:specialty, :address, :city, :zipcode, :phone, :min_nb_consult, :duration_consult, :sex, :cardnumber, :fav_city, :radius, :photo_id, :photo_prof_doc, :validated
+  permit_params :email, :first_name, :last_name, :specialty, :address, :city, :zipcode, :fav_address, :fav_city, :fav_zipcode, :phone, :min_nb_consult, :sex, :latitude, :longitude, :photo, :cardnumber, :admin, :radius, :validated, :duration_consult, :photo_id, :photo_prof_doc
 end
