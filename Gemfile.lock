@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/activeadmin/activeadmin.git
-  revision: d75bbca61925d59a0d4269e74890e157df670b72
+  remote: git://github.com/activeadmin/activeadmin.git
+  revision: 781619169f96dbbdb54b590e70e26d339c31d15c
   specs:
     activeadmin (1.0.0.pre4)
       arbre (~> 1.0, >= 1.0.2)
@@ -18,7 +18,7 @@ GIT
       sprockets (< 4.1)
 
 GIT
-  remote: https://github.com/activeadmin/inherited_resources.git
+  remote: git://github.com/activeadmin/inherited_resources.git
   revision: 615b0d5c37a4bfc86ad18ec22b90d161fd996130
   specs:
     inherited_resources (1.7.0)
@@ -28,7 +28,7 @@ GIT
       responders
 
 GIT
-  remote: https://github.com/assembler/attachinary.git
+  remote: git://github.com/assembler/attachinary.git
   revision: 98a895be22edc74b1928ffa3ae116d24bd9818fd
   specs:
     attachinary (1.3.1)
