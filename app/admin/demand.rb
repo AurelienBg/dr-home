@@ -25,6 +25,7 @@ ActiveAdmin.register Demand do
     column :zipcode
     column :birthday
     column :created_at
+    column :assigned
     column :illness
     column :due_date
     actions

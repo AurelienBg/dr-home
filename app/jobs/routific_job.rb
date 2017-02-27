@@ -39,7 +39,7 @@ class RoutificJob < ApplicationJob
   def buid_data_hash(visits, fleet)
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
-    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ?', Date.today, "false" )
+    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ?', Date.today, false )
 
     n = 1
     demands_to_dispatch.each do |demand|
@@ -86,23 +86,25 @@ class RoutificJob < ApplicationJob
 
       # 2. retrouver le  user (via vehicule_x) et le bon demand (order y)
       user_id = key.gsub("user_",'') # "user_18" becomes "18"
-
+      user = User.find(user_id)
       value.each_with_index do |item, index|
         if index == 0 || index == value # first and last are itinerary without consultation
           # do nothing
         else
           # 3. recuperer les stops
           demand_id = item.location_id.gsub("demand_",'')
-
+          demand = Demand.find(demand_id)
           # 4. Creer des consultations a partir des stops
           c = Consultation.new(
             start_time: item.arrival_time,
             end_time: item.finish_time,
             status: "affected",
-            user_id: user_id,
-            demand_id: demand_id,
+            user: user,
+            demand: demand,
             status: "confirmed")
           c.save
+          demand.assigned = true
+          demand.save
         end
       end
     end
