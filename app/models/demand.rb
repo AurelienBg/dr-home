@@ -1,4 +1,6 @@
 class Demand < ApplicationRecord
+  STATUS = ['pending', 'accepted', 'refused', 'done', 'cancelled']
+
   has_many :consultations, dependent: :destroy
   has_many :users, through: :consultations
 
