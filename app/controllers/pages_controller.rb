@@ -2,11 +2,18 @@ require 'json'
 require 'open-uri'
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home, :map ]
   before_action :check_if_user_profile_completed, only: :dashboard
 
   def home
     @user = current_user
+  end
+
+  def map
+    @latlng1 = {
+      'lat' => Demand.first.latitude,
+      'lng' => Demand.first.longitude
+    }
   end
 
   def dashboard
@@ -47,6 +54,6 @@ class PagesController < ApplicationController
     unless current_user.profile_completed?
       flash[:notice] = 'You must complete your profile first!'
       redirect_to edit_user_path(current_user)
-    end 
+    end
   end
 end
