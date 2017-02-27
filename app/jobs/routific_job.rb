@@ -3,6 +3,8 @@ require 'routific'
 class RoutificJob < ApplicationJob
   queue_as :default
 
+  attr_reader :route_consultations
+
   # def perform(*args)  with or without args !
   def perform
     # import data from ActiveRecords to build the input for Routific
@@ -19,14 +21,15 @@ class RoutificJob < ApplicationJob
     # data = hash
     puts data
     Routific.setToken(ENV['ROUTIFIC_API'])
-    # buid_data_hash (methdo prive qui genere le hasg input)
-    route_consultations = Routific.getRoute(data)
+    # buid_data_hash (methdo prive qui genere le hash input)
+    @route_consultations = Routific.getRoute(data)
     # binding.pry
 
     # p routes = JSON.parse(route_consultations)
     p route_consultations
-    # build the consiltation fron the route_consultations hash
-    # consultations = ???
+
+    add_consultation_from_hash(route_consultations)
+    p Consultation.last
 
     puts "Ending Routific call"
   end
@@ -34,26 +37,15 @@ class RoutificJob < ApplicationJob
   private
 
   def buid_data_hash(visits, fleet)
-    # visits = {
-    #         "order_1" => {
-    #           "start" => "9:00",
-    #           "end" => "12:00",
-    #           "duration" => 10,
-    #           "location" => {
-    #             "name" => "6800 Cambie",
-    #             "lat" => 49.227107,
-    #             "lng" => -123.1163085
-    #           }
-    #         }
-    #       }
+    # filter demands with due_date ? today and status == "pending"
+    # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
+    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ?', Date.today, false )
 
-
-    demands_of_the_day = Demand.where("due_date <= ?", Date.today)
     n = 1
-    demands_of_the_day.each do |demand|
-      visits["order_#{n}"] =  {
+    demands_to_dispatch.each do |demand|
+      visits["demand_#{demand.id}"] =  {
         "start" => "9:00",
-        "end" => "19:00",
+        "end" => "20:00",
         "duration" => 20,
         "location" => {
           "name" => demand.address,
@@ -64,97 +56,57 @@ class RoutificJob < ApplicationJob
       n += 1
     end
 
-    # fleet = {
-    #   "vehicle_1" => {
-    #     "start_location" => {
-    #       "name" => "800 Kingsway",
-    #       "lat" => 49.2553636,
-    #       "lng" => -123.0873365
-    #     },
-    #     "end_location" => {
-    #       "name" => "800 Kingsway",
-    #       "lat" => 49.2553636,
-    #       "lng" => -123.0873365
-    #     },
-    #     "shift_start" => "8:00",
-    #     "shift_end" => "12:00"
-    #   }
-    # }
-
     users_of_the_day = User.all
     n = 1
     users_of_the_day.each do |user|
-      fleet["vehicle_#{n}"] =  {
-        "vehicle_1" => {
-          "start_location" => {
-            "name" => user.address,
-            "lat" => user.latitude,
-            "lng" => user.longitude
-          },
-          "end_location" => {
-            "name" => user.address,
-            "lat" => user.latitude,
-            "lng" => user.latitude,
-          },
-          "shift_start" => "8:00",
-          "shift_end" => "20:00"
-        }
+      fleet["user_#{user.id}"] =  {
+        "start_location" => {
+          "name" => user.address,
+          "lat" => user.latitude,
+          "lng" => user.longitude
+        },
+        "end_location" => {
+          "name" => user.address,
+          "lat" => user.latitude,
+          "lng" => user.longitude
+        },
+        "shift_start" => "8:00",
+        "shift_end" => "21:00"
       }
       n += 1
     end
   end
-end
 
-# HASH Routific
-# {
-#   "visits": {
-#     "order_1": {
-#       "location": {
-#         "name": "patient1",
-#         "lat": 49.48.1724849,
-#         "lng": 2.254809000000023
-#       },
-#       "start": "9:00",
-#       "end": "12:00",
-#       "duration": 20
-#     },
-#     "order_2": {
-#       "location": {
-#         "name": "patient2",
-#         "lat": 48.1701705,
-#         "lng": 2.2505178000000114
-#       },
-#       "start": "9:00",
-#       "end": "12:00",
-#       "duration": 15
-#     },
-#     "order_3": {
-#       "location": {
-#         "name": "patient3",
-#         "lat": 48.10240659999999,
-#         "lng": 2.237859399999934
-#       },
-#       "start": "8:00",
-#       "end": "9:00",
-#       "duration": 15
-#     }
-#   },
-#   "fleet": {
-#     "vehicle_1": {
-#       "start_location": {
-#         "id": "home",
-#         "name": "800 Kingsway",
-#         "lat": 47.83273699999999,
-#         "lng": 1.9290619999999308
-#       },
-#       "end_location": {
-#         "id": "Home",
-#         "name": "800 Kingsway",
-#         "lat": 47.83273699999999,
-#         "lng": 1.9290619999999308
-#       },
-#       "shift_start": "8:00",
-#       "shift_end": "12:00"
-#     }
-#   }
-# }
+  def add_consultation_from_hash(route_consultations)
+
+    # 1. parcours de route_consultations, hash "solution"
+    route_consultations.vehicleRoutes.each do |key, value|
+      # key = vehicule_i
+      # value = array_of_stops
+
+      # 2. retrouver le  user (via vehicule_x) et le bon demand (order y)
+      user_id = key.gsub("user_",'') # "user_18" becomes "18"
+      user = User.find(user_id)
+      value.each_with_index do |item, index|
+        if index == 0 || index == value # first and last are itinerary without consultation
+          # do nothing
+        else
+          # 3. recuperer les stops
+          demand_id = item.location_id.gsub("demand_",'')
+          demand = Demand.find(demand_id)
+          # 4. Creer des consultations a partir des stops
+          c = Consultation.new(
+            start_time: item.arrival_time,
+            end_time: item.finish_time,
+            status: "affected",
+            user: user,
+            demand: demand,
+            status: "confirmed")
+          c.save
+          demand.assigned = true
+          demand.save
+        end
+      end
+    end
+  end
+end
