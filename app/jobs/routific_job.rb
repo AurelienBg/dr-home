@@ -39,7 +39,7 @@ class RoutificJob < ApplicationJob
   def buid_data_hash(visits, fleet)
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
-    demands_to_dispatch = Demand.where('due_date >= ? AND assigned? = ?', Date.today, "false" )
+    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ?', Date.today, "false" )
 
     n = 1
     demands_to_dispatch.each do |demand|
