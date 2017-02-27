@@ -48,12 +48,13 @@ class RoutificJob < ApplicationJob
     #       }
 
 
-    demands_of_the_day = Demand.where("due_date <= ?", Date.today)
+    demands_of_the_day = Demand.where("due_date >= ?", Date.today )
+    # && "status <= ?", "pending"
     n = 1
     demands_of_the_day.each do |demand|
       visits["order_#{n}"] =  {
         "start" => "9:00",
-        "end" => "19:00",
+        "end" => "20:00",
         "duration" => 20,
         "location" => {
           "name" => demand.address,
@@ -85,20 +86,18 @@ class RoutificJob < ApplicationJob
     n = 1
     users_of_the_day.each do |user|
       fleet["vehicle_#{n}"] =  {
-        "vehicle_1" => {
-          "start_location" => {
-            "name" => user.address,
-            "lat" => user.latitude,
-            "lng" => user.longitude
-          },
-          "end_location" => {
-            "name" => user.address,
-            "lat" => user.latitude,
-            "lng" => user.latitude,
-          },
-          "shift_start" => "8:00",
-          "shift_end" => "20:00"
-        }
+        "start_location" => {
+          "name" => user.address,
+          "lat" => user.latitude,
+          "lng" => user.longitude
+        },
+        "end_location" => {
+          "name" => user.address,
+          "lat" => user.latitude,
+          "lng" => user.longitude
+        },
+        "shift_start" => "8:00",
+        "shift_end" => "21:00"
       }
       n += 1
     end
