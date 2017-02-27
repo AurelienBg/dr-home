@@ -84,7 +84,7 @@
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         <%#= f.error_notification %>
         <i class="fa fa-id-card-o user-icon" aria-hidden="true"></i>
-        <p type="Numéro RPPS: " class=user-icon-format-p><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Numéro RPPS: " class="user-icon-format-p"><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
         <div>
           <p type="Spécialité:"><%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"} %></p>
           <p type="Carte professionnelle:"><%= f.input :photo_prof_doc, as: :attachinary, label: false %></p>
@@ -99,7 +99,6 @@
       </div>
     </div>
   </div>
-</div>
   <!-- Fin tab.2 -->
 
 
@@ -129,6 +128,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- Fin tab.3 -->
 <!-- </div> -->
