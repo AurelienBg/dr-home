@@ -38,11 +38,11 @@ class RoutificJob < ApplicationJob
 
   def buid_data_hash(visits, fleet)
     # filter demands with due_date ? today and status == "pending"
-    # demands_of_the_day = Demand.where("due_date >= ?", Date.today)
-    demands_of_the_day = Demand.where("due_date >= ? and assigned? = ?", Date.today, "false" )
+    # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
+    demands_to_dispatch = Demand.where('due_date >= ? AND assigned? = ?', Date.today, "false" )
 
     n = 1
-    demands_of_the_day.each do |demand|
+    demands_to_dispatch.each do |demand|
       visits["demand_#{demand.id}"] =  {
         "start" => "9:00",
         "end" => "20:00",
@@ -100,7 +100,8 @@ class RoutificJob < ApplicationJob
             end_time: item.finish_time,
             status: "affected",
             user_id: user_id,
-            demand_id: demand_id)
+            demand_id: demand_id,
+            status: "confirmed")
           c.save
         end
       end
