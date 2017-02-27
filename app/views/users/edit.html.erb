@@ -1,3 +1,4 @@
+
 <!-- Tabs -->
 <div class="profile-header-wrapper">
   <div class="container profile-header-container">
@@ -28,12 +29,19 @@
         <div class="col-sm-6">
           <%= f.error_notification %>
           <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill if @user.photo %>
-          <p type="Photo:"><%= f.input :photo, as: :attachinary, label: false %></p>
+          <i class="fa fa-picture-o user-icon" aria-hidden="true"></i>
+          <p type="Photo:" class="user-icon-format-p">
+
+
+          <%= f.input :photo, as: :attachinary, label: false %>
+
+          </p>
+
 
           <!-- <div class="radio"> -->
             <!-- <label> -->
               <!-- <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> -->
-              <p type="Vous êtes..."><%= f.input :sex, as: :radio_buttons, collection: ['Monsieur', 'Madame'], label: false, input_html: {checked: false}, item_label_class: "radio-inline" %></p>
+              <p type="Vous êtes..." ><%= f.input :sex, as: :radio_buttons, collection: ['Monsieur', 'Madame'], label: false, input_html: {checked: false}, item_label_class: "radio-inline" %></p>
             <!-- </label> -->
           <!-- </div> -->
 <!--           <div class="radio">
@@ -46,9 +54,12 @@
           <p type="Prénom:"><%= f.input :last_name, label: false, placeholder: 'Boris', input_html: {class: "simple_form_field"} %></p>
         </div>
         <div class="col-sm-6">
-          <p type="Téléphone:"><%= f.input :phone, label: false, placeholder: '06 .. .. .. ..', input_html: {class: "simple_form_field"} %></p>
-          <p type="Email:"><%= f.input :email, label: false, placeholder: 'lewagon@gmail.com', input_html: {class: "simple_form_field"} %></p>
-          <p type="Adresse:"><%= f.input :address, label: false, placeholder: '16 villa Gaudelet', input_html: {class: "simple_form_field"} %></p>
+          <i class="fa fa-phone user-icon aria-hidden="true"></i>
+          <p type="Téléphone:" class="user-icon-format-p"><%= f.input :phone, label: false, placeholder: '06 .. .. .. ..', input_html: {class: "simple_form_field"} %></p>
+          <i class="fa fa-envelope user-icon" aria-hidden="true"></i>
+          <p type="Email:" class="user-icon-format-p"><%= f.input :email, label: false, placeholder: 'lewagon@gmail.com', input_html: {class: "simple_form_field"} %></p>
+          <i class="fa fa-home user-icon" aria-hidden="true"></i>
+          <p type="Adresse:" class="user-icon-format-p"><%= f.input :address, label: false, placeholder: '16 villa Gaudelet', input_html: {class: "simple_form_field"} %></p>
           <p type="Ville:"><%= f.input :city, label: false, placeholder: 'Paris', input_html: {class: "simple_form_field"} %></p>
           <p type="Code postal:"><%= f.input :zipcode, label: false, placeholder: '75011', input_html: {class: "simple_form_field"} %></p>
         </div>
