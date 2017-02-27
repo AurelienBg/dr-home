@@ -36,12 +36,26 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "Identity" do
       f.input :email
+
+      if user.new_record?
+        f.input :password
+        f.input :password_confirmation
+      end
+
       f.input :first_name
       f.input :last_name
       f.input :specialty
       f.input :longitude
       f.input :latitude
       f.input :city
+
+      f.input :cardnumber
+
+      unless user.new_record?
+        f.input :min_nb_consult
+        f.input :duration_consult
+      end
+
     end
     f.inputs "Admin" do
       f.input :admin
@@ -50,5 +64,6 @@ ActiveAdmin.register User do
   end
 
     # permit_params :first_name, :last_name,:specialty, :address, :city, :zipcode, :phone, :min_nb_consult, :duration_consult, :sex, :cardnumber, :fav_city, :radius, :photo_id, :photo_prof_doc, :validated
-  permit_params :email, :first_name, :last_name, :specialty, :address, :city, :zipcode, :fav_address, :fav_city, :fav_zipcode, :phone, :min_nb_consult, :sex, :latitude, :longitude, :photo, :cardnumber, :admin, :radius, :validated, :duration_consult, :photo_id, :photo_prof_doc
+  permit_params :email, :password, :password_confirmation, :first_name, :last_name, :specialty, :address, :city, :zipcode, :fav_address, :fav_city, :fav_zipcode, :phone, :min_nb_consult, :sex, :latitude, :longitude, :photo, :cardnumber, :admin, :radius, :validated, :duration_consult, :photo_id, :photo_prof_doc
+
 end
