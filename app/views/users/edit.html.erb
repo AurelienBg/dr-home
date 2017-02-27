@@ -109,7 +109,9 @@
   <div class="tab-content tab-configurations hidden" id="configurations">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
+        <div class= "text-center">
         <%#= f.error_notification %>
+
         <p type="Adresse d'exercice:"><%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %></p>
         <p type="Ville:"><%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Code postal:"><%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %></p>
@@ -120,6 +122,7 @@
        <!--  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/> -->
         <p type="Nombre minimun de consultations par jour:"><%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Durée moyenne d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
+
 
       </div>
       <div class="col-xs-12 col-sm-6">

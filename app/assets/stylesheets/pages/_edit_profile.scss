@@ -13,38 +13,48 @@
 }
 
 .edit-profile-page {
-  input {
-    width :95%;
-    padding : 0px;
-    box-sizing : border-box;
-    background : none;
-    outline : none;
-    resize : none;
-    border : 0;
-    font-family : 'Montserrat',sans-serif;
-    transition : all .3s;
-    border-bottom : 1px solid $brand-color;
-  }
-  .tab-content {
-      padding-top: 0px;
-  }
+input {
+  width :95%;
+  padding : 0px;
+  box-sizing : border-box;
+  background : none;
+  outline : none;
+  resize : none;
+  border : 0;
+  font-family : 'Montserrat',sans-serif;
+  transition : all .3s;
+  border-bottom : 1px solid $brand-color;
+}
+.tab-content {
+    padding-top: 0px;
+}
 
-  input:focus {
-    border-bottom : 1px solid $light-blue;
-  }
+input:focus {
+  border-bottom : 1px solid $light-blue;
+}
 
-  p:before {
-    content : attr(type);
-    display : block;
-    margin : 28px 0 0;
-    font-size : 14px;
-    color : #5a5a5a
-  }
+p:before {
+  content : attr(type);
+  display : block;
+  margin : 28px 0 0;
+  font-size : 14px;
+  color : #5a5a5a
+}
 
 
-  .zero-margin {
-    margin-top : 0;
+.zero-margin {
+  margin-top : 0;
+}
+
+.user_sex {
+  span {
+    display: inline-block;
   }
+  span:last-child {
+    margin-left: 15px;
+  }
+}
+
 
   .slider.slider-horizontal {
     width: 93% !important;

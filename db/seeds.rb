@@ -12,7 +12,7 @@ User.destroy_all
 
 # Seed of User
 users = [
-User.create!(
+User.create!( \
   email: "jc@gmail.com",
   password: "aurelien",
   first_name: "jc",
@@ -25,6 +25,8 @@ User.create!(
   min_nb_consult: 5,
   sex: "M",
   cardnumber: "M-028d082938238",
+  latitude: 48.8648482,
+  longitude: 2.3798534,
   admin: true)
 ]
 puts  "creating a user with the following email :#{users[0].email}"
