@@ -51,7 +51,8 @@ class RoutificJob < ApplicationJob
           "name" => demand.address,
           "lat" => demand.latitude,
           "lng" => demand.longitude
-        }
+        },
+        "priority" => demand.due_date  < 2 + Date.today? "high", "regular"
       }
       n += 1
     end
