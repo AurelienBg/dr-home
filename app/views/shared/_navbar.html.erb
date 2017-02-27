@@ -1,4 +1,4 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon <%= yield(:navbar_class) %>">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "logo.png" %>
@@ -27,7 +27,7 @@
           </div> -->
         <%# end %>
         <div class="navbar-wagon-item">
-          <p>Hello, <%= current_user.first_name %> !</p>
+          <p>Hello <%= current_user.first_name %> !</p>
         </div>
 
         <!-- Profile picture and dropdown -->
