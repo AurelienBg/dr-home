@@ -12,7 +12,7 @@ function initialize() {
   var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
 
 
-  directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true });
   var nation = new google.maps.LatLng(48.8483900,2.3959210);
   var mapOptions = {
     // zoom:14,
@@ -36,6 +36,9 @@ function calcRoute() {
     stopover: true
   }
   waypts.push(w);
+
+  createMarker(start);
+
   var request = {
     origin:start,
     destination:end,
@@ -48,6 +51,15 @@ function calcRoute() {
       directionsDisplay.setDirections(result);
     }
   });
+}
+
+function createMarker(latlng) {
+
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: <%= image_path 'marker1.png' %>
+    });
 }
 
  $(document).ready(function() {
