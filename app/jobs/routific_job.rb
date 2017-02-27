@@ -52,7 +52,8 @@ class RoutificJob < ApplicationJob
           "lat" => demand.latitude,
           "lng" => demand.longitude
         },
-        "priority" => demand.due_date  < 2 + Date.today? "high", "regular"
+        # "priority" => (demand.due_date  < Date.today + 2.days ? "high" : "regular")
+        # pas de priority pour la demo!!!!
       }
       n += 1
     end
@@ -87,11 +88,12 @@ class RoutificJob < ApplicationJob
 
       # 2. retrouver le  user (via vehicule_x) et le bon demand (order y)
       user_id = key.gsub("user_",'') # "user_18" becomes "18"
-      user = User.find(user_id)
+
       value.each_with_index do |item, index|
-        if index == 0 || index == value # first and last are itinerary without consultation
+        if index == 0 || index == value.count - 1 # first and last are itinerary without consultation
           # do nothing
         else
+          user = User.find(user_id)
           # 3. recuperer les stops
           demand_id = item.location_id.gsub("demand_",'')
           demand = Demand.find(demand_id)
