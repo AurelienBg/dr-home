@@ -98,7 +98,6 @@ class RoutificJob < ApplicationJob
           c = Consultation.new(
             start_time: item.arrival_time,
             end_time: item.finish_time,
-            status: "affected",
             user: user,
             demand: demand,
             status: "confirmed")
