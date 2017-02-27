@@ -58,7 +58,16 @@ function createMarker(latlng) {
     var marker = new google.maps.Marker({
         position: latlng,
         map: map,
-        icon: <%= image_path 'marker1.png' %>
+        icon: "<%= image_path 'marker1.png' %>"
+    });
+}
+
+function createWptMarker(latlng) {
+
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "<%= image_path 'marker2.png' %>"
     });
 }
 
