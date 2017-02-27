@@ -21,7 +21,7 @@ class RoutificJob < ApplicationJob
     # data = hash
     puts data
     Routific.setToken(ENV['ROUTIFIC_API'])
-    # buid_data_hash (methdo prive qui genere le hasg input)
+    # buid_data_hash (methdo prive qui genere le hash input)
     @route_consultations = Routific.getRoute(data)
     # binding.pry
 
@@ -37,11 +37,9 @@ class RoutificJob < ApplicationJob
   private
 
   def buid_data_hash(visits, fleet)
-
-    demands_of_the_day = Demand.where("due_date >= ?", Date.today )
-    # et rajouter la condition sur le status
-    # && "status <= ?", "pending"
-    # *****
+    # filter demands with due_date ? today and status == "pending"
+    # demands_of_the_day = Demand.where("due_date >= ?", Date.today)
+    demands_of_the_day = Demand.where("due_date >= ? and assigned? = ?", Date.today, "false" )
 
     n = 1
     demands_of_the_day.each do |demand|
