@@ -10,10 +10,6 @@ class PagesController < ApplicationController
   end
 
   def map
-    @latlng1 = {
-      'lat' => Demand.first.latitude,
-      'lng' => Demand.first.longitude
-    }
   end
 
   def dashboard
