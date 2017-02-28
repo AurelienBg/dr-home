@@ -37,7 +37,11 @@ justify-content: center;
 }
 
 .card-recap {
-color: black
+  color: black;
+
+  p {
+    margin-top: 1em;
+  }
 }
 
 .greycard {
