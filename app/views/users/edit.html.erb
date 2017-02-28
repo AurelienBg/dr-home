@@ -1,4 +1,7 @@
 
+
+
+
 <!-- Tabs -->
 <div class="profile-header-wrapper">
   <div class="container profile-header-container">
@@ -84,7 +87,7 @@
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         <%#= f.error_notification %>
         <i class="fa fa-id-card-o user-icon" aria-hidden="true"></i>
-        <p type="Numéro RPPS: " class=user-icon-format-p><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Numéro RPPS: " class="user-icon-format-p"><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
         <div>
           <p type="Spécialité:"><%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"} %></p>
           <p type="Carte professionnelle:"><%= f.input :photo_prof_doc, as: :attachinary, label: false %></p>
@@ -99,7 +102,6 @@
       </div>
     </div>
   </div>
-</div>
   <!-- Fin tab.2 -->
 
 
@@ -109,13 +111,19 @@
       <div class="col-xs-12 col-sm-6">
         <div class= "text-center">
         <%#= f.error_notification %>
-          <p type="Adresse d'exercice:"><%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %></p>
-          <p type="Ville:"><%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %></p>
-          <p type="Code postal:"><%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %></p>
-          <p type="Distance d'éloignement (en km):"><%= f.input :radius, label: false, input_html: {class: "simple_form_field"} %></p>
-          <p type="Nombre minimun de consultations par jour:"><%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %></p>
-          <p type="Durée moyenne d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
-        </div>
+
+        <p type="Adresse d'exercice:"><%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %></p>
+        <p type="Ville:"><%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Code postal:"><%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Distance d'éloignement (en km):"><%#= f.input :radius, label: false, input_html: {class: "simple_form_field"} %></p>
+        <%#= f.range_field :radius %>
+<!--         <span id='range-value'></span> -->
+        <%= f.input :radius, label: false, input_html: { class: "span2 slider", :"data-slider-min" => 0, :"data-slider-step" => 1, :"data-slider-max" => 50} %>
+       <!--  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/> -->
+        <p type="Nombre minimun de consultations par jour:"><%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %></p>
+        <p type="Durée moyenne d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
+
+
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="">
@@ -130,6 +138,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- Fin tab.3 -->
 <!-- </div> -->
@@ -182,9 +191,23 @@
         //   handler.getMap().setZoom(14);
         // }
       });
-      });
+      // var slider = new Slider('#ex1', {
+      //   formatter: function(value) {
+      //     return 'Current value: ' + value;
+      //   }
+      // });
+      // var rangeValue = $("#user_radius").val();
+      // $("#range-value").text(rangeValue);
+      // $("#user_radius").on("change", function() {
+      //   $("#range-value").replaceWith($(this).val());
+      // });
+
+      $('.slider').slider();
+    });
   </script>
 <% end %>
+
+
 
 
 
