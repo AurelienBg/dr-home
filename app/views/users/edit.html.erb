@@ -118,7 +118,11 @@
         <p type="Distance d'éloignement (en km):"><%#= f.input :radius, label: false, input_html: {class: "simple_form_field"} %></p>
         <%#= f.range_field :radius %>
 <!--         <span id='range-value'></span> -->
-        <%= f.input :radius, label: false, input_html: { class: "span2 slider", :"data-slider-min" => 0, :"data-slider-step" => 1, :"data-slider-max" => 50} %>
+        <div class="slider-distance">
+          <%= f.input :radius, label: false, input_html: { class: "span2 slider", :"data-slider-min" => 0, :"data-slider-step" => 1, :"data-slider-max" => 50} %>
+          <span class="min">0</span>
+          <span class="max">50</span>
+        </div>
        <!--  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/> -->
         <p type="Nombre minimun de consultations par jour:"><%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %></p>
         <p type="Durée moyenne d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
