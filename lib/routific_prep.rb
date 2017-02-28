@@ -30,9 +30,6 @@ module RoutificPrep
     # where lat and Long pas NIL
     n = 1
     users_of_the_day.each do |user|
-      # start_date = user.start_date.strftime('%H:%M')
-      # end_time = user.end_time.strftime('%H:%M')
-
       fleet["user_#{user.id}"] =  {
         "start_location" => {
           "name" => user.address,
