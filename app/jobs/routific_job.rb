@@ -33,7 +33,7 @@ class RoutificJob < ApplicationJob
   def buid_data_hash(visits, fleet)
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
-    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ?', Date.today, false )
+    demands_to_dispatch = Demand.where('due_date = ? AND assigned = ?', Date.today + 2.day, false )
     # rajouter start_date et .near de geocoding
 
     n = 1
@@ -99,6 +99,7 @@ class RoutificJob < ApplicationJob
             end_time: item.finish_time,
             user: user,
             demand: demand,
+            date: Date.today + 2.day,
             status: "confirmed")
           c.save
           demand.assigned = true
