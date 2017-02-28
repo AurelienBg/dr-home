@@ -13,19 +13,23 @@ ActiveAdmin.register Demand do
 #   permitted
 # end
 
+# Filtering only the fields we want on the Admin interface
   index do
     selectable_column
     column :id
     column :first_name
     column :last_name
     column :email
+    column :address
     column :city
+    column :zipcode
+    column :birthday
     column :created_at
+    column :assigned
     column :illness
     column :due_date
     actions
   end
 
-
-  permit_params :first_name, :last_name, :address, :city, :zipcode, :phone, :email, :birthday, :sex, :lat, :long, :photo, :created_at, :updated_at, :request_time, :illness, :due_date
+  permit_params :first_name, :last_name, :address, :city, :zipcode, :phone, :email, :birthday, :sex, :latitude, :longitude, :photo, :created_at, :updated_at, :request_time, :illness, :due_date
 end

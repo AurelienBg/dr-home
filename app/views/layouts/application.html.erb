@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html>
+<!-- Start of Async Drift Code -->
+<script>
+!function() {
+  var t;
+  if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
+  t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+  t.factory = function(e) {
+    return function() {
+      var n;
+      return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+    };
+  }, t.methods.forEach(function(e) {
+    t[e] = t.factory(e);
+  }), t.load = function(t) {
+    var e, n, o, i;
+    e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
+    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
+    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+  });
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('z5muge57d5ru');
+</script>
+<!-- End of Async Drift Code -->
+
   <head>
     <title>Dr Home</title>
     <%= csrf_meta_tags %>
@@ -7,6 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= stylesheet_link_tag    'application', media: 'all' %>
+<<<<<<< HEAD
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
 
@@ -30,6 +56,9 @@
     <meta itemprop="name" content="<%= meta_title %>">
     <meta itemprop="description" content="<%= meta_description %>">
     <meta itemprop="image" content="<%= image_url(meta_image) %>">
+=======
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/bootstrap-slider.js"></script>
+>>>>>>> 89d5a74408335c6f7f8ef9a9d09830360ee71954
   </head>
   <body>
     <%= render 'shared/navbar' %>

@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170227120838) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,11 +71,12 @@ ActiveRecord::Schema.define(version: 20170227120838) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "photo"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.datetime "request_time"
     t.string   "illness"
     t.datetime "due_date"
+    t.boolean  "assigned",     default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|
