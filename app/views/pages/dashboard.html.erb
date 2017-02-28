@@ -26,28 +26,37 @@
 <!-- Tab Prochaine Tournée -->
   <div class="tab-content tab-next-round" id="next">
     <div class="left">
-      <div class="title"><h3>Votre journée du <%= @date %> -- <%= link_to "Reject", root_path, class: "btn btn-primary" %></h3></div>
+      <div class="title"><h3>Votre journée du <%= @date.strftime('%d.%m.%Y ') %><%= link_to "Reject", root_path, class: "btn btn-primary" %></h3></div>
       <div class="demand-card">
         <% @next_round.each do |consultation| %>
           <div class="row">
             <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 0 auto 11px auto;"></div>
             <div class="col-xs-3">
-              <p>consultation.start_time</p>
+              <p><%= consultation.start_time.strftime('%H:%M') %></p>
             </div>
             <div class="col-xs-9 demand-info">
-              <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.ilness %></p>
-              <p><%= consultation.demand.address %> - <%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
-              <p>Départ à 9h</p> 
+              <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
+              <p><%= consultation.demand.address %></p>
+              <p><%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
+              <p>Départ à <%= consultation.end_time.strftime('%H:%M') %></p>
               <!-- replace with start_time of next consultation - trip time -->
             </div>
           </div>
         <% end %>
       </div>
     </div>
+
+
+    <!-- Integration de la Map  -->
     <div class="map">
       <div id="map2" style="width: 100%; height: calc(100vh - 146px);"></div>
       <!-- <iframe src="https://app.routific.com/m/index.html#/vehicle/58adbc0cf10918d02239ee96/routes/58adbfe53f5e2a00bb049645/map" frameborder="0" style="width: 100%; height: calc(100vh - 146px);"></iframe> -->
     </div>
+
+
+
+    <!-- Fin d'intégration de la map  -->
+
   </div>
   <!-- end Tab Prochaine tournée -->
 
@@ -79,7 +88,7 @@
     <div class="left">
       <div class="title"><h3>Qu'avez-vous en tête ?</h3></div>
       <%= simple_form_for(@user, class: 'form-inline', url: user_path(current_user), html: {method: :patch}) do |f| %>
-      <%= f.input :radius, label: 'Je veux travailler à ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' }, collection: [10, 20, 50, 100] %>
+      <%= f.input :fav_address, label: 'Je veux travailler vers ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' } %>
       <%= f.input :fav_city, label: 'de ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' } %>
       <%= f.submit "Enregistrer mes changements", class: "btn btn-primary" %>
       <% end %>
@@ -90,9 +99,9 @@
   </div>
   <!-- end Tab Préférences -->
 </div>
-<div class="col-sm-4 col-sm-offset-4">
+<!-- <div class="col-sm-4 col-sm-offset-4">
   <button onclick='window.print(); return false;' class='btn btn-primary'>Print</button>
-</div>
+</div> -->
 
 
 
@@ -101,38 +110,103 @@
 <!-- Javascript -->
 <% content_for(:after_js) do %>
   <script>
-    $(function(){
-  });
-  </script>
-  <script>
-    $(document).ready(function() {
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var map;
+
+    function initialize() {
+      // Style
       var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map2' }, provider: { styles: styles } }, function() {
-        markers = handler.addMarkers(<%= raw @hash2.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
+      var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
+
+
+      directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
+      var userHome = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+      var mapOptions = {
+        // zoom:14,
+        center: userHome,
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+        }
+      }
+      map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+      directionsDisplay.setMap(map);
+      map.mapTypes.set('map_style', styledMap);
+      map.setMapTypeId('map_style');
+    }
+
+    function calcRoute() {
+      var start = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+      var end = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+      var waypts = []
+
+      <% @next_round.each do |consult| %>
+      var w = {
+        location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
+        stopover: true
+      }
+      createWptMarker(w['location']);
+      waypts.push(w);
+      <% end %>
+
+      createMarker(start);
+
+      var request = {
+        origin:start,
+        destination:end,
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.DRIVING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(result);
         }
       });
-      $(".tab").on("click", function(e){
-      // Change active tab
-      $(".tab").removeClass('active');
-      $(this).addClass('active');
-      // Hide all tab-content (use class="hidden")
-      $(".tab-content").addClass('hidden');
-      // Show target tab-content (use class="hidden")
-      $($(this).data('target')).removeClass('hidden');
-      initialize();
-    });
+    }
 
+    function createMarker(latlng) {
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            icon: "<%= image_path 'marker1.png' %>"
+        });
+    }
+
+    function createWptMarker(latlng) {
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            icon: "<%= image_path 'marker2.png' %>"
+        });
+    }
+
+   $(document).ready(function() {
+    initialize();
+    calcRoute();
+
+
+    // ************************************
+    $(".tab").on("click", function(e){
+    // Change active tab
+    $(".tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".tab-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+    initialize();
+    calcRoute();
+    });
   });
+
+
+
   </script>
   <script>
-    function initialize() {
+    function setmap() {
       var handler = Gmaps.build('Google');
       // var stylescp
       handler.buildMap({ internal: { id: 'map' } }, function() {
@@ -147,6 +221,6 @@
       });
     };
   </script>
-  <% end %>
+<% end %>
 
 

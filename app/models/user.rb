@@ -27,8 +27,17 @@ class User < ApplicationRecord
   has_attachment :photo_id
   has_attachment :photo_prof_doc
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  def set_long_address
+    if fav_address.nil? && fav_city.nil?
+      raise
+      "#{address} #{zipcode}"
+    else
+      "#{fav_address} #{fav_city}"
+    end
+  end
+
+  geocoded_by :set_long_address
+  after_validation :geocode
 
   after_create :send_welcome_email
 
@@ -54,4 +63,5 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
 end

@@ -14,6 +14,12 @@ class Demand < ApplicationRecord
   validates :email, presence: true
   validates :request_time, presence: true
 
-  geocoded_by :address
+  def set_long_address
+    "#{address} #{zipcode}"
+  end
+
+  after_validation :set_long_address
+  geocoded_by :set_long_address
   after_validation :geocode, if: :address_changed?
+
 end

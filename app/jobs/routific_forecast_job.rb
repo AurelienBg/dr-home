@@ -1,6 +1,6 @@
 require 'routific'
 
-class RoutificJob < ApplicationJob
+class RoutificForecastJob < ApplicationJob
   queue_as :default
 
   attr_reader :route_consultations
@@ -99,9 +99,10 @@ class RoutificJob < ApplicationJob
             end_time: item.finish_time,
             user: user,
             demand: demand,
-            status: "confirmed")
+            status: "forecast")
           c.save
-          demand.assigned = true
+          # demand.assigned = true
+          demand.forecast = true
           demand.save
         end
       end
