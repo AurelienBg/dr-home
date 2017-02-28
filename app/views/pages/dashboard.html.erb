@@ -38,7 +38,7 @@
               <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
               <p><%= consultation.demand.address %></p>
               <p><%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
-              <p>Départ à 9h</p>
+              <p>Départ à <%= consultation.end_time.strftime('%H:%M') %></p>
               <!-- replace with start_time of next consultation - trip time -->
             </div>
           </div>
