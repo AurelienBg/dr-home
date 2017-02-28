@@ -28,10 +28,7 @@ class PagesController < ApplicationController
       @date = Date.today + 1
     end
 
-
-    # @matched_demand = Demand.near(get_user_coord(@user), @user.fav_distance)
     @next_round = Consultation.where(user: @user, start_time: @date).first(set_min_consultation(@user.min_nb_consult))
-    # @next_round = Demand.where(due_date: @date).near(get_user_coord(@user), @user.radius).first(set_min_consultation(@user.min_nb_consult))
     @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
         marker.lat user.latitude
         marker.lng user.longitude
