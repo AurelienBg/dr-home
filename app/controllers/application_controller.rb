@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       dashboard_path
     else
       edit_user_path(resource)
-    end 
+    end
   end
 
 
@@ -55,5 +55,9 @@ class ApplicationController < ActionController::Base
       store_location_for(:user, request.url.gsub('consultations', ''))
     end
   end
+
+  def default_url_options
+  { host: ENV['HOST'] || 'localhost:3000' }
+end
 
 end
