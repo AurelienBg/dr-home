@@ -1,5 +1,5 @@
 class AddAssignedToDemands < ActiveRecord::Migration[5.0]
   def change
-    rename_column :demands, :assigned?, :assigned
+    add_column :demands, :assigned, :boolean, default: false
   end
 end
