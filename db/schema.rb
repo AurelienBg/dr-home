@@ -76,10 +76,7 @@ ActiveRecord::Schema.define(version: 20170227144831) do
     t.datetime "request_time"
     t.string   "illness"
     t.datetime "due_date"
-<<<<<<< HEAD
-=======
     t.boolean  "assigned",     default: false
->>>>>>> master
   end
 
   create_table "users", force: :cascade do |t|
