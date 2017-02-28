@@ -32,22 +32,30 @@
           <div class="row">
             <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 0 auto 11px auto;"></div>
             <div class="col-xs-3">
-              <p>consultation.start_time</p>
+              <p><%= consultation.start_time %></p>
             </div>
             <div class="col-xs-9 demand-info">
-              <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.ilness %></p>
+              <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
               <p><%= consultation.demand.address %> - <%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
-              <p>Départ à 9h</p> 
+              <p>Départ à 9h</p>
               <!-- replace with start_time of next consultation - trip time -->
             </div>
           </div>
         <% end %>
       </div>
     </div>
+
+
+    <!-- Integration de la Map  -->
     <div class="map">
       <div id="map2" style="width: 100%; height: calc(100vh - 146px);"></div>
       <!-- <iframe src="https://app.routific.com/m/index.html#/vehicle/58adbc0cf10918d02239ee96/routes/58adbfe53f5e2a00bb049645/map" frameborder="0" style="width: 100%; height: calc(100vh - 146px);"></iframe> -->
     </div>
+
+
+
+    <!-- Fin d'intégration de la map  -->
+
   </div>
   <!-- end Tab Prochaine tournée -->
 

@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
 
   def how
-  end 
+  end
 
   def dashboard
     @user = current_user
@@ -21,18 +21,20 @@ class PagesController < ApplicationController
       marker.lat user.latitude
       marker.lng user.longitude
     end
+    # A intégrer !!!!
     min_nb_consult = @user.min_nb_consult
+
     if Time.now.hour < 18
       @date = Date.today
     else
       @date = Date.today + 1
     end
 
-    @next_round = Consultation.where(user: @user, start_time: @date).first(set_min_consultation(@user.min_nb_consult))
-    @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
-        marker.lat user.latitude
-        marker.lng user.longitude
-      end
+    @next_round = Consultation.where(user: @user)
+    # @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
+    #     marker.lat user.latitude
+    #     marker.lng user.longitude
+    #   end
   end
 
   private
