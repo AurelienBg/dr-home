@@ -55,38 +55,41 @@ module RoutificPrep
   def add_consultation_from_hash(route_consultations, i)
     run_date = Date.today
     # 1. parcours de route_consultations, hash "solution"
-    route_consultations.vehicleRoutes.each do |key, value|
-      # key = vehicule_i
-      # value = array_of_stops
 
-      # 2. retrouver le  user (via vehicule_x) et le bon demand (order y)
-      user_id = key.gsub("user_",'') # "user_18" becomes "18"
+    # unless route_consultations == nil  (VERIFIER QUE C EST LA BONNE CONDITION)
+      route_consultations.vehicleRoutes.each do |key, value|
+        # key = vehicule_i
+        # value = array_of_stops
 
-      value.each_with_index do |item, index|
-        if index == 0 || index == value.count - 1 # first and last are itinerary without consultation
-          # do nothing
-        else
-          user = User.find(user_id)
-          # 3. recuperer les stops
-          demand_id = item.location_id.gsub("demand_",'')
-          demand = Demand.find(demand_id)
-          # 4. Creer des consultations a partir des stops
-          if Demand.near([user.latitude, user.longitude], user.radius).include? demand
-            status = i > 0 ? "forecasted" : "confirmed"
-            c = Consultation.new(
-              date: run_date + i,
-              start_time: item.arrival_time,
-              end_time: item.finish_time,
-              user: user,
-              demand: demand,
-              status: status)
-            c.save
-            demand.assigned = i == 0 ? true : false
-            demand.forecast = i > 0 ?  true : false
-            demand.save
+        # 2. retrouver le  user (via vehicule_x) et le bon demand (order y)
+        user_id = key.gsub("user_",'') # "user_18" becomes "18"
+
+        value.each_with_index do |item, index|
+          if index == 0 || index == value.count - 1 # first and last are itinerary without consultation
+            # do nothing
+          else
+            user = User.find(user_id)
+            # 3. recuperer les stops
+            demand_id = item.location_id.gsub("demand_",'')
+            demand = Demand.find(demand_id)
+            # 4. Creer des consultations a partir des stops
+            if Demand.near([user.latitude, user.longitude], user.radius).include? demand
+              status = i > 0 ? "forecasted" : "confirmed"
+              c = Consultation.new(
+                date: run_date + i,
+                start_time: item.arrival_time,
+                end_time: item.finish_time,
+                user: user,
+                demand: demand,
+                status: status)
+              c.save
+              demand.assigned = i == 0 ? true : false
+              demand.forecast = i > 0 ?  true : false
+              demand.save
+            end
           end
         end
       end
-    end
+    # end
   end
 end
