@@ -2,7 +2,7 @@ require 'json'
 require 'open-uri'
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :map ]
+  skip_before_action :authenticate_user!, only: [ :home, :map, :how ]
   before_action :check_if_user_profile_completed, only: :dashboard
 
   def home
@@ -11,6 +11,9 @@ class PagesController < ApplicationController
 
   def map
   end
+
+  def how
+  end 
 
   def dashboard
     @user = current_user

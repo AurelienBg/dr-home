@@ -2,9 +2,15 @@
  * Fonts
  * ------------------------------------- */
 // Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i|Nunito:200,200i,300,300i,400,400i,600,600i");
-$base-font: 'Nunito', sans-serif;
-$header-font: 'Open Sans', sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Muli:200,300,400,700|Nunito+Sans:300,400,800|Rubik:300,400,700");
+
+//INITIAL VERSION "https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i|Nunito:200,200i,300,300i,400,400i,600,600i"
+
+// $base-font: 'Nunito', sans-serif;
+// $header-font: 'Open Sans', sans-serif;
+
+$base-font: 'Nunito Sans', sans-serif;
+$header-font: 'Rubik', sans-serif;
 
 // Local fonts (uncomment following lines)
 // @font-face {
