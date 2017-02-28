@@ -34,6 +34,7 @@ class RoutificJob < ApplicationJob
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
     demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ?', Date.today, false )
+    # rajouter start_date et .near de geocoding
 
     n = 1
     demands_to_dispatch.each do |demand|
@@ -52,7 +53,8 @@ class RoutificJob < ApplicationJob
       n += 1
     end
 
-    users_of_the_day = User.all
+    users_of_the_day = User.where.not(latitude: nil, longitude: nil)
+    # where lat and Long pas NIL
     n = 1
     users_of_the_day.each do |user|
       fleet["user_#{user.id}"] =  {
