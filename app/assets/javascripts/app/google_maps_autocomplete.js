@@ -1,6 +1,5 @@
 $(document).ready(function() {
   var address = $('#user_address').get(0);
-  console.log(address)
   if (address) {
     var autocomplete = new google.maps.places.Autocomplete(address, { types: ['geocode'] });
 
@@ -16,7 +15,6 @@ $(document).ready(function() {
 function onPlaceChanged() {
   var place = this.getPlace();
   var components = getAddressComponents(place);
-  console.log(components)
   $('#user_address').trigger('blur').val(components.address);
   $('#user_zipcode').val(components.zip_code);
   $('#user_city').val(components.city);
@@ -35,7 +33,6 @@ function getAddressComponents(place) {
   var zip_code = null;
   var city = null;
   var country_code = null;
-  console.log(place.address_components)
   for (var i in place.address_components) {
     var component = place.address_components[i];
     for (var j in component.types) {

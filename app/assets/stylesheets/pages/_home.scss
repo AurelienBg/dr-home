@@ -2,32 +2,23 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
-
-
-
 // background: #CCCCCC; /* fallback for old browsers */
 // background: -webkit-linear-gradient(to left, #6190E8 , #A7BFE8); /* Chrome 10-25, Safari 5.1-6 */
 // background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 .top {
   height: 70vh;
   background-position: 0% 91%;
 }
-
 .recap {
 background-color: white;
 height: 220px;
 display: flex;
 align-items: center;
 justify-content: center;
-
 }
-
 .mapicon {
   height: 50px;
-
 }
-
 .texte-animation {
   display: flex;
   flex-direction: column;
@@ -35,15 +26,12 @@ justify-content: center;
   align-items: center;
   justify-content: center;
 }
-
 .card-recap {
   color: black;
-
   p {
     margin-top: 1em;
   }
 }
-
 .greycard {
   height: 220px;
   background-color: #9B9B9B;
@@ -55,33 +43,26 @@ justify-content: center;
   h2 {
   color: white;
   font-size: 24px;
-
   }
-
 }
-
 .login_home_wrapper {
   height: 100%;
   display:flex;
   align-items: center;
   justify-content: center;
 }
-
 .loginhome{
   width: 100%;
-
 }
 .bouton {
 margin-top: 30px;
 }
-
 .banner {
   color: black;
   height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
 }
-
 .presentation-picture {
   padding: 0;
   img {
@@ -92,20 +73,15 @@ margin-top: 30px;
   width: 50px;
   height: 50px;
 }
-
 .texte {
   padding: 30px;
 }
-
 .flexboxhome {
   display: flex;
 }
-
 .diamond {
   width: 50%;
 }
-
-
 .marbled {
   display: flex;
   align-items: center;
@@ -114,7 +90,6 @@ margin-top: 30px;
     font-size: 24px;
   }
 }
-
 .tricker {
   height: 50px;
   overflow: hidden;
