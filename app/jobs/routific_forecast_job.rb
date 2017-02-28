@@ -33,8 +33,8 @@ class RoutificForecastJob < ApplicationJob
   def buid_data_hash(visits, fleet)
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
-    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ?', Date.today, false )
-    # rajouter start_date et .near de geocoding
+    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ? AND request_time <= ', Date.today, false, Date.today )
+    # rajouter .near de geocoding pour utiliser le radius du User
 
     n = 1
     demands_to_dispatch.each do |demand|
