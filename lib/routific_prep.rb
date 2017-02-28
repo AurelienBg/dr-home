@@ -5,7 +5,7 @@ module RoutificPrep
     # in the method, i is the number of day for the forecast
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
-    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ? AND request_time <= ?', run_date + i, false, run_date + i )
+    demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ? AND request_time <= ? ', run_date + i, false, run_date + i )
     # rajouter .near de geocoding pour utiliser le radius du User
     visits = {}
     n = 1
@@ -53,7 +53,9 @@ module RoutificPrep
     run_date = Date.today
     # 1. parcours de route_consultations, hash "solution"
 
-    # unless route_consultations == nil  (VERIFIER QUE C EST LA BONNE CONDITION)
+
+    # CHECK IT IS THE RIGHT UNLESS CONDITON
+    unless route_consultations == nil
       route_consultations.vehicleRoutes.each do |key, value|
         # key = vehicule_i
         # value = array_of_stops
@@ -72,21 +74,25 @@ module RoutificPrep
             # 4. Creer des consultations a partir des stops
             if Demand.near([user.latitude, user.longitude], user.radius).include? demand
               status = i > 0 ? "forecasted" : "confirmed"
-              c = Consultation.new(
-                date: run_date + i,
-                start_time: item.arrival_time,
-                end_time: item.finish_time,
-                user: user,
-                demand: demand,
-                status: status)
-              c.save
-              demand.assigned = i == 0 ? true : false
-              demand.forecast = i > 0 ?  true : false
-              demand.save
+
+              # Disregard demand that were already forecasted : do nothing
+              if i == 0 || !demand.forecast
+                c = Consultation.new(
+                  date: run_date + i,
+                  start_time: item.arrival_time,
+                  end_time: item.finish_time,
+                  user: user,
+                  demand: demand,
+                  status: status)
+                c.save
+                demand.assigned = i == 0 ? true : false
+                demand.forecast = i > 0 ?  true : false
+                demand.save
+              end
             end
           end
         end
       end
-    # end
+    end
   end
 end
