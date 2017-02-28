@@ -21,17 +21,11 @@ class RoutificJob < ApplicationJob
     # data = hash
     puts data
     Routific.setToken(ENV['ROUTIFIC_API'])
-    # buid_data_hash (methdo prive qui genere le hash input)
     @route_consultations = Routific.getRoute(data)
-    # binding.pry
 
     # p routes = JSON.parse(route_consultations)
-    p route_consultations
 
     add_consultation_from_hash(route_consultations)
-    p Consultation.last
-
-    puts "Ending Routific call"
   end
 
   private
@@ -101,7 +95,6 @@ class RoutificJob < ApplicationJob
           c = Consultation.new(
             start_time: item.arrival_time,
             end_time: item.finish_time,
-            status: "affected",
             user: user,
             demand: demand,
             status: "confirmed")

@@ -2,7 +2,7 @@ require 'json'
 require 'open-uri'
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :map ]
+  skip_before_action :authenticate_user!, only: [ :home, :map, :how ]
   before_action :check_if_user_profile_completed, only: :dashboard
 
   def home
@@ -12,6 +12,9 @@ class PagesController < ApplicationController
   def map
   end
 
+  def how
+  end 
+
   def dashboard
     @user = current_user
     @hash = Gmaps4rails.build_markers(@user) do |user, marker|
@@ -19,10 +22,13 @@ class PagesController < ApplicationController
       marker.lng user.longitude
     end
     min_nb_consult = @user.min_nb_consult
-    @date = Date.new(2017, 2, 23)
+    if Time.now.hour < 18
+      @date = Date.today
+    else
+      @date = Date.today + 1
+    end
 
-    # @matched_demand = Demand.near(get_user_coord(@user), @user.fav_distance)
-    @next_round = Demand.where(due_date: @date).near(get_user_coord(@user), @user.radius).first(set_min_consultation(@user.min_nb_consult))
+    @next_round = Consultation.where(user: @user, start_time: @date).first(set_min_consultation(@user.min_nb_consult))
     @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
         marker.lat user.latitude
         marker.lng user.longitude
