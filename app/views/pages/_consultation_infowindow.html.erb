@@ -1,9 +1,12 @@
-<!-- TODO:
-nom du patient consult.demand.first_name
-adresse
-start time
-end time
-phone number -->
-<span>
-  <%= consultation.demand.first_name %>
-</span>
+<p>
+  <strong><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></strong>
+</p>
+<p>
+  <%= consultation.demand.address %> - <%= consultation.demand.zipcode %> <%= consultation.demand.city %>
+</p>
+<p>
+  <%= consultation.demand.phone %>
+</p>
+<p>
+  <strong> Arrivée : </strong><%= consultation.start_time.strftime('%H:%M') %> - <strong>Départ : </strong><%= consultation.end_time.strftime('%H:%M') %>
+</p>
