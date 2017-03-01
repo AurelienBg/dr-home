@@ -9,7 +9,7 @@
 //= require moment
 //= require Chart
 //= require typed
-//= require bootstrap-slider
+//= require bs-slider
 //= require_tree ./app
 
 

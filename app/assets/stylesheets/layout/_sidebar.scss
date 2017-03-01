@@ -81,3 +81,8 @@
   height: calc(100vh - 70px);
   overflow-y: scroll;
 }
+
+.tooltip.top.in {
+  top: -30px !important;
+  height: 30px !important;
+}

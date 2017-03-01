@@ -172,7 +172,9 @@
         <div class="row">
           <div class="col-xs-8 col-xs-offset-2">
             <h3 class="text-center">Combien de kms max par jour ?</h3>
+            <br>
             <%= f.input :radius, label: false, input_html: { class: "slider" } %>
+
           </div>
         </div>
 
@@ -211,12 +213,18 @@
   <script>
     $(function(){
 
-      $('.slider').slider({
+      var slider = $('.slider').slider({
         min: 0,
         max: 100,
         step: 5,
         tooltip: "show"
       })
+
+      <% if current_user.radius %>
+        slider.slider('setValue', <%= current_user.radius %>)
+      <% else %>
+        slider.slider('setValue', 50)
+      <% end %>
 
       $(".tab").on("click", function(e){
         // Change active tab
