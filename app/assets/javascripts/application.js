@@ -8,6 +8,7 @@
 //= require attachinary
 //= require moment
 //= require Chart
+//= require typed
 //= require_tree ./app
 
 
