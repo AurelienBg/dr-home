@@ -30,7 +30,7 @@ class PagesController < ApplicationController
       @date = Date.today + 1
     end
 
-    @next_round = Consultation.where(user: @user)
+    @next_round = Consultation.where(user: @user, date: @date)
     # @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
     #     marker.lat user.latitude
     #     marker.lng user.longitude

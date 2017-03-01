@@ -17,6 +17,8 @@ class RoutificJob < ApplicationJob
     @route_consultations = Routific.getRoute(data)
 
     # p routes = JSON.parse(route_consultations)
+
     add_consultation_from_hash(route_consultations, 0)
+
   end
 end
