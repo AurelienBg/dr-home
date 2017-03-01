@@ -73,12 +73,16 @@
                 <div class="modal-dialog modal-custom" role="document">
                   <div class="modal-content modal-elements">
                     <h2><span class="content-blue"></span><%= consultation.demand.sex %> <%= consultation.demand.first_name%></h2>
+
+                    div.consu
+
+
                     <p><span class="content-blue">Symptômes :</span> <%= consultation.demand.illness %></p>
-                    <p><span class="content-blue">Heure à laquelle je dois partir pour ne pas être en retard à mon prochain rendez-vous :</span> <%= consultation.end_time %></p>
                     <p> <span class="content-blue">Début de la consultation :</span> <%= l(consultation.start_time, format: :short)%></p>
-                    <p><span class="content-blue">Adresse :</span> <%= consultation.demand.adresse %> <%= demands.city %> <%= demands.zipcode %></p>
-                    <p><span class="content-blue">Téléphone :</span><%=  %>
-                    Durée de la consultation</p>, heure de départ, adresse, code postal, ville, téléphone,
+                    <p><span class="content-blue">Heure à laquelle je dois partir pour ne pas être en retard à mon prochain rendez-vous :</span> <%= consultation.end_time %></p>
+                    <p> <span class="content-blue">Age :</span> <%= (Date.today - consultation.demand.birthday)%></p>
+                    <p><span class="content-blue">Adresse :</span> <%= consultation.demand.address %> <%= consultation.demand.city %> <%= consultation.demand.zipcode %></p>
+                    <p><span class="content-blue">Téléphone :</span><%= consultation.demand.phone %>
                   </div>
                 </div>
               </div>
