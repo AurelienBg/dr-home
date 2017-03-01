@@ -10,7 +10,9 @@ namespace :routific do
     # end
 
     RoutificfJob.perform_later
-
     puts "routific enqueue"
+
+    RoutificForecastJob.perform_later
+    puts "routific forecast enqueue"
   end
 end

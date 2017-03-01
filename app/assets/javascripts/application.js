@@ -6,7 +6,10 @@
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+//= require moment
+//= require Chart
 //= require_tree ./app
+
 
 
 // *****************

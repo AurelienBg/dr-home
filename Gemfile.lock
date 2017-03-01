@@ -99,6 +99,8 @@ GEM
       thor (~> 0.19)
     builder (3.2.3)
     byebug (9.0.6)
+    chart-js-rails (0.1.2)
+      railties (> 3.1)
     cloudinary (1.1.7)
       aws_cf_signer
       rest-client
@@ -184,6 +186,8 @@ GEM
     mime-types (2.99.3)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     netrc (0.11.0)
     nio4r (1.2.1)
@@ -311,6 +315,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  chart-js-rails
   cloudinary
   coffee-rails
   devise
@@ -325,6 +330,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   listen (~> 3.0.5)
+  momentjs-rails
   pg
   pry-byebug
   pry-rails

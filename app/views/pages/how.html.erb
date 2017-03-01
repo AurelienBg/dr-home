@@ -1,11 +1,70 @@
-<div class="wrapper-intro">
-	<div class="col-sm-6 col-sm-offset-1 container-intro">
-		<p class="highlight">MEDECINS</p>
-		<h1>care options your patients want</h1>
-		<p>We partner with health systems and hospitals to extend their primary care services. We’ll help your team meet the needs of your patients by providing high quality, convenient access to care.</p>
+<div class="wrapper intro">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 container-intro">
+				<p class="highlight">DR HOME</p>
+				<h1>La France est un pays sans désert, sauf médical.</h1>
+				<p>Nous luttons contre. Et vous?</p>
+				<br>
+				<br>
+				<div>
+					<%= link_to "Rejoignez Dr. Home", edit_user_path(current_user), class: "how-btn" %>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-5">
+				<%= image_tag "bike.jpg", class: "picture" %>
+			</div>
+		</div>
 	</div>
 </div>
-<div class="wrapper-benefits">
+
+
+
+<div class="wrapper steps">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 container-intro">
+				<p class="highlight">C'EST FACILE :</p>
+			</div>
+		</div>
+	</div>	
+	<div class="container-steps">
+		<ul class="progressbar">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-3">	
+						<li class="active">
+							<strong>Inscription</strong>
+							<p>Créez-vous un compte sur Dr Home et renseignez votre profil</p>
+						</li>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3">	
+						<li>
+							<strong>Validation</strong>
+							<p>La qualité de notre communauté nous est chère :<br> notre équipe valide soigneusement l'inscription de tout nouveau membre</p>
+						</li>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3">	
+						<li>
+							<strong>Réglages</strong>
+							<p>Votre compte validé, donnez nous vos disponibilités et la localisation préférees pour vos tournées. Vous pouvez les modifiez à tout moment</p>
+						</li>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3">	
+						<li>
+							<strong>C'est parti ! </strong>
+							<p>Chaque matin recevez une proposition de tournée personalisée directement dans votre poche</p>
+						</li>
+					</div>
+				</div>
+			</div>
+		</ul>
+	</div>
+</div>
+
+
+
+<div class="wrapper benefits">
 	<div class="container-intro">
 		<h1>reduce cost while offering premium care</h1>
 		<div class="container "> 
@@ -18,9 +77,6 @@
 						<li><i class="fa fa-check-circle"></i>  Gestion et optimisation du trajet</li>
 					</ul>
 				</div>
-				<div class="col-sm-5 card-benefits">
-					<p class="highlight">BENEFICES POUR LES PATIENTS</p>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -28,14 +84,9 @@
 
 
 
-<div class="wrapper-steps">
-	<div class="container">
-		<ul class="progressbar">
-			<li class="active">sign up and complete your profile</li>
-			<li>choose interest</li>
-			<li>add friends</li>
-			<li>view map</li>
-		</ul>
-	</div>
+<div class="wrapper benefits">
+	<%= link_to edit_user_path(current_user) do %>
+	      <i class="fa fa-user btn btn-primary"></i> <%= t(".profile", default: "Profile") %>
+	<% end %>
 </div>
  
