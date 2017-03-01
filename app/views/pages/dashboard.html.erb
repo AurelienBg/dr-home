@@ -72,14 +72,11 @@
               <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                 <div class="modal-dialog modal-custom" role="document">
                   <div class="modal-content modal-elements">
-                    <h2><span class="content-blue">Sexe :</span><%= consultation.demand.sex %>
-                    <h2><span class="content-blue">Nom :</span><%= consultation.demand.first_name%> <%= consultation.demand.last_name%></h2>
-                     </h2>
+                    <h2><span class="content-blue"></span><%= consultation.demand.sex %> <%= consultation.demand.first_name%></h2>
                     <p><span class="content-blue">Symptômes :</span> <%= consultation.demand.illness %></p>
-                    <p><span class="content-blue">Heure à laquelle je dois partir pour ne pas être en retard à mon prochain rendez-vous :</span> <%= consultation.demand.illness %></p>
+                    <p><span class="content-blue">Heure à laquelle je dois partir pour ne pas être en retard à mon prochain rendez-vous :</span> <%= consultation.end_time %></p>
                     <p> <span class="content-blue">Début de la consultation :</span> <%= l(consultation.start_time, format: :short)%></p>
-                    <p><span class="content-blue">Durée de la consultation :</span> <%= consultation.demand.illness %></p>
-                    <p><span class="content-blue">Adresse :</span> <%= consultation.demand.illness %></p>
+                    <p><span class="content-blue">Adresse :</span> <%= consultation.demand.adresse %> <%= demands.city %> <%= demands.zipcode %></p>
                     <p><span class="content-blue">Téléphone :</span><%=  %>
                     Durée de la consultation</p>, heure de départ, adresse, code postal, ville, téléphone,
                   </div>
