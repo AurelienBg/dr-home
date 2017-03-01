@@ -29,7 +29,6 @@ class User < ApplicationRecord
 
   def set_long_address
     if fav_address.nil? && fav_city.nil?
-      raise
       "#{address} #{zipcode}"
     else
       "#{fav_address} #{fav_city}"
