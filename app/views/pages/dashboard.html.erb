@@ -74,8 +74,9 @@
 
   <!-- Tab Statistiques-->
   <div class="tab-content hidden" id="all-past">
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <canvas id="myChart" width="720" height="165"></canvas>
   </div>
+
   <!-- end Tab Historique -->
 
 
@@ -218,10 +219,10 @@
   var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
           datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              label: 'Nombre de consultation',
+              data: [12, 19, 3, 5, 2, 3, 10],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -251,6 +252,8 @@
           }
       }
   });
+
+
 </script>
 
 
