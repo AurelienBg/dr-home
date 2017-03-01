@@ -34,17 +34,15 @@
     <% else %>
     <div class="left">
       <div class="title" style="margin-bottom: 20px;">
-        <h3 style="margin: 15px 0;"><%= @date_wording %></h3>
-        <%= link_to "Refuser", root_path, class: "refuse-btn" %>
+        <h3 style="margin: 15px 0;"><%= @date_wording %> - <%= @next_round.count %> consultations</h3>
+
       </div>
       <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
-          <p>Nombre de consulations : <%= @next_round.count %></p>
-          <p>Estimation de gain : TODO!!!</p>
+          <p>Heure de départ : <%= @next_round.first.start_time.strftime('%H:%M') %> </p>
         </div>
         <div class="col-sm-5">
-          <p>Heure de départ : TODO!!! </p>
-          <p>Heure de fin : TODO!!! </p>
+          <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
         </div>
       </div>
       <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
@@ -67,6 +65,7 @@
             </div>
           </a>
         <% end %>
+        <%= link_to "Refuser", root_path, class: "refuse-btn", style: 'margin: 20px' %>
       </div>
 
       <!-- Modal -->
@@ -137,6 +136,7 @@
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
+    var infoWindows = [];
 
     function initialize() {
       if ($("#map2").length == 0) { return; }
@@ -180,7 +180,8 @@
         location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
         stopover: true
       }
-      createWptMarker(w['location']);
+
+      createWptMarker(w['location'], "<%= j render "consultation_infowindow", consultation: consult %>");
       waypts.push(w);
       <% end %>
 
@@ -209,13 +210,29 @@
         });
     }
 
-    function createWptMarker(latlng) {
+    function createWptMarker(latlng, infowindowContent) {
+      var infowindow = new google.maps.InfoWindow({
+        content: infowindowContent
+      });
 
-        var marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            icon: "<%= image_path 'marker2.png' %>"
-        });
+      infoWindows.push(infowindow);
+
+      var marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+          icon: "<%= image_path 'marker2.png' %>"
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        closeAllInfoWindows();
+        infowindow.open(map,marker);
+      });
+    }
+
+    function closeAllInfoWindows() {
+      for (var i=0;i<infoWindows.length;i++) {
+         infoWindows[i].close();
+      }
     }
 
    $(document).ready(function() {
