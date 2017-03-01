@@ -26,11 +26,14 @@ class PagesController < ApplicationController
 
     if Time.now.hour < 18
       @date = Date.today
+      @date_wording = "Votre tournée d'aujourd'hui"
     else
       @date = Date.today + 1
+      @date_wording = "Votre tournée de demain"
     end
 
     @next_round = Consultation.where(user: @user, date: @date)
+    # @next_round = []
     # @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
     #     marker.lat user.latitude
     #     marker.lng user.longitude
