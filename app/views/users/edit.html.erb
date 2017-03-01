@@ -1,12 +1,9 @@
 
-
-
-
 <!-- Tabs -->
 <div class="profile-header-wrapper">
   <div class="container profile-header-container">
     <div class="profile-header-infos">
-      <h1>Création de votre compte</h1>
+      <h1 class=text-center>Complétez votre profil</h1>
       <div class="tabs">
         <a class="tab active" data-target="#infos_perso" id="first">
           <h3>1. Informations personnelles</h3>
@@ -15,7 +12,7 @@
           <h3>2. Informations professionnelles</h3>
         </a>
         <a class="tab" data-target="#configurations" id="third">
-          <h3>3. Configuration du compte</h3>
+          <h3>3. Préférences de tournées</h3>
         </a>
       </div>
     </div>
@@ -31,8 +28,8 @@
       <div class="row">
         <div class="col-sm-6">
           <%= f.error_notification %>
-          <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill if @user.photo %>
           <i class="fa fa-picture-o user-icon" aria-hidden="true"></i>
+          <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill if @user.photo %>
           <p type="Photo:" class="user-icon-format-p">
 
 
