@@ -22,6 +22,8 @@ gem 'sidekiq-failures'
 gem 'routific'
 
 # Gemfile for Front
+gem 'momentjs-rails'
+gem 'chart-js-rails'
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
