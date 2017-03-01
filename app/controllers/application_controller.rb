@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if resource.profile_completed?
-      dashboard_path
-    else
-      edit_user_path(resource)
-    end
+    # if resource.profile_completed?
+    #   dashboard_path
+    # else
+    edit_user_path(resource)
+    # end
   end
 
 

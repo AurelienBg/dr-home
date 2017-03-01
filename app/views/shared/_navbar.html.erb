@@ -26,27 +26,37 @@
             <div class="badge badge-blue">3</div>
           </div> -->
         <%# end %>
-        <div class="navbar-wagon-item">
-          <p>Hello <%= current_user.first_name %> !</p>
-        </div>
+
+
+       <%= link_to edit_user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
+         <%= t(".profile", default: "Votre profil médecin") %>
+       <% end %>
+
+        <%= link_to t(".top_call_to_action", default: "Prochaine tournée"), dashboard_path, class: "navbar-wagon-item navbar-wagon-link", style: 'text-decoration: none;' %>
 
         <!-- Profile picture and dropdown -->
         <div class="navbar-wagon-item">
           <div class="dropdown">
-            <% if current_user.photo %>
-              <%= cl_image_tag current_user.photo.path, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
+            <% if current_user.photo.nil? %>
+              <% if current_user.sex == "Madame" %>
+                <%= image_tag "girl.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+              <% elsif current_user.sex == "Monsieur" %>
+                <%= image_tag "boy.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+              <% end %>
             <% else %>
-              <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+              <%= cl_image_tag current_user.photo.path, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <% end %>
+
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <li>
-                <%= link_to edit_user_path(current_user) do %>
-                  <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                <%= link_to how_it_works_path do %>
+                  <%= t(".how", default: "Plus d'info") %>
                 <% end %>
               </li>
               <li>
-                <%= link_to dashboard_path do %>
-                  <i class="fa fa-home"></i>  <%= t(".profile", default: "Dashboard") %>
+                <%= link_to how_it_works_path do %>
+                  <%= t(".map", default: "La communauté Dr Home") %>
                 <% end %>
               </li>
               <li>
@@ -65,10 +75,6 @@
 
       <% end %>
 
-    <% if current_user %>
-      <!-- Button (call-to-action) -->
-      <%= link_to t(".top_call_to_action", default: "Dashboard"), dashboard_path, class: "navbar-btn", style: 'text-decoration: none;' %>
-    <% end %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
