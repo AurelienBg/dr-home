@@ -77,6 +77,7 @@
     <canvas id="myChart" width="720" height="165"></canvas>
   </div>
 
+
   <!-- end Tab Historique -->
 
 
@@ -222,7 +223,7 @@
           labels: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
           datasets: [{
               label: 'Nombre de consultation',
-              data: [12, 19, 3, 5, 2, 3, 10],
+              data: [12, 19, 3, 5, 2, 3, 10], //user_id.consultation.today
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -252,6 +253,65 @@
           }
       }
   });
+
+ $( document ).ready(function() { // 6,32 5,38 2,34
+        $("#test-circle").circliful({
+            animation: 1,
+            animationStep: 5,
+            foregroundBorderWidth: 15,
+            backgroundBorderWidth: 15,
+            percent: 38,
+            textSize: 28,
+            textStyle: 'font-size: 12px;',
+            textColor: '#666',
+            multiPercentage: 1,
+            percentages: [10, 20, 30]
+        });
+        $("#test-circle2").circliful({
+            animation: 0,
+            animationStep: 6,
+            foregroundBorderWidth: 5,
+            backgroundColor: "none",
+            fillColor: '#eee',
+            percent: 50,
+            iconColor: '#3498DB',
+            icon: 'f206',
+            iconSize: '40',
+            iconPosition: 'middle'
+        });
+        $("#test-circle3").circliful({
+            animation: 1,
+            animationStep: 6,
+            foregroundBorderWidth: 5,
+            backgroundBorderWidth: 1,
+            percent: 88,
+            iconColor: '#3498DB',
+            icon: 'f004',
+            iconSize: '40',
+            iconPosition: 'middle'
+        });
+        $("#test-circle4").circliful({
+            animation: 1,
+            animationStep: 1,
+            start: 2,
+            showPercent: 1,
+            backgroundColor: '#000',
+            foregroundColor: '#A8C64A',
+            fontColor: '#000',
+            multiPercentage: 1,
+            text: 'No Kids',
+            foregroundBorderWidth: 15,
+            backgroundBorderWidth: 15,
+        });
+        $("#test-circle5").circliful({
+          animationStep: 5,
+          foregroundBorderWidth: 5,
+          backgroundBorderWidth: 15,
+          percent: 80,
+          halfCircle: 1,
+        });
+    });
+
 
 
 </script>
