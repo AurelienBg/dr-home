@@ -33,7 +33,21 @@
       </div>
     <% else %>
       <div class="left">
-        <div class="title"><h3>Votre journée du <%= @date.strftime('%d.%m.%Y ') %><%= link_to "Reject", root_path, class: "btn btn-primary" %></h3></div>
+        <div class="title" style="margin-bottom: 20px;">
+          <h3 style="margin: 15px 0;">Votre journée du <%= @date.strftime('%d.%m.%Y ') %></h3>
+          <%= link_to "Refuser", root_path, class: "refuse-btn" %>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 col-sm-offset-1">
+            <p>Nombre de consulations : <%= @next_round.count %></p>
+            <p>Estimation de gain : TODO!!!</p>
+          </div>
+          <div class="col-sm-5">
+            <p>Heure de départ : TODO!!! </p>
+            <p>Heure de fin : TODO!!! </p>
+          </div>
+        </div>
+        <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
           <div class="demand-cards">
             <% @next_round.each do |consultation| %>
               <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
@@ -46,7 +60,7 @@
                     <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
                     <p><%= consultation.demand.address %></p>
                     <p><%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
-                    <p>Départ à <%= consultation.end_time.strftime('%H:%M') %></p>
+                    <p><i>Départ à <%= consultation.end_time.strftime('%H:%M') %></i></p>
                     <!-- replace with start_time of next consultation - trip time -->
                   </div>
                 </div>
@@ -60,6 +74,7 @@
                   <div class="modal-content">
                     <h2><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> </h2>
                     <p><strong>Symptômes </strong>: <%= consultation.demand.illness %></p>
+                    <p>Todo : heure d'arrivée, durée de la consultation, heure de départ, adresse, code postal, ville, téléphone, </p>
                   </div>
                 </div>
               </div>
