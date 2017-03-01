@@ -28,13 +28,13 @@
     <!-- Si @next_round != nil  -->
     <% if @next_round.count == 0 %>
     <div  style="width: 100%;">
-      <div class="title" style="width: 100%;"><h3>Votre journée du <%= @date.strftime('%d.%m.%Y ') %></h3></div>
+      <div class="title" style="width: 100%;"><h3><%= @date_wording %></h3></div>
       <div class="message-erreur"><p>Vous n'avez pas de consultation prévue ce jour.</p></div>
     </div>
     <% else %>
     <div class="left">
       <div class="title" style="margin-bottom: 20px;">
-        <h3 style="margin: 15px 0;">Votre journée du <%= @date.strftime('%d.%m.%Y ') %></h3>
+        <h3 style="margin: 15px 0;"><%= @date_wording %></h3>
         <%= link_to "Refuser", root_path, class: "refuse-btn" %>
       </div>
       <div class="row">
@@ -54,6 +54,7 @@
             <div class="row demand-card">
               <div style="width: 50%; margin: 0 auto 11px auto;"></div>
               <div class="col-xs-2">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <p><%= consultation.start_time.strftime('%H:%M') %></p>
               </div>
               <div class="col-xs-10 demand-info">
@@ -138,6 +139,8 @@
     var map;
 
     function initialize() {
+      if ($("#map2").length == 0) { return; }
+
       // Style
       var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
       var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
@@ -159,13 +162,15 @@
     }
 
     function calcRoute() {
-      if (@next_round.count != 0) {
-        var set_lat = @next_round.first.doctor_departure_lat
-        var set_lng = @next_round.first.doctor_departure_lng
-      } else {
-        var set_lat = @user.latitude
-        var set_lng = @user.longitude
-      }
+      if ($("#map2").length == 0) { return; }
+
+      <% if @next_round.count != 0 %>
+        var set_lat = <%= @next_round[0].doctor_departure_lat %>
+        var set_lng = <%= @next_round[0].doctor_departure_lng %>
+      <% else %>
+        var set_lat = <%= @user.latitude %>
+        var set_lng = <%= @user.longitude %>
+      <% end %>
       var start = new google.maps.LatLng(set_lat, set_lng);
       var end = new google.maps.LatLng(set_lat, set_lng);
       var waypts = []
@@ -215,7 +220,7 @@
 
    $(document).ready(function() {
     initialize();
-      calcRoute();
+    calcRoute();
 
 
     // ************************************
