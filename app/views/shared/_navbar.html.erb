@@ -27,19 +27,22 @@
           </div> -->
         <%# end %>
         <div class="navbar-wagon-item">
-          <p>Hello <%= current_user.first_name %> !</p>
+          <p  style="margin: 0;">Hello <%= current_user.first_name %> !</p>
         </div>
 
         <!-- Profile picture and dropdown -->
         <div class="navbar-wagon-item">
           <div class="dropdown">
+
             <% if current_user.photo.nil?%>
               <% if current_user.sex == "Madame" %>
                 <%= image_tag "girl.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
               <% elsif current_user.sex == "Monsieur" %>
                 <%= image_tag "boy.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
               <% end %>
+
             <% end %>
+            
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <li>
                 <%= link_to edit_user_path(current_user) do %>

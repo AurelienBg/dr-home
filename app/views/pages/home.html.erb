@@ -1,8 +1,6 @@
 <%= content_for(:navbar_class, "navbar-home") %>
-
 <div class="banner text-center">
   <div class="container-fluid">
-
     <div class="row top" style="background-image:url(<%= asset_path('background.png')%>);background-size:cover">
       <div class="col-md-5 col-md-offset-1" style="height: 100%;">
         <div class="texte-animation">
@@ -24,7 +22,6 @@
             <%= f.input :email, required: false, autofocus: true, placeholder: 'youremail@gmail.com', label: false %>
             <%= f.input :password, required: false, placeholder: '******', label: false %>
           </div>
-
           <div class="form-actions">
             <%= f.button :submit, "Connectez-vous", class: 'primary-btn' %>
           </div>
@@ -90,7 +87,6 @@
     </div>
   </div>
 </div>
-
 <% content_for(:after_js) do %>
   <script>
     $(function($) {
@@ -100,7 +96,6 @@
     var height = tricker.height();
     var number = tricker.children().length;
     var first = tricker.children().first();
-
     setInterval(function() {
       var interv = current * -1 * height;
       first.css("margin-top", interv + "px");
@@ -114,5 +109,3 @@
   });
   </script>
 <% end %>
-
-

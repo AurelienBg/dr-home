@@ -13,6 +13,7 @@ ActiveAdmin.register Consultation do
 #   permitted
 # end
 
+# Filtering only the fields we want on the Admin interface
   index do
     selectable_column
     column :id

@@ -4,30 +4,124 @@
   <div class="container profile-header-container">
     <div class="tabs">
       <a class="tab active" data-target="#next">
-        <h3>Prochaine tournée</h3>
+        <h3>Ma prochaine tournée</h3>
       </a>
-      <a class="tab" data-target="#all">
-        <h3>Toutes les tournées</h3>
+      <a class="tab" data-target="#all-future">
+        <h3>Mes tournées à venir</h3>
       </a>
-      <a class="tab" data-target="#month">
-        <h3>Ce mois-ci</h3>
+      <a class="tab" data-target="#all-past">
+        <h3>Statistiques</h3>
       </a>
       <a class="tab" data-target="#parameters" id="settings">
-        <h3>Paramètres</h3>
+        <h3>Préférences</h3>
       </a>
     </div>
   </div>
 </div>
 <!-- end tabs -->
 
-<div class="container text-center">
 
-  <!-- Onglet Paramètres -->
+
+<div class="container text-center">
+<!-- Tab Prochaine Tournée -->
+  <div class="tab-content tab-next-round" id="next">
+    <!-- Si @next_round != nil  -->
+    <% if @next_round.count == 0 %>
+      <div  style="width: 100%;">
+        <div class="title" style="width: 100%;"><h3>Votre journée du <%= @date.strftime('%d.%m.%Y ') %></h3></div>
+        <div class="message-erreur"><p>Vous n'avez pas de consultation prévue ce jour.</p></div>
+      </div>
+    <% else %>
+      <div class="left">
+        <div class="title" style="margin-bottom: 20px;">
+          <h3 style="margin: 15px 0;">Votre journée du <%= @date.strftime('%d.%m.%Y ') %></h3>
+          <%= link_to "Refuser", root_path, class: "refuse-btn" %>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 col-sm-offset-1">
+            <p>Nombre de consulations : <%= @next_round.count %></p>
+            <p>Estimation de gain : TODO!!!</p>
+          </div>
+          <div class="col-sm-5">
+            <p>Heure de départ : TODO!!! </p>
+            <p>Heure de fin : TODO!!! </p>
+          </div>
+        </div>
+        <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
+          <div class="demand-cards">
+            <% @next_round.each do |consultation| %>
+              <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
+                <div class="row demand-card">
+                  <div style="width: 50%; margin: 0 auto 11px auto;"></div>
+                  <div class="col-xs-2">
+                    <p><%= consultation.start_time.strftime('%H:%M') %></p>
+                  </div>
+                  <div class="col-xs-10 demand-info">
+                    <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
+                    <p><%= consultation.demand.address %></p>
+                    <p><%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
+                    <p><i>Départ à <%= consultation.end_time.strftime('%H:%M') %></i></p>
+                    <!-- replace with start_time of next consultation - trip time -->
+                  </div>
+                </div>
+              </a>
+            <% end %>
+
+            <!-- Modal -->
+            <% @next_round.each do |consultation| %>
+              <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <h2><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> </h2>
+                    <p><strong>Symptômes </strong>: <%= consultation.demand.illness %></p>
+                    <p>Todo : heure d'arrivée, durée de la consultation, heure de départ, adresse, code postal, ville, téléphone, </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <!-- End modal -->
+          </div>
+      </div>
+
+      <!-- Integration de la Map  -->
+      <div class="map">
+        <div id="map2" style="width: 100%; height: calc(100vh - 146px);"></div>
+        <!-- <iframe src="https://app.routific.com/m/index.html#/vehicle/58adbc0cf10918d02239ee96/routes/58adbfe53f5e2a00bb049645/map" frameborder="0" style="width: 100%; height: calc(100vh - 146px);"></iframe> -->
+      </div>
+      <!-- Map  -->
+      <!-- End Si @next_round != nil  -->
+    <% end %>
+
+
+  </div>
+  <!-- end Tab Prochaine tournée -->
+
+
+
+  <!-- Tab Mes Tournées à venir-->
+  <div class="tab-content hidden" id="all-future">
+    <div class="card">
+    </div>
+    <div class="card">
+    </div>
+  </div>
+  <!-- end Tab Mes Tournées à venir -->
+
+
+  <!-- Tab Statistiques-->
+  <div class="tab-content hidden" id="all-past">
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+  <!-- end Tab Historique -->
+
+
+
+  <!-- Tab - Préférences -->
   <div class="tab-content tab-parameters hidden" id="parameters">
     <div class="left">
       <div class="title"><h3>Qu'avez-vous en tête ?</h3></div>
       <%= simple_form_for(@user, class: 'form-inline', url: user_path(current_user), html: {method: :patch}) do |f| %>
-      <%= f.input :radius, label: 'Je veux travailler à ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' }, collection: [10, 20, 50, 100] %>
+      <%= f.input :fav_address, label: 'Je veux travailler vers ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' } %>
       <%= f.input :fav_city, label: 'de ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' } %>
       <%= f.submit "Enregistrer mes changements", class: "btn btn-primary" %>
       <% end %>
@@ -36,128 +130,166 @@
       <div id="map" style="width: 100%; height: calc(100vh - 146px);"></div>
     </div>
   </div>
-  <!-- end tab 1 -->
-
-  <!-- Onglet Prochaine tournée -->
-  <div class="tab-content tab-next-round" id="next">
-    <div class="left">
-      <div class="title"><h3>Votre journée du <%= @date %></h3></div>
-      <div class="demand-card">
-<!--         <div class="row">
-          <div class="col-xs-3">
-            <p>8h30</p>
-          </div>
-          <div class="col-xs-9 demand-info">
-            <p>Madame Michelle - Torticolli</p>
-            <p>40bis avenue de l'Est - 94100 Saint-Maur</p>
-            <p>Départ à 9h</p>
-          </div>
-        </div> -->
-        <%# start = Time.new() %>
-        <% @next_round.each do |demand| %>
-        <%# start =  %>
-          <div class="row">
-            <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 0 auto 11px auto;"></div>
-            <div class="col-xs-3">
-              <p>8h30</p>
-            </div>
-            <div class="col-xs-9 demand-info">
-              <p><%= demand.sex %> <%= demand.first_name %> <%= demand.last_name %> - Torticolli</p>
-              <p><%= demand.address %> - <%= demand.zipcode %> <%= demand.city %></p>
-              <p>Départ à 9h</p>
-            </div>
-        </div>
-        <% end %>
-
-
-
-        <%#= @next_round.each do %>
-
-        <%# end %>
-      </div>
-    </div>
-    <div class="map">
-      <div id="map2" style="width: 100%; height: calc(100vh - 146px);"></div>
-      <!-- <iframe src="https://app.routific.com/m/index.html#/vehicle/58adbc0cf10918d02239ee96/routes/58adbfe53f5e2a00bb049645/map" frameborder="0" style="width: 100%; height: calc(100vh - 146px);"></iframe> -->
-    </div>
-  </div>
-  <!-- end Onglet Prochaine tournée -->
-
-
-  <!-- Onglet toutes les tournées -->
-  <div class="tab-content hidden" id="all">
-    <div class="card">
-
-    </div>
-    <div class="card">
-
-    </div>
-  </div>
-  <!-- end Onglet toutes les tournées -->
-
-  <!-- tab 4 -->
-  <div class="tab-content hidden" id="month">
-    <p>Simple calendar</p>
-  </div>
-  <!-- end tab 4 -->
-
+  <!-- end Tab Préférences -->
 </div>
+<!-- <div class="col-sm-4 col-sm-offset-4">
+  <button onclick='window.print(); return false;' class='btn btn-primary'>Print</button>
+</div> -->
+
+
+
 
 <!-- **************************** -->
 <!-- Javascript -->
 <% content_for(:after_js) do %>
   <script>
-    $(function(){
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var map;
 
-
-  });
-  </script>
-  <script>
-    $(document).ready(function() {
-      var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map2' }, provider: { styles: styles } }, function() {
-        markers = handler.addMarkers(<%= raw @hash2.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-        }
-      });
-    $(".tab").on("click", function(e){
-      // Change active tab
-      $(".tab").removeClass('active');
-      $(this).addClass('active');
-      // Hide all tab-content (use class="hidden")
-      $(".tab-content").addClass('hidden');
-      // Show target tab-content (use class="hidden")
-      $($(this).data('target')).removeClass('hidden');
-      initialize();
-    });
-
-
-
-    });
-  </script>
-    <script>
     function initialize() {
-      var handler = Gmaps.build('Google');
-      // var stylescp
-      handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
+      // Style
+      var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
+      var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
+
+
+      directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
+      var userHome = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+      var mapOptions = {
+        // zoom:14,
+        center: userHome,
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+        }
+      }
+      map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+      directionsDisplay.setMap(map);
+      map.mapTypes.set('map_style', styledMap);
+      map.setMapTypeId('map_style');
+    }
+
+    function calcRoute() {
+      var start = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+      var end = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+      var waypts = []
+
+      <% @next_round.each do |consult| %>
+      var w = {
+        location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
+        stopover: true
+      }
+      createWptMarker(w['location']);
+      waypts.push(w);
+      <% end %>
+
+      createMarker(start);
+
+      var request = {
+        origin:start,
+        destination:end,
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.DRIVING
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(result);
         }
       });
-    };
-  </script>
-<% end %>
+    }
 
+    function createMarker(latlng) {
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            icon: "<%= image_path 'marker1.png' %>"
+        });
+    }
+
+    function createWptMarker(latlng) {
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            icon: "<%= image_path 'marker2.png' %>"
+        });
+    }
+
+   $(document).ready(function() {
+    initialize();
+    calcRoute();
+
+
+    // ************************************
+    $(".tab").on("click", function(e){
+    // Change active tab
+    $(".tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".tab-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+    initialize();
+    calcRoute();
+    });
+  });
+
+  function setmap() {
+    var handler = Gmaps.build('Google');
+    // var stylescp
+    handler.buildMap({ internal: { id: 'map' } }, function() {
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      if (markers.length == 0) {
+        handler.getMap().setZoom(2);
+      } else if (markers.length == 1) {
+        handler.getMap().setZoom(14);
+      }
+    });
+  };
+
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+</script>
+
+
+<% end %>
 
 

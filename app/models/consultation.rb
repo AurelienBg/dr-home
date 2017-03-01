@@ -1,4 +1,5 @@
 class Consultation < ApplicationRecord
+  STATUS = ["confirmed", "rejected"]
   belongs_to :user
   belongs_to :demand
 

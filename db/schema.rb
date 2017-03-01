@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223173903) do
+ActiveRecord::Schema.define(version: 20170228183811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170223173903) do
     t.integer  "demand_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.datetime "date"
     t.index ["demand_id"], name: "index_consultations_on_demand_id", using: :btree
     t.index ["user_id"], name: "index_consultations_on_user_id", using: :btree
   end
@@ -65,31 +66,34 @@ ActiveRecord::Schema.define(version: 20170223173903) do
     t.string   "zipcode"
     t.string   "phone"
     t.string   "email"
-    t.datetime "birthday"
+    t.date     "birthday"
     t.string   "sex"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "photo"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.datetime "request_time"
     t.string   "illness"
     t.datetime "due_date"
+    t.boolean  "assigned",     default: false
+    t.string   "specialty"
+    t.boolean  "forecast",     default: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "",                     null: false
+    t.string   "encrypted_password",     default: "",                     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,                      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "specialty"
@@ -106,12 +110,16 @@ ActiveRecord::Schema.define(version: 20170223173903) do
     t.float    "longitude"
     t.string   "photo"
     t.string   "cardnumber"
-    t.boolean  "admin",                  default: false, null: false
+    t.boolean  "admin",                  default: false,                  null: false
     t.integer  "radius",                 default: 10
-    t.boolean  "validated",              default: false, null: false
+    t.boolean  "validated",              default: false,                  null: false
     t.integer  "duration_consult"
     t.string   "photo_id"
     t.string   "photo_prof_doc"
+    t.integer  "break_duration",         default: 0
+    t.integer  "min_amount_per_consult"
+    t.datetime "start_time",             default: '20017-01-01 08:00:00'
+    t.datetime "end_time",               default: '20017-01-01 20:00:00'
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
