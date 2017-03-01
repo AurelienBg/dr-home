@@ -63,3 +63,24 @@
     border-color: $brand-color;
   }
 }
+
+
+
+.how-btn {
+  text-decoration: none;
+  padding: 8px 30px;
+  border-radius: 50px;
+  border: 1px solid;
+  margin-top: 4px;
+  font-weight: 300;
+  background-color: $brand-color;
+  color: white;
+  border-color: $brand-color;
+  transition: all 0.3s ease;
+  &:hover {
+    text-decoration: none;
+    color: white;
+    background-color: $light-blue;
+    border-color: $brand-color;
+  }
+}
