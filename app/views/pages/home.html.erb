@@ -1,111 +1,72 @@
 <%= content_for(:navbar_class, "navbar-home") %>
-<div class="banner text-center">
-  <div class="container-fluid">
-    <div class="row top" style="background-image:url(<%= asset_path('background.png')%>);background-size:cover">
-      <div class="col-md-5 col-md-offset-1" style="height: 100%;">
-        <div class="texte-animation">
-          <div class="tricker hidden-xs">
-            <h2>Bienvenue sur Dr Home</h2>
-            <h2>le premier site pour les médecins freelance</h2>
-          </div>
-          <!-- <div class="bouton"> -->
-          <% unless current_user %>
-            <%= link_to "Créez votre compte!", new_user_registration_path, class: "primary-btn"%>
-          <% end %>
-          <!-- </div> -->
-        </div>
-      </div>
-      <% unless current_user %>
-      <div class="col-md-3 col-md-offset-1 login_home_wrapper">
-        <%= simple_form_for(User.new, url: session_path(User.new), html:{class: "loginhome"}) do |f| %>
-          <div class="form-inputs">
-            <%= f.input :email, required: false, autofocus: true, placeholder: 'youremail@gmail.com', label: false %>
-            <%= f.input :password, required: false, placeholder: '******', label: false %>
-          </div>
-          <div class="form-actions">
-            <%= f.button :submit, "Connectez-vous", class: 'primary-btn' %>
-          </div>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
-    <div class="row recap">
-      <div class="col-md-3">
-        <div class="card-recap">
-          <%= image_tag "drhome-womanpic.png", class: "icon" %>
-          <p>On vous trouve vos patients </p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-recap">
-          <%= image_tag "calendar.png", class: "icon" %>
-          <p>Selon vos disponibilités</p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-recap">
-          <%= image_tag "mapselector.png", class: "icon" %>
-          <p>En fonction d’où vous vous trouvez</p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-recap">
-          <%= image_tag "mapsphone.png", class: "mapicon" %>
-          <p>Pour une tournée de patients optimisée</p>
-       </div>
+<div class="banner text-center" style="background-image: linear-gradient(-225deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 50%), url('<%= image_path 'background.png' %>')">
+  <div class="banner-content">
+    <h2>Bienvenue sur Dr Home</h2>
+    <h3>
+      Le premier site de medecins
+      <strong class="typed-text hidden-xs"></strong>
+    </h3>
+    <% unless current_user %>
+      <%= link_to "Rejoignez-nous", new_user_registration_path, class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>
+<div class="container padded">
+  <div class="row recap">
+    <div class="col-md-3">
+      <div class="card-recap">
+        <%= image_tag "drhome-womanpic.png", class: "icon" %>
+        <p>On vous trouve vos patients </p>
       </div>
     </div>
-    <div class="row marbled">
-      <div class="col-md-6 presentation-picture">
-        <%= image_tag "visiting_doctor.jpg", class: "image" %>
-      </div>
-      <div class="col-md-6">
-        <div class="texte">
-          <h3>Trouvez des patients où que vous soyez. Pas besoin de secretariat ou de cabinet.</h3>
-        </div>
+    <div class="col-md-3">
+      <div class="card-recap">
+        <%= image_tag "calendar.png", class: "icon" %>
+        <p>Selon vos disponibilités</p>
       </div>
     </div>
-     <div class="row marbled">
-        <div class="col-md-6">
-          <div class="texte">
-            <h3>Nous vous proposons la tournée de patient la plus optimisée en fonction de vos critères.</h3>
-          </div>
-        </div>
-        <div class="col-md-6 presentation-picture">
-          <%= image_tag "road.jpg", class: "image" %>
-        </div>
-    </div>
-    <div class="row marbled">
-      <div class="col-md-6 presentation-picture">
-        <%= image_tag "girlwithcoffee.jpg", class: "image" %>
+    <div class="col-md-3">
+      <div class="card-recap">
+        <%= image_tag "mapselector.png", class: "icon" %>
+        <p>En fonction d’où vous vous trouvez</p>
       </div>
-      <div class="col-md-6">
-        <div class="texte">
-          <h3>Exercez en toute flexibilité et indépendence sans coûts fixes.</h3>
-          </div>
-        </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card-recap">
+        <%= image_tag "mapsphone.png", class: "mapicon" %>
+        <p>Pour une tournée de patients optimisée</p>
+     </div>
     </div>
   </div>
 </div>
-<% content_for(:after_js) do %>
-  <script>
-    $(function($) {
-    var duration = 2500;  // change this to change rotation time in milliseconds
-    var current = 1;
-    var tricker = $(".tricker");
-    var height = tricker.height();
-    var number = tricker.children().length;
-    var first = tricker.children().first();
-    setInterval(function() {
-      var interv = current * -1 * height;
-      first.css("margin-top", interv + "px");
-      if (current == number) {
-        first.css("margin-top", "0px");
-        current = 1;
-      } else {
-        current++;
-      }
-    }, duration);
-  });
-  </script>
-<% end %>
+<div class="row marbled">
+  <div class="col-md-6 presentation-picture">
+    <%= image_tag "visiting_doctor.jpg", class: "image" %>
+  </div>
+  <div class="col-md-6">
+    <div class="texte">
+      <h3>Trouvez des patients où que vous soyez. Pas besoin de secretariat ou de cabinet.</h3>
+    </div>
+  </div>
+</div>
+ <div class="row marbled">
+    <div class="col-md-6">
+      <div class="texte">
+        <h3>Nous vous proposons la tournée de patient la plus optimisée en fonction de vos critères.</h3>
+      </div>
+    </div>
+    <div class="col-md-6 presentation-picture">
+      <%= image_tag "road.jpg", class: "image" %>
+    </div>
+</div>
+<div class="row marbled">
+  <div class="col-md-6 presentation-picture">
+    <%= image_tag "girlwithcoffee.jpg", class: "image" %>
+  </div>
+  <div class="col-md-6">
+    <div class="texte">
+      <h3>Exercez en toute flexibilité et indépendence sans coûts fixes.</h3>
+      </div>
+    </div>
+</div>
+
