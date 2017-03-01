@@ -5,6 +5,14 @@ module RoutificPrep
     # in the method, i is the number of day for the forecast
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
+
+    # we remove all forecast of the previous day to prepare the forecast of the day
+    demands_to_reset = Demand.where('assigned = ? AND forecast = ? ', false, true )
+    demands_to_reset.each do |d|
+      d.forecast = false
+      d.save
+    end
+
     demands_to_dispatch = Demand.where('due_date >= ? AND assigned = ? AND request_time <= ? ', run_date + i, false, run_date + i )
     # rajouter .near de geocoding pour utiliser le radius du User
     visits = {}
