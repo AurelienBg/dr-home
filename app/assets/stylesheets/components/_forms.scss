@@ -1,3 +1,22 @@
+.form-container {
+  h2 {
+    padding-bottom: 20px;
+    font-size: 25px;
+    font-weight: normal;
+    border-bottom: 1px solid #c7c7c7;
+    margin-bottom: 30px;
+  }
+  .list-inline {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    a {
+      color: #B3B3B3;
+      font-weight: lighter;
+    }
+  }
+}
+
 .input-field {
   border: none;
   border-bottom: 1px solid $dark-gray;

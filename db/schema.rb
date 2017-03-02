@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228183811) do
+ActiveRecord::Schema.define(version: 20170301124604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,11 @@ ActiveRecord::Schema.define(version: 20170228183811) do
     t.string   "status"
     t.integer  "user_id"
     t.integer  "demand_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.datetime "date"
+    t.float    "doctor_departure_lat"
+    t.float    "doctor_departure_lng"
     t.index ["demand_id"], name: "index_consultations_on_demand_id", using: :btree
     t.index ["user_id"], name: "index_consultations_on_user_id", using: :btree
   end
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(version: 20170228183811) do
     t.integer  "min_amount_per_consult"
     t.datetime "start_time",             default: '20017-01-01 08:00:00'
     t.datetime "end_time",               default: '20017-01-01 20:00:00'
+    t.string   "routific_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

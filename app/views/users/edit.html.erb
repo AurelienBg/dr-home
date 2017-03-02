@@ -1,146 +1,206 @@
 
-
-
-
 <!-- Tabs -->
-<div class="profile-header-wrapper">
-  <div class="container profile-header-container">
-    <div class="profile-header-infos">
-      <h1>Création de votre compte</h1>
-      <div class="tabs">
-        <a class="tab active" data-target="#infos_perso" id="first">
-          <h3>1. Informations personnelles</h3>
-        </a>
-        <a class="tab" data-target="#infos_pro" id="next">
-          <h3>2. Informations professionnelles</h3>
-        </a>
-        <a class="tab" data-target="#configurations" id="third">
-          <h3>3. Configuration du compte</h3>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end tabs -->
-<div class="container edit-profile-page">
-  <!-- tab 1. infos perso -->
-  <div class="tab-content tab-infos_perso " id="infos_perso">
-    <div class="row">
-      <!-- <div class="col-xs-12"> -->
-      <%= simple_form_for(@user) do |f| %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.error_notification %>
-          <%= cl_image_tag @user.photo.path, width: 200, height: 200, crop: :fill if @user.photo %>
-          <i class="fa fa-picture-o user-icon" aria-hidden="true"></i>
-          <p type="Photo:" class="user-icon-format-p">
 
-
-          <%= f.input :photo, as: :attachinary, label: false %>
-
-          </p>
-
-
-          <!-- <div class="radio"> -->
-            <!-- <label> -->
-              <!-- <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> -->
-              <p type="Vous êtes..." ><%= f.input :sex, as: :radio_buttons, collection: ['Monsieur', 'Madame'], label: false, input_html: {checked: false}, item_label_class: "radio-inline" %></p>
-            <!-- </label> -->
-          <!-- </div> -->
-<!--           <div class="radio">
-            <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-              Madame
-            </label>
-          </div> -->
-          <p type="Nom:"><%= f.input :first_name, label: false, placeholder: 'Paillard', input_html: {class: "simple_form_field"} %></p>
-          <p type="Prénom:"><%= f.input :last_name, label: false, placeholder: 'Boris', input_html: {class: "simple_form_field"} %></p>
-        </div>
-        <div class="col-sm-6">
-          <i class="fa fa-phone user-icon" aria-hidden="true"></i>
-          <p type="Téléphone:" class="user-icon-format-p"><%= f.input :phone, label: false, placeholder: '06 .. .. .. ..', input_html: {class: "simple_form_field"} %></p>
-          <i class="fa fa-envelope user-icon" aria-hidden="true"></i>
-          <p type="Email:" class="user-icon-format-p"><%= f.input :email, label: false, placeholder: 'lewagon@gmail.com', input_html: {class: "simple_form_field"} %></p>
-          <i class="fa fa-home user-icon" aria-hidden="true"></i>
-          <p type="Adresse:" class="user-icon-format-p"><%= f.input :address, label: false, placeholder: '16 villa Gaudelet', input_html: {class: "simple_form_field"} %></p>
-          <p type="Ville:"><%= f.input :city, label: false, placeholder: 'Paris', input_html: {class: "simple_form_field"} %></p>
-          <p type="Code postal:"><%= f.input :zipcode, label: false, placeholder: '75011', input_html: {class: "simple_form_field"} %></p>
-        </div>
-        <!-- </div> -->
-      </div>
-      <div class="row" style="margin: 10px 0 40px;">
-        <div class="col-sm-4 col-sm-offset-4">
-          <a class="next" data-target="#infos_pro">
-            <div class="btn second-btn">Suivant</div>
-          </a>
-        </div>
-      </div>
-      <%# end %>
-    </div>
-  </div>
-
-  <!-- Fin tab.1 -->
-
-  <!-- tab 2. infos pro -->
-  <div class="tab-content tab-infos_pro hidden" id="infos_pro">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <%#= f.error_notification %>
-        <i class="fa fa-id-card-o user-icon" aria-hidden="true"></i>
-        <p type="Numéro RPPS: " class="user-icon-format-p"><%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %></p>
-        <div>
-          <p type="Spécialité:"><%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"} %></p>
-          <p type="Carte professionnelle:"><%= f.input :photo_prof_doc, as: :attachinary, label: false %></p>
-        </div>
-      </div>
-    </div>
-    <div class="row" style="margin: 10px 0 40px;">
-      <div class="col-sm-4 col-sm-offset-4">
-        <a class="third" data-target="#configurations">
-          <div class="btn second-btn">Suivant</div>
-        </a>
-      </div>
-    </div>
-  </div>
-  <!-- Fin tab.2 -->
-
-
-  <!-- tab 3. configuration -->
-  <div class="tab-content tab-configurations hidden" id="configurations">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <div class= "text-center">
-        <%#= f.error_notification %>
-
-        <p type="Adresse d'exercice:"><%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %></p>
-        <p type="Ville:"><%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Code postal:"><%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Distance d'éloignement (en km):"><%#= f.input :radius, label: false, input_html: {class: "simple_form_field"} %></p>
-        <%#= f.range_field :radius %>
-<!--         <span id='range-value'></span> -->
-        <div class="slider-distance">
-          <%= f.input :radius, label: false, input_html: { class: "span2 slider", :"data-slider-min" => 0, :"data-slider-step" => 1, :"data-slider-max" => 50} %>
-          <span class="min">0</span>
-          <span class="max">50</span>
-        </div>
-       <!--  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/> -->
-        <p type="Nombre minimun de consultations par jour:"><%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %></p>
-        <p type="Durée moyenne d'une consultation:"><%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %></p>
-
-
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <div class="">
-          <div id="map" style="width: 100%; height: calc(100vh - 229px);"></div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4 col-sm-offset-4">
-        <%= f.button :submit, "Enregistrer", class: 'primary-btn', style: 'padding: 10px 10px; border-radius: 2px; background-color: #31639C; text-decoration: none; font-weight: lighter; border: none; color: white; transition: all 0.4s ease; margin-bottom: 45px' %>
+<div class="profile">
+  <div class="profile-sidebar">
+    <h1 class=text-center>
+      <% if current_user.photo.nil? %>
+        <% if current_user.sex == "Madame" %>
+          <%= image_tag "girl.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% elsif current_user.sex == "Monsieur" %>
+          <%= image_tag "boy.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% end %>
+      <% else %>
+        <%= cl_image_tag current_user.photo.path, width: 80, height: 80, crop: :thumb, gravity: :face, class: "dropdown-toggle img-circle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
       <% end %>
+      <div><%= current_user.first_name %> <%= current_user.last_name %></div>
+    </h1>
+    <a class="tab active" data-target="#infos_perso" id="first">
+      <h3><span>1</span> <div>Infos basiques</div></h3>
+    </a>
+    <a class="tab" data-target="#infos_contact" id="next">
+      <h3><span>2</span> <div>Coordonnées</div></h3>
+    </a>
+    <a class="tab" data-target="#infos_pro" id="next">
+      <h3><span>3</span> <div>Infos pro</div></h3>
+    </a>
+    <a class="tab" data-target="#configurations" id="third">
+      <h3><span>4</span> <div>Tournées</div></h3>
+    </a>
+  </div>
+
+  <!-- end tabs -->
+  <div class="profile-form">
+    <!-- tab 1. infos perso -->
+    <%= simple_form_for(@user) do |f| %>
+      <div class="tab-content tab-infos_perso" id="infos_perso">
+        <!-- <div class="col-xs-12"> -->
+        <h2 class="text-center">Infos Basiques</h2>
+        <%= f.error_notification %>
+
+        <div class="container-fluid">
+
+          <div class="sex-box">
+            <span class="radio">
+              <label class="radio-inline text-center" for="user_sex_monsieur">
+                <input class="radio_buttons optional hidden" type="radio" value="Monsieur" name="user[sex]" id="user_sex_monsieur">
+                <%= image_tag "girl.png", width: "80px" %> <p>Femme</p>
+              </label>
+            </span>
+            <span class="radio active text-center" style="margin: 0;">
+              <label class="radio-inline" for="user_sex_madame">
+                <input class="radio_buttons optional hidden" type="radio" value="Madame" name="user[sex]" id="user_sex_madame">
+                 <%= image_tag "boy.png", width: "80px" %> <p>Homme</p>
+              </label>
+            </span>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xs-4 col-xs-offset-2">
+              <%= f.input :first_name, label: false, placeholder: 'Boris', input_html: {class: "simple_form_field form-control"} %>
+            </div>
+            <div class="col-xs-4">
+              <%= f.input :last_name, label: false, placeholder: 'Paillard', input_html: {class: "simple_form_field form-control"} %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <p>Upload picture <i class="fa fa-picture-o user-icon" aria-hidden="true"></i></p>
+              <%= f.input :photo, as: :attachinary, label: false %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <a class="next" data-target="#infos_contact">
+                <div class="btn second-btn">Suivant</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
+
+      <div class="tab-content tab-infos_perso hidden" id="infos_contact">
+        <!-- <div class="col-xs-12"> -->
+         <h2 class="text-center">Vos coordonnées</h2>
+
+         <div class="row">
+           <div class="col-xs-4 col-xs-offset-2">
+            <h3 class="text-center">Telephone <i class="fa fa-phone user-icon" aria-hidden="true"></i></h3>
+            <%= f.input :phone, label: false, placeholder: '06 .. .. .. ..', input_html: {class: "simple_form_field"} %>
+           </div>
+           <div class="col-xs-4">
+            <h3 class="text-center">E-mail <i class="fa fa-envelope user-icon" aria-hidden="true"></i></h3>
+            <%= f.input :email, label: false, placeholder: 'lewagon@gmail.com', input_html: {class: "simple_form_field"} %>
+           </div>
+         </div>
+
+        <div class="row">
+         <div class="col-xs-8 col-xs-offset-2">
+            <h3 class="text-center">Addresse <i class="fa fa-home user-icon" aria-hidden="true"></i></h3>
+            <%= f.input :address, label: false, placeholder: '16 villa Gaudelet', input_html: {class: "simple_form_field"} %>
+            <%= f.input :city, label: false, placeholder: 'Paris', input_html: {class: "simple_form_field"} %>
+            <%= f.input :zipcode, label: false, placeholder: '75011', input_html: {class: "simple_form_field"} %>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <a class="next" data-target="#infos_pro">
+              <div class="btn second-btn">Suivant</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- tab 2. infos pro -->
+      <div class="tab-content tab-infos_pro hidden" id="infos_pro">
+
+        <h2 class="text-center">Vos infos professionnelles</h2>
+
+        <div class="row">
+         <div class="col-xs-8 col-xs-offset-2">
+            <h3 class="text-center">Numéro RPPS</h3>
+            <%= f.input :cardnumber, label: false, input_html: {class: "simple_form_field"} %>
+          </div>
+        </div>
+
+        <div class="row">
+         <div class="col-xs-8 col-xs-offset-2">
+            <h3 class="text-center">Spécialité</h3>
+            <%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"}, prompt: "Selectionnez votre spécialité" %>
+          </div>
+        </div>
+
+
+        <div class="row">
+         <div class="col-xs-8 col-xs-offset-2">
+            <h3 class="text-center">Carte professionnelle</h3>
+            <%= f.input :photo_prof_doc, as: :attachinary, label: false %>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <a class="next" data-target="#configurations">
+              <div class="btn second-btn">Suivant</div>
+            </a>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- tab 3. configuration -->
+      <div class="tab-content tab-configurations hidden" id="configurations">
+
+        <h2 class="text-center">Gérez vos tournées</h2>
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <h3 class="text-center">Ou travaillez-vous?</h3>
+            <%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %>
+            <%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %>
+            <%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <h3 class="text-center">Combien de kms max par jour ?</h3>
+            <br>
+            <%= f.input :radius, label: false, input_html: { class: "slider" } %>
+
+          </div>
+        </div>
+
+
+        <div class="row">
+          <h3 class="text-center">Consultations</h3>
+          <div class="col-xs-4 col-xs-offset-2">
+            <h3 class="text-center">Nombre minimum</h3>
+            <%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %>
+          </div>
+          <div class="col-xs-4">
+            <h3 class="text-center">Durées moyenne</h3>
+            <%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= f.button :submit, "Enregistrer", class: 'primary-btn', style: 'padding: 10px 10px; border-radius: 2px; background-color: #31639C; text-decoration: none; font-weight: lighter; border: none; color: white; transition: all 0.4s ease; margin-bottom: 45px' %>
+          </div>
+        </div>
+
+      </div>
+
+    <% end %>
   </div>
 </div>
 
@@ -153,6 +213,19 @@
   <script>
     $(function(){
 
+      var slider = $('.slider').slider({
+        min: 0,
+        max: 100,
+        step: 5,
+        tooltip: "show"
+      })
+
+      <% if current_user.radius %>
+        slider.slider('setValue', <%= current_user.radius %>)
+      <% else %>
+        slider.slider('setValue', 50)
+      <% end %>
+
       $(".tab").on("click", function(e){
         // Change active tab
         $(".tab").removeClass('active');
@@ -162,27 +235,19 @@
         // Show target tab-content (use class="hidden")
         $($(this).data('target')).removeClass('hidden');
       });
-      $(".simple_form_field").removeClass("form-control");
-
       $(".next").on("click", function(e){
         // Change active tab
-        $("#first").removeClass('active');
-        $('#next').addClass('active');
-        // Hide all tab-content (use class="hidden")
+        $(".active").removeClass("active");
+        $(".tab[data-target='" + $(this).data('target') + "']").addClass('active');
         $(".tab-content").addClass('hidden');
-        // Show target tab-content (use class="hidden")
         $($(this).data('target')).removeClass('hidden');
       });
 
-      $(".third").on("click", function(e){
-        // Change active tab
-        $("#next").removeClass('active');
-        $('#third').addClass('active');
-        // Hide all tab-content (use class="hidden")
-        $(".tab-content").addClass('hidden');
-        // Show target tab-content (use class="hidden")
-        $($(this).data('target')).removeClass('hidden');
+      $(".radio").click(function(){
+        $(".radio").removeClass('active');
+        $(this).addClass('active');
       });
+
       var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
       var handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' }, provider: { styles: styles } }, function() {
