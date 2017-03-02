@@ -22,6 +22,7 @@ User.create!( \
   city: "Paris",
   zipcode: "75005",
   phone: "+33 6 76 12 17 03",
+  fav_city: "Bréhal",
   min_nb_consult: 5,
   sex: "Monsieur",
   cardnumber: "M-028d082938238",
