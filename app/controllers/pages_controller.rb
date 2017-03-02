@@ -24,13 +24,16 @@ class PagesController < ApplicationController
     # A intégrer !!!!
     min_nb_consult = @user.min_nb_consult
 
-    if Time.now.hour < 18
+    # if Time.now.hour < 18
       @date = Date.today
-    else
-      @date = Date.today + 1
-    end
+      @date_wording = "Votre tournée d'aujourd'hui"
+    # else
+    #   @date = Date.today + 1
+    #   @date_wording = "Votre tournée de demain"
+    # end
 
     @next_round = Consultation.where(user: @user, date: @date)
+    # @next_round = []
     # @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
     #     marker.lat user.latitude
     #     marker.lng user.longitude

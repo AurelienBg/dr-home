@@ -23,29 +23,26 @@
 
 
 <div class="container text-center">
-<!-- Tab Prochaine Tournée -->
+  <!-- Tab Prochaine Tournée -->
   <div class="tab-content tab-next-round" id="next">
     <!-- Si @next_round != nil  -->
     <% if @next_round.count == 0 %>
-      <div  style="width: 100%;">
-        <div class="title" style="width: 100%;"><h3>Votre journée du <%= @date.strftime('%d.%m.%Y ') %></h3></div>
-        <div class="message-erreur"><p>Vous n'avez pas de consultation prévue ce jour.</p></div>
-      </div>
+    <div  style="width: 100%;">
+      <div class="title" style="width: 100%;"><h3><%= @date_wording %></h3></div>
+      <div class="message-erreur"><p>Vous n'avez pas de consultation prévue ce jour.</p></div>
+    </div>
     <% else %>
-      <div class="left">
-        <div class="title" style="margin-bottom: 20px;">
-          <h3 style="margin: 15px 0;">Votre journée du <%= @date.strftime('%d.%m.%Y ') %></h3>
-          <%= link_to "Refuser", root_path, class: "refuse-btn" %>
+    <div class="left">
+      <div class="title" style="margin-bottom: 20px;">
+        <h3 style="margin: 15px 0;"><%= @date_wording %> - <%= @next_round.count %> consultations</h3>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1">
+          <p>Heure de départ : <%= @next_round.first.start_time.strftime('%H:%M') %> </p>
         </div>
-        <div class="row">
-          <div class="col-sm-5 col-sm-offset-1">
-            <p>Nombre de consulations : <%= @next_round.count %></p>
-            <p>Estimation de gain : TODO!!!</p>
-          </div>
-          <div class="col-sm-5">
-            <p>Heure de départ : TODO!!! </p>
-            <p>Heure de fin : TODO!!! </p>
-          </div>
+        <div class="col-sm-5">
+          <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
         </div>
         <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
           <div class="demand-cards">
@@ -84,25 +81,44 @@
 
                 </div>
               </div>
-            <% end %>
-            <!-- End modal -->
+              <div class="col-xs-10 demand-info">
+                <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
+                <p><%= consultation.demand.address %></p>
+                <p><%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
+                <p><i>Départ à <%= consultation.end_time.strftime('%H:%M') %></i></p>
+                <!-- replace with start_time of next consultation - trip time -->
+              </div>
+            </div>
+          </a>
+        <% end %>
+        <%= link_to "Refuser", root_path, class: "refuse-btn", style: 'margin: 20px' %>
+      </div>
+
+      <!-- Modal -->
+      <% @next_round.each do |consultation| %>
+      <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <h2><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> </h2>
+            <p><strong>Symptômes </strong>: <%= consultation.demand.illness %></p>
+            <p>Todo : heure d'arrivée, durée de la consultation, heure de départ, adresse, code postal, ville, téléphone, </p>
           </div>
+        </div>
       </div>
+      <% end %>
+      <!-- End modal -->
+    </div>
 
-      <!-- Integration de la Map  -->
-      <div class="map">
-        <div id="map2" style="width: 100%; height: calc(100vh - 146px);"></div>
-        <!-- <iframe src="https://app.routific.com/m/index.html#/vehicle/58adbc0cf10918d02239ee96/routes/58adbfe53f5e2a00bb049645/map" frameborder="0" style="width: 100%; height: calc(100vh - 146px);"></iframe> -->
-      </div>
-      <!-- Map  -->
-      <!-- End Si @next_round != nil  -->
+    <!-- Integration de la Map  -->
+    <div class="map">
+      <div id="map2" style="width: 100%; height: calc(100vh - 146px);"></div>
+      <!-- <iframe src="https://app.routific.com/m/index.html#/vehicle/58adbc0cf10918d02239ee96/routes/58adbfe53f5e2a00bb049645/map" frameborder="0" style="width: 100%; height: calc(100vh - 146px);"></iframe> -->
+    </div>
+    <!-- Map  -->
+    <!-- End Si @next_round != nil  -->
     <% end %>
-
-
   </div>
   <!-- end Tab Prochaine tournée -->
-
-
 
   <!-- Tab Mes Tournées à venir-->
   <div class="tab-content hidden" id="all-future">
@@ -120,8 +136,6 @@
   </div>
   <!-- end Tab Historique -->
 
-
-
   <!-- Tab - Préférences -->
   <div class="tab-content tab-parameters hidden" id="parameters">
     <div class="left">
@@ -138,10 +152,6 @@
   </div>
   <!-- end Tab Préférences -->
 </div>
-<!-- <div class="col-sm-4 col-sm-offset-4">
-  <button onclick='window.print(); return false;' class='btn btn-primary'>Print</button>
-</div> -->
-
 
 
 
@@ -152,8 +162,11 @@
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
+    var infoWindows = [];
 
     function initialize() {
+      if ($("#map2").length == 0) { return; }
+
       // Style
       var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
       var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
@@ -175,8 +188,17 @@
     }
 
     function calcRoute() {
-      var start = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
-      var end = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+      if ($("#map2").length == 0) { return; }
+
+      <% if @next_round.count != 0 %>
+        var set_lat = <%= @next_round[0].doctor_departure_lat %>
+        var set_lng = <%= @next_round[0].doctor_departure_lng %>
+      <% else %>
+        var set_lat = <%= @user.latitude %>
+        var set_lng = <%= @user.longitude %>
+      <% end %>
+      var start = new google.maps.LatLng(set_lat, set_lng);
+      var end = new google.maps.LatLng(set_lat, set_lng);
       var waypts = []
 
       <% @next_round.each do |consult| %>
@@ -184,7 +206,8 @@
         location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
         stopover: true
       }
-      createWptMarker(w['location']);
+
+      createWptMarker(w['location'], "<%= j render "consultation_infowindow", consultation: consult %>");
       waypts.push(w);
       <% end %>
 
@@ -213,13 +236,29 @@
         });
     }
 
-    function createWptMarker(latlng) {
+    function createWptMarker(latlng, infowindowContent) {
+      var infowindow = new google.maps.InfoWindow({
+        content: infowindowContent
+      });
 
-        var marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            icon: "<%= image_path 'marker2.png' %>"
-        });
+      infoWindows.push(infowindow);
+
+      var marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+          icon: "<%= image_path 'marker2.png' %>"
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        closeAllInfoWindows();
+        infowindow.open(map,marker);
+      });
+    }
+
+    function closeAllInfoWindows() {
+      for (var i=0;i<infoWindows.length;i++) {
+         infoWindows[i].close();
+      }
     }
 
    $(document).ready(function() {

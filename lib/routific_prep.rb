@@ -91,6 +91,8 @@ module RoutificPrep
                   end_time: item.finish_time,
                   user: user,
                   demand: demand,
+                  doctor_departure_lat: user.latitude,
+                  doctor_departure_lng: user.longitude,
                   status: status)
                 c.save
                 demand.assigned = i == 0 ? true : false

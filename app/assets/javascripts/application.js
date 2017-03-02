@@ -8,6 +8,8 @@
 //= require attachinary
 //= require moment
 //= require Chart
+//= require typed
+//= require bs-slider
 //= require_tree ./app
 
 
