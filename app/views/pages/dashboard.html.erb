@@ -30,6 +30,7 @@
     <div  style="width: 100%;">
       <div class="title" style="width: 100%;"><h3><%= @date_wording %></h3></div>
       <div class="message-erreur"><p>Vous n'avez pas de consultation prévue ce jour.</p></div>
+      <%= render "shared/countdown" %>
     </div>
     <% else %>
     <div class="left">
