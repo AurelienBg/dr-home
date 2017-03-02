@@ -28,6 +28,7 @@ User.create!( \
   fav_city: "Bréhal",
   cardnumber: "M-028d082938238",
   duration_consult: 20,
+  validated: true,
   admin: true)
 ]
 puts  "creating a user with the following email :#{users[0].email}"
