@@ -1,6 +1,10 @@
 $(document).ready(function(){
   $(".typed-text").typed({
-    strings: ["freelance", "nomades", "de campagne"],
-    typeSpeed: 0
+    strings: ["- Prenez l'air -", "- Voyez du pays -", "- Soignez des vies -"],
+    typeSpeed: 0,
+    loop: true
   });
 })
+
+
+// ["freelance", "nomades", "de campagne"]
