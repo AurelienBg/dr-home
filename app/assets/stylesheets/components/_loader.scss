@@ -1,0 +1,73 @@
+$color: #41110f;
+// $red: rgb(191,25,25);
+// $blue: rgb(17,144,243);
+
+// body {
+//   background: #f4f6e8;
+//   text-align: center;
+// }
+
+// h2 {
+//   font-family: Helvetica, Arial, sans-seirf;
+//   font-weight: 300;
+//   animation: pulse 3s linear 0s infinite alternate;
+// }
+
+.thermometer {
+  position: relative;
+  margin: 400px auto 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid $color;
+  background: $red;
+  animation: colorChange 3s linear 0s infinite alternate;
+
+  &:before,
+  &:after {
+    content: '';
+    width: 15px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%,0);
+    z-index: -1;
+  }
+
+  &:before {
+    content: '';
+    height: 50px;
+    background: $red;
+    animation: thermometer 3s linear 0s infinite alternate;
+    z-index: 9;
+  }
+
+  &:after {
+    content: '';
+    height: 150px;
+    border: 3px solid $color;
+    border-radius: 50px 50px 0 0;
+  }
+}
+
+// keyframes
+@keyframes colorChange {
+  0% { background: $blue; }
+  100% { background: $red; }
+}
+
+@keyframes thermometer {
+  0% {
+    height: 50px;
+    background: $blue;
+  }
+  100% {
+    height: 140px;
+    background: $red;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  100% { opacity: 0.4; }
+}

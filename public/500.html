@@ -7,22 +7,77 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Dr Home 404</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="/500.css">
+  <title>Dr Home 404</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/500.css">
+
+  <style>
+    body{
+    font-family:"Open Sans", sans-serif;
+    margin: 0;
+  }
+  .banner {
+    color: white;
+    text-align: center;
+    height: 100vh;
+    /* if you have a 70px navbar => height: calc(100vh - 70px); */
+    background-size: cover !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .banner h1 {
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  }
+  .banner p {
+    font-size: 20px;
+    font-weight: lighter;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+  }
+  @media (max-width: 1366px) and (min-width: 1280px)
+    .banner {
+      margin-top: 0;
+  }
+  a {
+    padding: 10px 10px;
+    border-radius: 2px;
+    background-color: #4A90E2;
+    text-decoration: none;
+    font-weight: lighter;
+    border: none;
+    color: white;
+    transition: all 0.4s ease;
+    &:hover {
+      color: white;
+      background-color: #4A90E2;
+      text-decoration: none;
+      border: none;
+    }
+  }
+  </style>
+
 </head>
 <body>
-<div class="wrap">
-  <h1>Dr Home</h1>
+
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('500.jpg');">
+    <div class="banner-content">
+      <h1>Relax, Les équipes de Dr Home sont à vos côtés.</h1>
+      <p> Nous travaillons pour régler le problème technique.</p>
+      <a href="/" class="btn primary-btn">Retour à la home page</a>
+    </div>
+  </div>
+
+
+<!--   <div class="page">
+    <p>Relax, Les équipes de Dr Home sont à vos côtés.</p>
+    <p>Nous travaillons avec notre parteneaire qui heberte ce site pour résoudre ce problème.</p>
+  </div>
   <div class="banner">
     <img src="/500H.png" alt="" />
   </div>
-  <div class="page">
-    <h2>Sorry, something went wrong at our end. Don't worry, it's not you. It's us.</h2>
-  </div>
-</div>
+</div> -->
 </body>
-</html>
-
-</html>
