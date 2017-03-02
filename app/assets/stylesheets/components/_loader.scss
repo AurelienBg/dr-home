@@ -13,6 +13,23 @@ $color: #41110f;
 //   animation: pulse 3s linear 0s infinite alternate;
 // }
 
+
+.bot {
+  height: 250px;
+}
+
+.bot-container {
+  display: flex;
+  align-items: center;
+}
+
+.message-erreur {
+  margin: 0 100px;
+  h3 {
+    font-weight: 300;
+  }
+}
+
 .thermometer {
   position: relative;
   margin: 400px auto 0;
