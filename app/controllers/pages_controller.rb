@@ -26,10 +26,10 @@ class PagesController < ApplicationController
 
     # if Time.now.hour < 18
       @date = Date.today
-      @date_wording = "Votre tournée d'aujourd'hui"
+      @date_wording = "aujourd'hui"
     # else
     #   @date = Date.today + 1
-    #   @date_wording = "Votre tournée de demain"
+    #   @date_wording = "demain"
     # end
 
     @next_round = Consultation.where(user: @user, date: @date)
