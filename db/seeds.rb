@@ -93,7 +93,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"22/03/1969",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Renaud",
     last_name: "Martin",
@@ -132,7 +132,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"07/08/1994",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Damien",
     last_name: "Lefevre",
@@ -158,7 +158,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"12/08/1988",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Pierre",
     last_name: "Chomont",
@@ -184,7 +184,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"11/04/1996",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Boris",
     last_name: "Campaillard",
@@ -210,7 +210,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"22/07/1987",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Martin",
     last_name: "Salin",
@@ -249,7 +249,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"23/12/1954",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Clement",
     last_name: "Delaunet",

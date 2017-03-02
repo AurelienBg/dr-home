@@ -1,6 +1,6 @@
 
 <!-- Tabs -->
-<!-- <div class="profile-header-wrapper">
+<div class="profile-header-wrapper">
   <div class="container profile-header-container">
     <div class="tabs">
       <a class="tab active" data-target="#next">
@@ -17,73 +17,56 @@
       </a>
     </div>
   </div>
-</div> -->
+</div>
 <!-- end tabs -->
 
 
 
+<div class="container text-center">
   <!-- Tab Prochaine Tournée -->
-<div class="tab-content tab-next-round" id="next">
-  <!-- Si @next_round != nil  -->
+  <div class="tab-content tab-next-round" id="next">
+    <!-- Si @next_round != nil  -->
     <% if @next_round.count == 0 %>
-    <div class="container text-center left">
-      <div  style="width: 100%;">
-        <div class="message-erreur">
-          <div class="thermometer"></div>
-          <h2>Vous n'avez pas encore de consultation prévue <%=  @date_wording %></h2>
-          <p>Doctor Home vous notifiera lorsque votre prochaine tournée sera calculée</p>
+    <div  style="width: 100%;">
+      <div class="title" style="width: 100%;"><h3><%= @date_wording %></h3></div>
+      <div class="message-erreur"><p>Vous n'avez pas de consultation prévue ce jour.</p></div>
+    </div>
+    <% else %>
+    <div class="left">
+      <div class="title" style="margin-bottom: 20px;">
+        <h3 style="margin: 15px 0;"><%= @date_wording %> - <%= @next_round.count %> consultations</h3>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1">
+          <p>Heure de départ : <%= @next_round.first.start_time.strftime('%H:%M') %> </p>
+        </div>
+        <div class="col-sm-5">
+          <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
         </div>
       </div>
-  </div>
-  <% else %>
-  <div class="container text-center left">
-
-    <div class="title" style="margin-bottom: 20px;">
-      <h3 style="margin: 15px 0;">Vous avez <%= @next_round.count %>  consultations <%= @date_wording %></h3>
-
-    </div>
-    <div class="row">
-      <div class="col-sm-5 col-sm-offset-1">
-        <%= image_tag 'clock-blue.png', style: 'width: 15px;' %>
-        <p>Heure de départ : <%= @next_round.first.start_time.strftime('%H:%M') %> </p>
+      <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
+      <div class="demand-cards">
+        <% @next_round.each do |consultation| %>
+          <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
+            <div class="row demand-card">
+              <div style="width: 50%; margin: 0 auto 11px auto;"></div>
+              <div class="col-xs-2">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                <p><%= consultation.start_time.strftime('%H:%M') %></p>
+              </div>
+              <div class="col-xs-10 demand-info">
+                <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
+                <p><%= consultation.demand.address %></p>
+                <p><%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
+                <p><i>Départ à <%= consultation.end_time.strftime('%H:%M') %></i></p>
+                <!-- replace with start_time of next consultation - trip time -->
+              </div>
+            </div>
+          </a>
+        <% end %>
+        <%= link_to "Refuser", root_path, class: "refuse-btn", style: 'margin: 20px' %>
       </div>
-      <div class="col-sm-5">
-        <%= image_tag 'clock-red.png', style: 'width: 15px;' %>
-        <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
-      </div>
-    </div>
-    <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
-    <div class="demand-cards">
-      <% n = 1 %>
-      <% @next_round.each do |consultation| %>
-      <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
-        <div class="row demand-card">
-          <div style="width: 50%; margin: 0 auto 11px auto;"></div>
-          <div class="col-xs-2"  style="margin-top: 45px;">
-            <!-- <i class="fa fa-clock-o" aria-hidden="true"></i> -->
-            <%= image_tag 'clock-blue.png', style: 'width: 15px;' %>
-            <p><%= consultation.start_time.strftime('%H:%M') %></p>
-          </div>
-          <div class="col-xs-8 demand-info">
-            <h3>Consultation n°<%= n %> </h3>
-            <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></p>
-            <p>Symptôme : <span style="font-weight: 300;"><%= consultation.demand.illness %></span></p>
-            <p>Adresse : <span style="font-weight: 300;"><%= consultation.demand.address %></span></p>
-            <p>Ville : <span style="font-weight: 300;"><%= consultation.demand.zipcode %> - <%= consultation.demand.city %></span></p>
-            <!-- <p><i>Départ à <%#= consultation.end_time.strftime('%H:%M') %></i></p> -->
-            <!-- replace with start_time of next consultation - trip time -->
-          </div>
-          <div class="col-xs-2"  style="margin-top: 45px;">
-            <%= image_tag 'clock-red.png', style: 'width: 15px;' %>
-            <p><%= consultation.end_time.strftime('%H:%M') %></p>
-          </div>
-        </div>
-      </a>
-      <% n += 1 %>
-      <% end %>
-      <%= link_to "Refuser", root_path, class: "refuse-btn", style: 'margin: 20px' %>
-    </div>
-
 
       <!-- Modal -->
       <% @next_round.each do |consultation| %>
@@ -97,18 +80,51 @@
         </div>
       </div>
       <% end %>
-  </div>
       <!-- End modal -->
+    </div>
 
     <!-- Integration de la Map  -->
     <div class="map">
-      <div id="map2" style="width: 100%; height: calc(100vh - 70px);"></div>
+      <div id="map2" style="width: 100%; height: calc(100vh - 146px);"></div>
+      <!-- <iframe src="https://app.routific.com/m/index.html#/vehicle/58adbc0cf10918d02239ee96/routes/58adbfe53f5e2a00bb049645/map" frameborder="0" style="width: 100%; height: calc(100vh - 146px);"></iframe> -->
     </div>
-
     <!-- Map  -->
     <!-- End Si @next_round != nil  -->
     <% end %>
+  </div>
   <!-- end Tab Prochaine tournée -->
+
+  <!-- Tab Mes Tournées à venir-->
+  <div class="tab-content hidden" id="all-future">
+    <div class="card">
+    </div>
+    <div class="card">
+    </div>
+  </div>
+  <!-- end Tab Mes Tournées à venir -->
+
+
+  <!-- Tab Statistiques-->
+  <div class="tab-content hidden" id="all-past">
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+  <!-- end Tab Historique -->
+
+  <!-- Tab - Préférences -->
+  <div class="tab-content tab-parameters hidden" id="parameters">
+    <div class="left">
+      <div class="title"><h3>Qu'avez-vous en tête ?</h3></div>
+      <%= simple_form_for(@user, class: 'form-inline', url: user_path(current_user), html: {method: :patch}) do |f| %>
+      <%= f.input :fav_address, label: 'Je veux travailler vers ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' } %>
+      <%= f.input :fav_city, label: 'de ', label_html: {style: 'font-weight: lighter'},input_html: {class: 'input-field' },wrapper_html: { class: 'form-inline' } %>
+      <%= f.submit "Enregistrer mes changements", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="map">
+      <div id="map" style="width: 100%; height: calc(100vh - 146px);"></div>
+    </div>
+  </div>
+  <!-- end Tab Préférences -->
 </div>
 
 
