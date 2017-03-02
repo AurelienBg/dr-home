@@ -26,6 +26,7 @@
 <div class="tab-content tab-next-round" id="next">
   <!-- Si @next_round != nil  -->
     <% if @next_round.count == 0 %>
+
     <div class="container text-center left">
       <div  style="width: 100%;">
         <div class="message-erreur">
@@ -33,7 +34,6 @@
           <h2>Vous n'avez pas encore de consultation prévue <%=  @date_wording %></h2>
           <p>Doctor Home vous notifiera lorsque votre prochaine tournée sera calculée</p>
         </div>
-
       </div>
   </div>
   <% else %>
