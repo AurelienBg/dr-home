@@ -25,7 +25,7 @@ class PagesController < ApplicationController
     min_nb_consult = @user.min_nb_consult
 
     # if Time.now.hour < 18
-      @date = Date.today
+      @date = Date.today + 1.day
 
       @date_wording = "demain"
     # else

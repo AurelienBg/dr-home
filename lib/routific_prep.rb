@@ -86,7 +86,7 @@ module RoutificPrep
               # Disregard demand that were already forecasted : do nothing
               if i == 0 || !demand.forecast
                 c = Consultation.new(
-                  date: (Date.today + 2.day),
+                  date: (Date.today + 1.day),
                   start_time: item.arrival_time,
                   end_time: item.finish_time,
                   user: user,
