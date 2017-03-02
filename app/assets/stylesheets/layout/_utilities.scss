@@ -52,13 +52,13 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   background-color: white;
   z-index: 9999;
-  -moz-animation: cssAnimation 0s ease-in 5s forwards;
+  -moz-animation: cssAnimation 0s ease-in 2s forwards;
    /* Firefox */
-   -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+   -webkit-animation: cssAnimation 0s ease-in 2s forwards;
    /* Safari and Chrome */
-   -o-animation: cssAnimation 0s ease-in 5s forwards;
+   -o-animation: cssAnimation 0s ease-in 2s forwards;
    /* Opera */
-   animation: cssAnimation 0s ease-in 5s forwards;
+   animation: cssAnimation 0s ease-in 2s forwards;
    -webkit-animation-fill-mode: forwards;
    animation-fill-mode: forwards;
 }
@@ -82,4 +82,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   margin-top: 25vh;
   font-weight: lighter;
+  h3 {
+    font-weight: 300;
+  }
 }
