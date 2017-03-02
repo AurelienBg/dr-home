@@ -16,16 +16,16 @@
       <div><%= current_user.first_name %> <%= current_user.last_name %></div>
     </h1>
     <a class="tab active" data-target="#infos_perso" id="first">
-      <h3><span>1</span> <div>Infos basiques</div></h3>
+      <h3><span>1</span> <div>Votre identité</div></h3>
     </a>
     <a class="tab" data-target="#infos_contact" id="next">
-      <h3><span>2</span> <div>Coordonnées</div></h3>
+      <h3><span>2</span> <div>Vos coordonnées</div></h3>
     </a>
     <a class="tab" data-target="#infos_pro" id="next">
-      <h3><span>3</span> <div>Infos pro</div></h3>
+      <h3><span>3</span> <div>Votre spécialité</div></h3>
     </a>
     <a class="tab" data-target="#configurations" id="third">
-      <h3><span>4</span> <div>Tournées</div></h3>
+      <h3><span>4</span> <div>Paramètres de tournées</div></h3>
     </a>
   </div>
 
@@ -35,7 +35,7 @@
     <%= simple_form_for(@user) do |f| %>
       <div class="tab-content tab-infos_perso" id="infos_perso">
         <!-- <div class="col-xs-12"> -->
-        <h2 class="text-center">Infos Basiques</h2>
+        <h2 class="text-center">Votre identité</h2>
         <%= f.error_notification %>
 
         <div class="container-fluid">
@@ -97,18 +97,18 @@
 
          <div class="row">
            <div class="col-xs-4 col-xs-offset-2">
-            <h3 class="text-center">Telephone <i class="fa fa-phone user-icon" aria-hidden="true"></i></h3>
+            <h3 class="text-center"><i class="fa fa-phone user-icon" aria-hidden="true"></i> Telephone</h3>
             <%= f.input :phone, label: false, placeholder: '06 .. .. .. ..', input_html: {class: "simple_form_field"} %>
            </div>
            <div class="col-xs-4">
-            <h3 class="text-center">E-mail <i class="fa fa-envelope user-icon" aria-hidden="true"></i></h3>
+            <h3 class="text-center"><i class="fa fa-envelope user-icon" aria-hidden="true"></i> E-mail</h3>
             <%= f.input :email, label: false, placeholder: 'lewagon@gmail.com', input_html: {class: "simple_form_field"} %>
            </div>
          </div>
 
         <div class="row">
          <div class="col-xs-8 col-xs-offset-2">
-            <h3 class="text-center">Addresse <i class="fa fa-home user-icon" aria-hidden="true"></i></h3>
+            <h3 class="text-center"><i class="fa fa-home user-icon" aria-hidden="true"></i> Addresse </h3>
             <%= f.input :address, label: false, placeholder: '16 villa Gaudelet', input_html: {class: "simple_form_field"} %>
             <%= f.input :city, label: false, placeholder: 'Paris', input_html: {class: "simple_form_field"} %>
             <%= f.input :zipcode, label: false, placeholder: '75011', input_html: {class: "simple_form_field"} %>
@@ -128,7 +128,7 @@
       <!-- tab 2. infos pro -->
       <div class="tab-content tab-infos_pro hidden" id="infos_pro">
 
-        <h2 class="text-center">Vos infos professionnelles</h2>
+        <h2 class="text-center">Votre spécialité</h2>
 
         <div class="row">
          <div class="col-xs-8 col-xs-offset-2">
@@ -166,11 +166,11 @@
       <!-- tab 3. configuration -->
       <div class="tab-content tab-configurations hidden" id="configurations">
 
-        <h2 class="text-center">Gérez vos tournées</h2>
+        <h2 class="text-center">Paramètres de tournées</h2>
 
         <div class="row">
           <div class="col-xs-8 col-xs-offset-2">
-            <h3 class="text-center">Ou travaillez-vous?</h3>
+            <h3 class="text-center">Addresse d'exercice</h3>
             <%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %>
             <%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %>
             <%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %>
@@ -179,7 +179,7 @@
 
         <div class="row">
           <div class="col-xs-8 col-xs-offset-2">
-            <h3 class="text-center">Distance d'éloignement ?</h3>
+            <h3 class="text-center">Distance d'éloignement (en km)</h3>
             <br>
             <%= f.input :radius, label: false, input_html: { class: "slider" } %>
 
@@ -188,13 +188,13 @@
 
 
         <div class="row">
-          <h3 class="text-center">Consultations</h3>
+          <h3 class="text-center"><strong>Consultations</strong></h3>
           <div class="col-xs-4 col-xs-offset-2">
-            <h3 class="text-center">Nombre minimum</h3>
+            <h3 class="text-center">Nombre minimum par jour</h3>
             <%= f.input :min_nb_consult, label: false, input_html: {class: "simple_form_field"} %>
           </div>
           <div class="col-xs-4">
-            <h3 class="text-center">Durée moyenne</h3>
+            <h3 class="text-center">Durée moyenne (en min)</h3>
             <%= f.input :duration_consult, label: false, input_html: {class: "simple_form_field"} %>
           </div>
         </div>
