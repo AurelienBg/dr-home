@@ -72,14 +72,29 @@
               <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                 <div class="modal-dialog modal-custom" role="document">
                   <div class="modal-content modal-elements">
+
+                  <% if current_user.photo.nil? %>
+                     <% if current_user.sex == "Madame" %>
+                       <%= image_tag "girl.png", class: "avatar-large" %>
+                     <% elsif current_user.sex == "Monsieur" %>
+                       <%= image_tag "boy.png", class: "avatar-large" %>
+                     <% end %>
+                  <% else %>
+                    <%= cl_image_tag current_user.photo.path, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar-large" %>
+                  <% end %>
+
                     <h2><span class="content-blue"></span><%= consultation.demand.sex %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></h2>
                     <p> <span class="content-blue"> Date de naissance :</span> <%= l( consultation.demand.birthday, format: :long)%></p>
-                    <p><span class="content-blue">Symptômes :</span> <%= consultation.demand.illness %></p>
-                    <p> <span class="content-blue">Début de la consultation :</span> <%= l(consultation.start_time, format: :short)%></p>
-                     <p><span class="content-blue">Heure à laquelle je dois partir pour ne pas être en retard à mon prochain rendez-vous :</span> <%= consultation.end_time %></p>
+
+                    <p><%= image_tag "sick.png", class: "small-icon" %><span class="content-blue">Symptômes :</span> <%= consultation.demand.illness %></p>
+
+                    <p><%= image_tag "clock.png", class: "small-icon" %> <span class="content-blue">Début de la consultation :</span> <%= consultation.start_time.strftime('%H:%M')%></p>
+                     <p><span class="content-blue">Fin de la consultation :</span> <%= consultation.end_time.strftime('%H:%M')%></p>
                   <!--   <p><span class="content-blue">Prix de la consultation :</span> <%= consultation.estimated_price %></p> -->
-                    <p><span class="content-blue">Adresse :</span> <%= consultation.demand.address %> <%= consultation.demand.city %> <%= consultation.demand.zipcode %></p>
-                    <p><span class="content-blue">Téléphone :</span><%= consultation.demand.phone %>
+                    <p><%= image_tag "phone.png", class: "small-icon" %><span class="content-blue">Téléphone :</span><%= consultation.demand.phone %></p>
+                    <p><%= image_tag "home.png", class: "small-icon" %><span class="content-blue">Adresse :</span> <%= consultation.demand.address %></p>
+                    <p><%= consultation.demand.city %></p>
+                    <p><%= consultation.demand.zipcode %></p>
                   </div>
 
                 </div>
