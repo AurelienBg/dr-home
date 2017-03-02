@@ -37,7 +37,7 @@
         <div class="message-erreur">
           <div class="thermometer"></div>
           <h2>Vous n'avez pas encore de consultation prévue <%=  @date_wording %></h2>
-          <p>Doctor Home vous notifiera lorsque votre prochaine tournée sera calculée</p>
+          <p>Dr Home vous notifiera lorsque votre prochaine tournée sera calculée</p>
           <%= render 'shared/countdown' %>
         </div>
       </div>
@@ -72,7 +72,7 @@
           </div>
           <div class="col-xs-8 demand-info">
             <h3>Consultation n°<%= n %> </h3>
-            <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></p>
+            <p><%= consultation.demand.sex == "Homme" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></p>
             <p>Symptôme : <span style="font-weight: 300;"><%= consultation.demand.illness %></span></p>
             <p>Adresse : <span style="font-weight: 300;"><%= consultation.demand.address %></span></p>
             <p>Ville : <span style="font-weight: 300;"><%= consultation.demand.zipcode %> - <%= consultation.demand.city %></span></p>
@@ -106,18 +106,17 @@
               <%= cl_image_tag current_user.photo.path, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar-large" %>
             <% end %>
 
-            <h2><span class="content-blue"></span><%= consultation.demand.sex %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></h2>
-            <p> <span class="content-blue"> Date de naissance :</span> <%= l( consultation.demand.birthday, format: :long)%></p>
+            <h2><span class="content-blue"></span><%= consultation.demand.sex == "Homme" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></h2>
+            <p><i class="fa fa-birthday-cake" aria-hidden="true"></i><span class="content-blue">        Date de naissance : <%= l( consultation.demand.birthday, format: :long)%></span></p>
 
-            <p><%= image_tag "sick.png", class: "small-icon" %><span class="content-blue">Symptômes :</span> <%= consultation.demand.illness %></p>
+            <p><i class="fa fa-commenting-o" aria-hidden="true"></i><span class="content-blue">       Symptômes : <%= consultation.demand.illness %></span></p>
 
-            <p><%= image_tag "clock.png", class: "small-icon" %> <span class="content-blue">Début de la consultation :</span> <%= consultation.start_time.strftime('%H:%M')%></p>
-             <p><span class="content-blue">Fin de la consultation :</span> <%= consultation.end_time.strftime('%H:%M')%></p>
+            <p><i class="fa fa-hourglass-start" aria-hidden="true"></i><span class="content-blue">       Début de la consultation : <%= consultation.start_time.strftime('%H:%M')%></span></p>
+             <p><i class="fa fa-hourglass-end" aria-hidden="true"></i><span class="content-blue">       Fin de la consultation : <%= consultation.end_time.strftime('%H:%M')%></span></p>
           <!--   <p><span class="content-blue">Prix de la consultation :</span> <%= consultation.estimated_price %></p> -->
-            <p><%= image_tag "phone.png", class: "small-icon" %><span class="content-blue">Téléphone :</span><%= consultation.demand.phone %></p>
-            <p><%= image_tag "home.png", class: "small-icon" %><span class="content-blue">Adresse :</span> <%= consultation.demand.address %></p>
-            <p><%= consultation.demand.city %></p>
-            <p><%= consultation.demand.zipcode %></p>
+            <p><i class="fa fa-mobile" aria-hidden="true"></i><span class="content-blue">      Téléphone :<%= consultation.demand.phone %></span></p>
+            <p><i class="fa fa-home" aria-hidden="true"></i><span class="content-blue">       Adresse :<%= consultation.demand.address %></br>
+              <%= consultation.demand.city %> (<%= consultation.demand.zipcode %>)</span></p>
           </div>
         </div>
       </div>
