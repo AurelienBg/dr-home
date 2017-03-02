@@ -1,7 +1,7 @@
 module RoutificPrep
 
   def build_data_hash(i)
-    run_date = Date.today
+    run_date = Date.today + 1.day
     # in the method, i is the number of day for the forecast
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
@@ -34,7 +34,7 @@ module RoutificPrep
     end
 
     fleet = {}
-    users_of_the_day = User.where.not(latitude: nil, longitude: nil)
+    users_of_the_day = User.where.not(latitude: nil, longitude: nil).where(validated: true)
     # where lat and Long pas NIL
     n = 1
     users_of_the_day.each do |user|
@@ -58,7 +58,7 @@ module RoutificPrep
   end
 
   def add_consultation_from_hash(route_consultations, i)
-    run_date = Date.today
+    run_date = Date.today + 1.day
     # 1. parcours de route_consultations, hash "solution"
 
 
@@ -86,7 +86,7 @@ module RoutificPrep
               # Disregard demand that were already forecasted : do nothing
               if i == 0 || !demand.forecast
                 c = Consultation.new(
-                  date: run_date + i,
+                  date: (Date.today + 1.day),
                   start_time: item.arrival_time,
                   end_time: item.finish_time,
                   user: user,

@@ -3,7 +3,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home, :map, :how ]
-  before_action :check_if_user_profile_completed, only: :dashboard
+  # before_action :check_if_user_profile_completed, only: :dashboard
 
   def home
     @user = current_user
@@ -25,8 +25,9 @@ class PagesController < ApplicationController
     min_nb_consult = @user.min_nb_consult
 
     # if Time.now.hour < 18
-      @date = Date.today
-      @date_wording = "aujourd'hui"
+      @date = Date.today + 1.day
+
+      @date_wording = "demain"
     # else
     #   @date = Date.today + 1
     #   @date_wording = "demain"
