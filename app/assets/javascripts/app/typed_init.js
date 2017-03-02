@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $(".typed-text").typed({
-    strings: ["freelance", "nomades", "de campagne"],
+    strings: ["indépendants", "nomades", "de campagne"],
     typeSpeed: 0,
     loop: true
   });
