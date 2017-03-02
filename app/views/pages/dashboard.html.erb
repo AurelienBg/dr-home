@@ -44,16 +44,42 @@
         <div class="col-sm-5">
           <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
         </div>
-      </div>
-      <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
-      <div class="demand-cards">
-        <% @next_round.each do |consultation| %>
-          <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
-            <div class="row demand-card">
-              <div style="width: 50%; margin: 0 auto 11px auto;"></div>
-              <div class="col-xs-2">
-                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                <p><%= consultation.start_time.strftime('%H:%M') %></p>
+        <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
+          <div class="demand-cards">
+            <% @next_round.each do |consultation| %>
+              <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
+                <div class="row demand-card">
+                  <div style="width: 50%; margin: 0 auto 11px auto;"></div>
+                  <div class="col-xs-2">
+                    <p><%= consultation.start_time.strftime('%H:%M') %></p>
+                  </div>
+                  <div class="col-xs-10 demand-info">
+                    <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
+                    <p><%= consultation.demand.address %></p>
+                    <p><%= consultation.demand.zipcode %> <%= consultation.demand.city %></p>
+                    <p><i>Départ à <%= consultation.end_time.strftime('%H:%M') %></i></p>
+                    <!-- replace with start_time of next consultation - trip time -->
+                  </div>
+                </div>
+              </a>
+            <% end %>
+
+            <!-- Modal -->
+            <% @next_round.each do |consultation| %>
+              <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-custom" role="document">
+                  <div class="modal-content modal-elements">
+                    <h2><span class="content-blue"></span><%= consultation.demand.sex %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></h2>
+                    <p> <span class="content-blue"> Date de naissance :</span> <%= l( consultation.demand.birthday, format: :long)%></p>
+                    <p><span class="content-blue">Symptômes :</span> <%= consultation.demand.illness %></p>
+                    <p> <span class="content-blue">Début de la consultation :</span> <%= l(consultation.start_time, format: :short)%></p>
+                     <p><span class="content-blue">Heure à laquelle je dois partir pour ne pas être en retard à mon prochain rendez-vous :</span> <%= consultation.end_time %></p>
+                  <!--   <p><span class="content-blue">Prix de la consultation :</span> <%= consultation.estimated_price %></p> -->
+                    <p><span class="content-blue">Adresse :</span> <%= consultation.demand.address %> <%= consultation.demand.city %> <%= consultation.demand.zipcode %></p>
+                    <p><span class="content-blue">Téléphone :</span><%= consultation.demand.phone %>
+                  </div>
+
+                </div>
               </div>
               <div class="col-xs-10 demand-info">
                 <p><%= consultation.demand.sex %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %> - <%= consultation.demand.illness %></p>
