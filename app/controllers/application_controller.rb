@@ -26,11 +26,6 @@ class ApplicationController < ActionController::Base
   { host: ENV['HOST'] || 'localhost:3000' }
   end
 
-  production:
-  HOST: 'drhome.co
-
-
-
   private
 
   def skip_pundit?
