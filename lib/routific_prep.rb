@@ -1,7 +1,7 @@
 module RoutificPrep
 
   def build_data_hash(i)
-    run_date = Date.today
+    run_date = Date.today + 1.day
     # in the method, i is the number of day for the forecast
     # filter demands with due_date ? today and status == "pending"
     # demands_to_dispatch = Demand.where("due_date >= ?", Date.today)
@@ -58,7 +58,7 @@ module RoutificPrep
   end
 
   def add_consultation_from_hash(route_consultations, i)
-    run_date = Date.today
+    run_date = Date.today + 1.day
     # 1. parcours de route_consultations, hash "solution"
 
 

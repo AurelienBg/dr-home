@@ -27,9 +27,7 @@ User.create!( \
   sex: "Monsieur",
   fav_city: "Bréhal",
   cardnumber: "M-028d082938238",
-  latitude: 48.8648482,
   duration_consult: 20,
-  longitude: 2.3798534,
   admin: true)
 ]
 puts  "creating a user with the following email :#{users[0].email}"
