@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   production:
-  HOST: 'votresite.com
+  HOST: 'drhome.co
 
 
 
