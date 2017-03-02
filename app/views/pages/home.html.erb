@@ -1,45 +1,46 @@
 <%= content_for(:navbar_class, "navbar-home") %>
 <div class="banner text-center" style="background-image: linear-gradient(-225deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 50%), url('<%= image_path 'background.png' %>')">
   <div class="banner-content">
-    <h2>Bienvenue sur Dr Home</h2>
-    <h3>
-      Le premier site de medecins
-      <strong class="typed-text hidden-xs"></strong>
-    </h3>
-    <% unless current_user %>
+    <h1><strong>Dr Home</strong></h1>
+    <h2> La communauté des médecins libérés</h2>
+
+    <h3 class="typed-text hidden-xs"></h3>
+    <% if current_user %>
+      <%= link_to "Votre prochaine tournée", dashboard_path, class: "btn btn-primary"%>
+    <% else %>
       <%= link_to "Rejoignez-nous", new_user_registration_path, class: "btn btn-primary"%>
     <% end %>
   </div>
 </div>
-<div class="container padded">
+<div class="container text-center">
   <div class="row recap">
     <div class="col-md-3">
       <div class="card-recap">
         <%= image_tag "drhome-womanpic.png", class: "icon" %>
-        <p>On vous trouve vos patients </p>
+        <p>Plus de 500 visites organisées par nos soins tous les jours </p>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card-recap">
         <%= image_tag "calendar.png", class: "icon" %>
-        <p>Selon vos disponibilités</p>
+        <p>Uniquement des visites compatibles avec votre agenda</p>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card-recap">
         <%= image_tag "mapselector.png", class: "icon" %>
-        <p>En fonction d’où vous vous trouvez</p>
+        <p>Les propositions de visites qui s'adapte à votre localisation</p>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card-recap">
         <%= image_tag "mapsphone.png", class: "mapicon" %>
-        <p>Pour une tournée de patients optimisée</p>
+        <p>Nous optimisons vos tournées, vous gagnez du temps </p>
      </div>
     </div>
   </div>
 </div>
-<div class="row marbled">
+<div class="row marbled colored">
   <div class="col-md-6 presentation-picture">
     <%= image_tag "visiting_doctor.jpg", class: "image" %>
   </div>
@@ -49,7 +50,7 @@
     </div>
   </div>
 </div>
- <div class="row marbled">
+ <div class="row marbled colored">
     <div class="col-md-6">
       <div class="texte">
         <h3>Nous vous proposons la tournée de patient la plus optimisée en fonction de vos critères.</h3>
@@ -59,7 +60,7 @@
       <%= image_tag "road.jpg", class: "image" %>
     </div>
 </div>
-<div class="row marbled">
+<div class="row marbled colored">
   <div class="col-md-6 presentation-picture">
     <%= image_tag "girlwithcoffee.jpg", class: "image" %>
   </div>
