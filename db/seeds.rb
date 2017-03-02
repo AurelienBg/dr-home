@@ -25,6 +25,7 @@ User.create!( \
   fav_city: "Bréhal",
   min_nb_consult: 5,
   sex: "Monsieur",
+  fav_city: "Bréhal",
   cardnumber: "M-028d082938238",
   latitude: 48.8648482,
   duration_consult: 20,
