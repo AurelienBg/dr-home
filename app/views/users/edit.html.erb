@@ -171,9 +171,9 @@
         <div class="row">
           <div class="col-xs-8 col-xs-offset-2">
             <h3 class="text-center">Addresse d'exercice</h3>
-            <%= f.input :fav_address, label: false, input_html: {class: "simple_form_field zero-margin"} %>
-            <%= f.input :fav_city, label: false, input_html: {class: "simple_form_field"} %>
-            <%= f.input :fav_zipcode, label: false, input_html: {class: "simple_form_field"} %>
+            <%= f.input :fav_address, label: false, placeholder: "Adresse", input_html: {class: "simple_form_field zero-margin"} %>
+            <%= f.input :fav_city, label: false, placeholder: "Ville", input_html: {class: "simple_form_field"} %>
+            <%= f.input :fav_zipcode, label: false, placeholder: "Code postal", input_html: {class: "simple_form_field"} %>
           </div>
         </div>
 
@@ -202,7 +202,7 @@
 
         <div class="row">
           <div class="col-xs-8 col-xs-offset-2">
-            <%= f.button :submit, "Enregistrer", class: 'primary-btn', style: 'padding: 10px 10px; border-radius: 2px; background-color: #31639C; text-decoration: none; font-weight: lighter; border: none; color: white; transition: all 0.4s ease; margin-bottom: 45px' %>
+            <%= f.button :submit, "Enregistrer", class: 'primary-btn', style: 'padding: 10px 10px; width: 100%; border-radius: 3px; background-color: #31639C; text-decoration: none; font-weight: lighter; border: none; color: white; transition: all 0.4s ease; margin-bottom: 45px' %>
           </div>
         </div>
 
@@ -223,7 +223,7 @@
 
       var slider = $('.slider').slider({
         min: 0,
-        max: 100,
+        max: 200,
         step: 5,
         tooltip: "show"
       })
