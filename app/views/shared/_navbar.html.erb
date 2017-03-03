@@ -1,4 +1,4 @@
-<div class="navbar-wagon <%= yield(:navbar_class) %>">
+<div class="navbar-wagon <%= yield(:navbar_class) %> navbar-wagon-fixed">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "logo.png" %>
@@ -31,9 +31,11 @@
        <%#= link_to edit_user_path(current_user), class: "navbar-wagon-link" do %>
          <%#= t(".profile", default: "Votre profil médecin") %>
        <%# end %>
-
+        <% if (consult_nb  = current_user.consultations.where(date: Date.today + 1.day).count) == 0 %>
         <%= link_to t(".top_call_to_action", default: "Prochaine tournée"), dashboard_path, class: "navbar-wagon-item navbar-wagon-link second-btn", style: 'text-decoration: none; padding: 9px 36px;' %>
-
+        <% else %>
+        <%= link_to t(".top_call_to_action", default: "Prochaine tournée <strong>(#{consult_nb})</strong>".html_safe), dashboard_path, class: "navbar-wagon-item navbar-wagon-link second-btn", style: 'text-decoration: none; padding: 9px 36px;' %>
+        <% end %>
         <!-- Profile picture and dropdown -->
         <div class="navbar-wagon-item">
           <div class="dropdown">

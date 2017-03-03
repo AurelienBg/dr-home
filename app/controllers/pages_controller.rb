@@ -3,7 +3,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home, :map, :how ]
-  before_action :check_if_user_profile_completed, only: :dashboard
+  # before_action :check_if_user_profile_completed, only: :dashboard
 
   def home
     @user = current_user
@@ -33,7 +33,7 @@ class PagesController < ApplicationController
     #   @date_wording = "demain"
     # end
 
-    @next_round = Consultation.where(user: @user, date: @date)
+    @next_round = Consultation.where(user: @user, date: @date).order(:start_time)
     # @next_round = []
     # @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
     #     marker.lat user.latitude

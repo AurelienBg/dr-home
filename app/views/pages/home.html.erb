@@ -7,9 +7,9 @@
      <strong class="typed-text hidden-xs"></strong>
    </h3>
     <% if current_user %>
-      <%= link_to "Votre prochaine tournée", dashboard_path, class: "btn btn-primary"%>
+      <%= link_to "Votre prochaine tournée", dashboard_path, class: "how-btn"%>
     <% else %>
-      <%= link_to "Rejoignez-nous", new_user_registration_path, class: "btn btn-primary"%>
+      <%= link_to "Rejoignez-nous", new_user_registration_path, class: "how-btn"%>
     <% end %>
   </div>
 </div>
@@ -24,7 +24,7 @@
     <div class="col-md-3">
       <div class="card-recap">
         <%= image_tag "calendar.png", class: "icon" %>
-        <p>Uniquement des visites compatibles avec votre agenda</p>
+        <p>Des visites compatibles avec votre agenda</p>
       </div>
     </div>
     <div class="col-md-3">
@@ -36,7 +36,7 @@
     <div class="col-md-3">
       <div class="card-recap">
         <%= image_tag "mapsphone.png", class: "mapicon" %>
-        <p>Nous optimisons vos tournées, vous gagnez du temps </p>
+        <p>Nous optimisons vos tournées, vous augmentez vos revenus </p>
      </div>
     </div>
   </div>
@@ -47,14 +47,14 @@
   </div>
   <div class="col-md-6">
     <div class="texte">
-      <h3>Trouvez des patients où que vous soyez. Pas besoin de secretariat ou de cabinet.</h3>
+      <h3>Nous vous trouvons des patients là où vous desirez travailler. Pas besoin de secretariat ou de cabinet médical.</h3>
     </div>
   </div>
 </div>
  <div class="row marbled colored">
     <div class="col-md-6">
       <div class="texte">
-        <h3>Nous vous proposons la tournée de patient la plus optimisée en fonction de vos critères.</h3>
+        <h3>Nous vous proposons la tournée de patient la plus optimisée en fonction de vos critères de disponibilité et de localisation géographique.</h3>
       </div>
     </div>
     <div class="col-md-6 presentation-picture">
