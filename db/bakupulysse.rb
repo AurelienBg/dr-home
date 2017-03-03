@@ -3,7 +3,6 @@ demands = Demand.near("sables d'olonne", 100)
 
 
 
-C
 consultations = [
   {
     start_time: DateTime.new(2017,3,4,9,0),
@@ -57,8 +56,15 @@ consultations = [
     doctor_departure_lng: -1.795493,
     date: Date.today + 1.day},
   {
-    start_time: DateTime.new(2017,3,4,14,02),
-    end_time: DateTime.new(2017,3,4,14,22),
+    start_time: DateTime.new(2017,3,4,13,52),
+    end_time: DateTime.new(2017,3,4,14,02),
+    status: "confirmed",
+    doctor_departure_lat: 46.492958,
+    doctor_departure_lng: -1.795493,
+    date: Date.today + 1.day},
+  {
+    start_time: DateTime.new(2017,3,4,14,35),
+    end_time: DateTime.new(2017,3,4,14,55),
     status: "confirmed",
     doctor_departure_lat: 46.492958,
     doctor_departure_lng: -1.795493,
