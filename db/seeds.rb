@@ -25,7 +25,6 @@ User.create!( \
   fav_city: "",
   min_nb_consult: 5,
   sex: "Monsieur",
-  fav_city: "Bréhal",
   cardnumber: "M-028d082938238",
   duration_consult: 20,
   validated: true,

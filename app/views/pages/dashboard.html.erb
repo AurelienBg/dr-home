@@ -53,7 +53,7 @@
           </div>
           <div class="col-xs-8 demand-info">
             <h3>Consultation n°<%= n %> </h3>
-            <p><%= consultation.demand.sex == "Homme" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></p>
+            <p><%= consultation.demand.sex == "Monsieur" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></p>
             <p>Symptôme : <span style="font-weight: 300;"><%= consultation.demand.illness %></span></p>
             <p>Adresse : <span style="font-weight: 300;"><%= consultation.demand.address %></span></p>
             <p>Ville : <span style="font-weight: 300;"><%= consultation.demand.zipcode %> - <%= consultation.demand.city %></span></p>
@@ -77,7 +77,7 @@
       <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-custom" role="document">
           <div class="modal-content modal-elements">
-            <% if current_user.photo.nil? %>
+            <% if consultation.demand.photo.nil? %>
                <% if consultation.demand.sex == "Madame" %>
                  <%= image_tag "girl.png", class: "avatar-large" %>
                <% elsif consultation.demand.sex == "Monsieur" %>
@@ -87,7 +87,7 @@
               <%= cl_image_tag current_user.photo.path, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar-large" %>
             <% end %>
 
-            <h2><span class="content-blue"><%= consultation.demand.sex == "Homme" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></span></h2>
+            <h2><span class="content-blue"><%= consultation.demand.sex == "Monsieur" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></span></h2>
             <p><span class="content-blue"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>Date de naissance : <%= l( consultation.demand.birthday, format: :long)%></p>
 
             <p><span class="content-blue"><i class="fa fa-commenting-o" aria-hidden="true"></i></span>Symptômes : <%= consultation.demand.illness %></p>

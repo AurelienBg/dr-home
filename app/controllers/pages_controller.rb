@@ -33,7 +33,7 @@ class PagesController < ApplicationController
     #   @date_wording = "demain"
     # end
 
-    @next_round = Consultation.where(user: @user, date: @date)
+    @next_round = Consultation.where(user: @user, date: @date).order(:start_time)
     # @next_round = []
     # @hash2 = Gmaps4rails.build_markers(@next_round) do |user, marker|
     #     marker.lat user.latitude
