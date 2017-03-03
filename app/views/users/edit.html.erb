@@ -7,9 +7,9 @@
     <h1 class=text-center>
       <% if current_user.photo.nil? %>
         <% if current_user.sex == "Madame" %>
-          <%= image_tag "girl.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag "girl.png", class: "avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% elsif current_user.sex == "Monsieur" %>
-          <%= image_tag "boy.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag "boy.png", class: "avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% end %>
       <% else %>
         <%= cl_image_tag current_user.photo.path, width: 80, height: 80, crop: :thumb, gravity: :face, class: "dropdown-toggle img-circle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
@@ -46,22 +46,22 @@
               <span class="radio active">
             <% else %>
               <span class="radio">
+            <% end %>
                 <label class="radio-inline" for="user_sex_monsieur">
                   <input class="radio_buttons optional hidden" type="radio" value="Monsieur" name="user[sex]" id="user_sex_monsieur">
                    <%= image_tag "boy.png", width: "80px" %> <p>Homme</p>
                 </label>
               </span>
-            <% end %>
             <% if current_user.sex == "Madame" %>
-              <span class="radio active" style="margin-top: 5px">
+              <span class="radio active" style="margin-top: 6px">
             <% else %>
-              <span class="radio" style="margin-top: 5px">
+              <span class="radio" style="margin-top: 6px">
+            <% end %>
                 <label class="radio-inline" for="user_sex_madame">
                   <input class="radio_buttons optional hidden" type="radio" value="Madame" name="user[sex]" id="user_sex_madame">
                   <%= image_tag "girl.png", width: "80px" %> <p>Femme</p>
                 </label>
               </span>
-            <% end %>
           </div>
 
           <div class="row">
@@ -110,7 +110,7 @@
 
           <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
-              <h3><i class="fa fa-home user-icon" aria-hidden="true"></i> Addresse </h3>
+              <h3><i class="fa fa-home user-icon" aria-hidden="true"></i> Adresse </h3>
               <%= f.input :address, label: false, placeholder: 'Adresse', input_html: {class: "simple_form_field"} %>
               <%= f.input :city, label: false, placeholder: 'Ville', input_html: {class: "simple_form_field"} %>
               <%= f.input :zipcode, label: false, placeholder: 'Code postal', input_html: {class: "simple_form_field"} %>
