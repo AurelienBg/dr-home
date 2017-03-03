@@ -95,9 +95,9 @@
             <p><span class="content-blue"><i class="fa fa-hourglass-start" aria-hidden="true"></i></span>Début de la consultation : <%= consultation.start_time.strftime('%H:%M')%></p>
             <p><span class="content-blue"><i class="fa fa-hourglass-end" aria-hidden="true"></i></span>Fin de la consultation : <%= consultation.end_time.strftime('%H:%M')%></p>
           <!--   <p><span class="content-blue">Prix de la consultation :</span> <%= consultation.estimated_price %></p> -->
-            <p><span class="content-blue"><i class="fa fa-mobile" aria-hidden="true"></i></span>Téléphone :<%= consultation.demand.phone %></p>
-            <p><span class="content-blue"><i class="fa fa-home" aria-hidden="true"></i></span>Adresse :<%= consultation.demand.address %></br>
-              <span class="spacing-right"><%= consultation.demand.city %> (<%= consultation.demand.zipcode %>)</span></p>
+            <p><span class="content-blue"><i class="fa fa-mobile" aria-hidden="true"></i></span>Téléphone : <%= consultation.demand.phone %></p>
+            <p><span class="content-blue"><i class="fa fa-home" aria-hidden="true"></i></span>Adresse : <%= consultation.demand.address %></br>
+              <span class="spacing-right" style="margin-left: 33px;"><%= consultation.demand.city %> (<%= consultation.demand.zipcode %>)</span></p>
           </div>
         </div>
       </div>
