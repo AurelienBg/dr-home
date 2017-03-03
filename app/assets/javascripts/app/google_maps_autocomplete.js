@@ -1,26 +1,43 @@
 $(document).ready(function() {
   var address = $('#user_address').get(0);
+  var favCity = $("#user_fav_city").get(0);
   if (address) {
-    var autocomplete = new google.maps.places.Autocomplete(address, { types: ['geocode'] });
-
-    google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-    google.maps.event.addDomListener(address, 'keydown', function(e) {
-      if (e.keyCode == 13) {
-        e.preventDefault(); // Do not submit the form on Enter.
-      }
-    });
+    launchAutocompleteAddress(address);
+  }
+  if (favCity) {
+    launchAutocompleteAddress(favCity);
   }
 });
 
-function onPlaceChanged() {
+function launchAutocompleteAddress(address) {
+  var autocomplete = new google.maps.places.Autocomplete(address, { types: ['geocode'] });
+  if (address.id === "user_fav_city") {
+    google.maps.event.addListener(autocomplete, 'place_changed', onUserFavCityChanged);
+  } else if (address.id === "user_address") {
+    google.maps.event.addListener(autocomplete, 'place_changed', onUserAddressChanged);
+  }
+  google.maps.event.addDomListener(address, 'keydown', function(e) {
+    if (e.keyCode == 13) {
+      e.preventDefault(); // Do not submit the form on Enter.
+    }
+  });
+}
+
+function onUserAddressChanged() {
   var place = this.getPlace();
   var components = getAddressComponents(place);
-  $('#user_address').trigger('blur').val(components.address);
-  $('#user_zipcode').val(components.zip_code);
-  $('#user_city').val(components.city);
+  $("#user_address").trigger('blur').val(components.address);
+  $("#user_zipcode").val(components.zip_code);
+  $("#user_city").val(components.city);
   if (components.country_code) {
     $('#country').val(components.country_code);
   }
+}
+
+function onUserFavCityChanged() {
+  var place = this.getPlace();
+  var components = getAddressComponents(place);
+  $("#user_fav_city").trigger('blur').val(components.city);
 }
 
 function getAddressComponents(place) {
