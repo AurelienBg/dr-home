@@ -25,6 +25,7 @@ input {
   transition : all .3s;
   border-bottom : 1px solid $brand-color;
 }
+
 .tab-content {
     padding-top: 0px;
 }
@@ -97,6 +98,7 @@ p:before {
 
 .user-icon {
   color: #31639C;
+  font-size: 16px;
 }
 
 .attachinary_container ul {

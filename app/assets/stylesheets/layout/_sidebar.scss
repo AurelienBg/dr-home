@@ -1,5 +1,6 @@
 .profile {
   display: flex;
+  align-items: center;
 }
 
 .profile-sidebar {
@@ -10,11 +11,10 @@
   h1 {
     background: #f7f7f7;
     margin: 0px;
-    padding: 30px;
+    padding: 60px;
     div {
-      font-size: 17px;
-      margin-top: 10px;
-      font-weight: bold;
+      font-size: 25px;
+      margin-top: 10px; 
     }
   }
   a {
@@ -40,8 +40,9 @@
       justify-content: space-around;
       border-radius: 50%;
       color: white;
-      background-color: lightgrey;
-      color: black;
+      background-color: white;
+      border: 2px solid $brand-color;
+      color: $brand-color;
     }
     div {
       flex-grow: 1;
@@ -78,6 +79,7 @@
 
 .profile-form {
   flex-grow: 1;
+  padding-top: 6%;
   height: calc(100vh - 70px);
   overflow-y: scroll;
 }
