@@ -34,7 +34,11 @@ module RoutificPrep
     end
 
     fleet = {}
-    users_of_the_day = User.where.not(latitude: nil, longitude: nil).where(validated: true)
+
+    # Pour la Demo :
+    users_of_the_day = User.where(email: 'jean@gmail.com')
+    # users_of_the_day = User.where.not(latitude: nil, longitude: nil).where(validated: true)
+
     # where lat and Long pas NIL
     n = 1
     users_of_the_day.each do |user|
