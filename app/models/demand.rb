@@ -22,4 +22,5 @@ class Demand < ApplicationRecord
   geocoded_by :set_long_address
   after_validation :geocode, if: :address_changed?
 
+  has_attachment :photo
 end

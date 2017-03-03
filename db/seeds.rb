@@ -5,18 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+puts "Destroying consultations..."
 Consultation.destroy_all
+puts "Destroying demands..."
 Demand.destroy_all
+puts "Destroying users..."
 User.destroy_all
 
 # Seed of User
 users = [
-User.create!( \
-  email: "jc@gmail.com",
+User.create!(
+  email: "jean@gmail.com",
   password: "aurelien",
-  first_name: "Jean-Claude",
-  last_name: "Dupont",
+  first_name: "Jean",
+  last_name: "Dujardin",
   specialty: "Généraliste",
   address: "16 villa Gaudelet",
   city: "Paris",
@@ -33,28 +35,9 @@ User.create!( \
 puts  "creating a user with the following email :#{users[0].email}"
 
 
-# 10.times do
-#   User.create! \
-#     email: Faker::Internet.email,
-#     password: "aurelien",
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     specialty: User::SPECIALTY.sample,
-#     address: Faker::Address.street_address,
-#     city: Faker::Address.city,
-#     zipcode: Faker::Address.zip_code,
-#     phone: Faker::PhoneNumber.phone_number,
-#     min_consultation: rand(5..20),
-#     sex: ["M", "F"].sample,
-#     cardnumber: Faker::Code.isbn,
-#     admin: [true, false].sample
-#     puts  "creating a user with the following email :#{User.last.email}"
-#   end
-
-
 # Seed of Demand
 demands = [
-  Demand.new(
+  {
     first_name: "Pierre",
     last_name: "Papillard",
     address: "12 rue de Four",
@@ -66,8 +49,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"18/05/1989",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-1.jpg"))},
+
+  {
     first_name: "Jean",
     last_name: "Michon",
     address: "54 Avenue Maurice Marland",
@@ -79,8 +64,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"15/04/1968",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-2.jpg"))},
+
+  {
     first_name: "Marguerite",
     last_name: "Deschamps",
     address: "6 Vierge Garnier",
@@ -92,8 +79,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"22/03/1969",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-1.jpg"))},
+
+  {
     first_name: "Renaud",
     last_name: "Martin",
     address: "13 Venelle Saint-Pierre Empont",
@@ -105,8 +94,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"02/05/1999",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-3.jpg"))},
+
+  {
     first_name: "Philippe",
     last_name: "Risoli",
     address: "36 Le Village Enoux",
@@ -118,8 +109,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"12/09/1995",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-4.jpg"))},
+
+  {
     first_name: "Huguette",
     last_name: "Dupont",
     address: "5 Rue des Moulins",
@@ -131,8 +124,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"07/08/1994",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-2.jpg"))},
+
+  {
     first_name: "Damien",
     last_name: "Lefevre",
     address: "4 Impasse de la Mairie",
@@ -144,8 +139,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"02/04/1978",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-5.jpg"))},
+
+  {
     first_name: "Chantal",
     last_name: "Lebrun",
     address: "2B Rue Thomas Douville",
@@ -157,8 +154,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"12/08/1988",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-3.jpg"))},
+
+  {
     first_name: "Pierre",
     last_name: "Chomont",
     address: "1 Route du Château d'Eau",
@@ -170,8 +169,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"24/12/2001",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-6.jpg"))},
+
+  {
     first_name: "Clementine",
     last_name: "Cremit",
     address: "47 Rue de la Liberté",
@@ -183,8 +184,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"11/04/1996",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-4.jpg"))},
+
+  {
     first_name: "Boris",
     last_name: "Campaillard",
     address: "21 Rue de la Vanne",
@@ -196,8 +199,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"08/09/1998",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-7.jpg"))},
+
+  {
     first_name: "Berthe",
     last_name: "Prisa",
     address: "32 Rue des Salines",
@@ -209,8 +214,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"22/07/1987",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-5.jpg"))},
+
+  {
     first_name: "Martin",
     last_name: "Salin",
     address: "6 Route du Bocage",
@@ -222,8 +229,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"02/12/2000",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-8.jpg"))},
+
+  {
     first_name: "Jules",
     last_name: "Priset",
     address: "3 Chemin de Sablé",
@@ -235,8 +244,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"02/11/1976",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-9.jpg"))},
+
+  {
     first_name: "Manon",
     last_name: "Panon",
     address: "53A Route du Havre de la Vanlee",
@@ -248,8 +259,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"23/12/1954",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-6.jpg"))},
+
+  {
     first_name: "Clement",
     last_name: "Delaunet",
     address: "2 Impasse de l'Église",
@@ -261,9 +274,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"06/05/1989",
-    sex:"Monsieur"),
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-10.jpg"))},
   # debut normandie
-  Demand.new(
+  {
     first_name: "Romain",
     last_name: "Leduc",
     address: "4 Rue des Oliviers",
@@ -275,8 +289,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"22/09/1987",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-11.jpg"))},
+
+  {
     first_name: "Ludovic",
     last_name: "Manson",
     address: "15 Rue Blériot",
@@ -288,8 +304,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"29/10/1976",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-12.jpg"))},
+
+  {
     first_name: "Marine",
     last_name: "Cenelly",
     address: "28 Rue de Chantepie",
@@ -301,8 +319,11 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"01/12/1992",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-7.jpg"))},
+
+
+  {
     first_name: "Louise",
     last_name: "Montpinchon",
     address: "4 Rue Denis Papin",
@@ -314,8 +335,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"12/03/1996",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-8.jpg"))},
+
+  {
     first_name: "Edouard",
     last_name: "Ricard",
     address: "7 Rue Pasteur",
@@ -327,10 +350,11 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"18/05/1993",
-    sex:"Monsieur"),
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-13.jpg"))},
   # fin normandie
   # debut vendée
-  Demand.new(
+  {
     first_name: "Fabrice",
     last_name: "Dupont",
     address: "3 Rue Charles Milcendeau",
@@ -342,8 +366,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"09/06/1989",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-14.jpg"))},
+
+  {
     first_name: "Martin",
     last_name: "Longeot",
     address: "2 Impasse Georges Clemenceau",
@@ -355,8 +381,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"19/07/2000",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-15.jpg"))},
+
+  {
     first_name: "Lucie",
     last_name: "Patet",
     address: "61 Rue des Pièces Franches",
@@ -368,8 +396,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"26/08/2003",
-    sex:"Madame"),
-   Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-9.jpg"))},
+
+   {
     first_name: "Marie",
     last_name: "Dulac",
     address: "79 Avenue de la Crochetière",
@@ -381,8 +411,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"29/03/2000",
-    sex:"Madame"),
-   Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-10.jpg"))},
+
+   {
     first_name: "Lisette",
     last_name: "Perret",
     address: "9 rue de la fée",
@@ -394,8 +426,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"21/02/1963",
-    sex:"Madame"),
-   Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-11.jpg"))},
+
+   {
     first_name: "Jean",
     last_name: "Mondat",
     address: "126 Square des Lys",
@@ -407,8 +441,9 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"02/07/1978",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-24.jpg"))},
+  {
     first_name: "Elsa",
     last_name: "Pimpa",
     address: "12 Rue Gobin",
@@ -420,8 +455,9 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"09/07/2001",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-12.jpg"))},
+  {
     first_name: "Fabien",
     last_name: "Lainet",
     address: "6 Chemin du Grand Fief",
@@ -433,8 +469,11 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"14/03/1987",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-17.jpg"))},
+
+
+  {
     first_name: "Marguerite",
     last_name: "Danet",
     address: "13 rue du point du jour",
@@ -446,8 +485,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"19/06/1986",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-14.jpg"))},
+
+  {
     first_name: "Brigitte",
     last_name: "Ladanette",
     address: "61 rue Georges Clemenceau",
@@ -459,8 +500,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"10/05/1976",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-17.jpg"))},
+
+  {
     first_name: "Pierrot",
     last_name: "Duris",
     address: "6 rue du Pay",
@@ -472,10 +515,12 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"11/08/1974",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-18.jpg"))},
+
+  {
     first_name: "Henri",
-    last_name: "Delhomme",
+    last_name: "DelMonsieur",
     address: "5 place de la mairie",
     city: "Le Perrier",
     zipcode: "85300",
@@ -485,8 +530,9 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"06/03/1980",
-    sex:"Monsieur"),
-  Demand.new(
+    sex: "Monsieur"},
+
+  {
     first_name: "Gertrude",
     last_name: "Mavillo",
     address: "70 Rue du Payré",
@@ -498,8 +544,10 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"01/04/1952",
-    sex:"Madame"),
-  Demand.new(
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-16.jpg"))},
+
+  {
     first_name: "Maxime",
     last_name: "Damidot",
     address: "Rue des Fontenelles",
@@ -511,8 +559,11 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"11/12/1996",
-    sex:"Monsieur"),
-  Demand.new(
+    sex:"Monsieur",
+    photo: File.open(Rails.root.join("db/fixtures/images/man-19.jpg"))},
+
+
+  {
     first_name: "Martine",
     last_name: "Maugeat",
     address: "20 rue des sports",
@@ -524,85 +575,14 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"14/07/1983",
-    sex:"Madame"),
+    sex:"Madame",
+    photo: File.open(Rails.root.join("db/fixtures/images/woman-17.jpg"))}
 # fin vendée
 ]
 
-demands.each do |demand|
-  demand.save!
+demands.each do |demand_attributes|
+  demand = Demand.create!(demand_attributes)
   puts "creating a demand for : #{demand.first_name} #{demand.last_name} "
   puts "#{demand.latitude} - #{demand.longitude}"
 end
 
-# 50.times do
-#   Demand.create! \
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     address: Faker::Address.street_address,
-#     city: 'Paris',
-#     zipcode: Faker::Address.zip_code,
-#     phone: Faker::PhoneNumber.phone_number,
-#     email: Faker::Internet.email,
-#     illness: Faker::Lorem.sentence(3),
-#     birthday: Faker::Date.between(80.years.ago, Date.today,
-#     sex: ["M", "F"].sample,
-#     # lat: Faker::Address.latitude,
-#     # long: Faker::Address.longitude,
-#     photo: Faker::LoremPixel.image("50x60", false, 'people'),
-#     request_time: Faker::Date.between(20.days.ago, Date.today),
-#     due_date: Faker::Date.between(Date.today, Date.today + 10 )
-#   puts "creating a demand for : #{Demand.last.first_name} #{Demand.last.last_name} "
-# end
-
-# 20.times do
-#   Consultation.create! \
-#     estimated_price: rand(30..120),
-#     start_time: Faker::Date.forward(2),
-#     end_time: Faker::Date.forward(3),
-#     status: ["pending", "accepted", "refused"].sample,
-#     user_id: [ User.first, User.last ].sample,
-#     demand_id: [ Demand.last ].sample,
-#     created_at: Date.today,
-#     updated_at: Date.today
-#   puts "creating a consultation for : #{Demand.last.first_name} #{Demand.last.last_name} "
-# end
-
-
-# **********************************
-
-# rue = [
-#         "rue d'avron",
-#         "rue des amiraux",
-#         "rue championnet",
-#         "rue jean pierre timbaud",
-#         "rue oberkampf",
-#         "avenue montaigne",
-#         "rue saint-maur",
-#         "rue du louvre",
-#         "rue du faubourg saint antoine",
-#         "rue de vaugirard",
-#         "rue maubeuge",
-#         "avenue des champs elysées",
-#         "rue dutot",
-#         "boulevard richard lenoir"]
-
-# 50.times do
-#   new = Demand.new \
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     address: "#{rand(1..25)} #{rue.sample}",
-#     city: 'Paris',
-#     zipcode: '75',
-#     phone: Faker::PhoneNumber.phone_number,
-#     email: Faker::Internet.email,
-#     illness: Faker::Lorem.sentence(3),
-#     birthday: Faker::Date.between(80.years.ago, Date.today),
-#     sex: ["M", "F"].sample,
-#     # lat: Faker::Address.latitude,
-#     # long: Faker::Address.longitude,
-#     photo: Faker::LoremPixel.image("50x60", false, 'people'),
-#     request_time: Faker::Date.between(20.days.ago, Date.today),
-#     due_date: Faker::Date.between(Date.today, Date.today + 10 )
-#   puts "Demand for : #{new.address} #{new.city} is #{new.valid?}"
-#   new.save
-# end
