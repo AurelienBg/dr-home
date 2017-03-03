@@ -12,11 +12,13 @@
     <div class="container text-center left bot-container">
       <div  style="width: 100%;">
         <div class="message-erreur">
-            <span><%= image_tag "bot.png", class: "bot" %></span>
+          <h2>Votre profil a bien été validé !</h2>
+          <span><%= image_tag "bot.png", class: "bot" %></span>
           <h3>Vous n'avez pas de consultations prévues.</h3>
           <h3>Nous vous notifierons une fois que les prochaines tournées seront calculées.</h3>
+          <br>
           <div>
-            <%= link_to "Revenir à la Page d'accueil", root_path, class: "refuse-btn", style: 'margin: 20px' %>
+            <%= link_to "Revenir à la Page d'accueil", root_path, class: "how-btn", style: "margin: 20px" %>
           </div>
         </div>
       </div>
