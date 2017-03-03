@@ -328,7 +328,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"18/05/1993",
-    sex:"Homme"),
+    sex:"Monsieur"),
   # fin normandie
   # debut vendée
   Demand.new(
@@ -369,7 +369,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"26/08/2003",
-    sex:"Femme"),
+    sex:"Madame"),
    Demand.new(
     first_name: "Marie",
     last_name: "Dulac",
@@ -382,7 +382,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"29/03/2000",
-    sex:"Femme"),
+    sex:"Madame"),
    Demand.new(
     first_name: "Lisette",
     last_name: "Perret",
@@ -395,7 +395,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"21/02/1963",
-    sex:"Femme"),
+    sex:"Madame"),
    Demand.new(
     first_name: "Jean",
     last_name: "Mondat",
@@ -408,7 +408,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"02/07/1978",
-    sex:"Homme"),
+    sex:"Monsieur"),
   Demand.new(
     first_name: "Elsa",
     last_name: "Pimpa",
@@ -421,7 +421,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"09/07/2001",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Fabien",
     last_name: "Lainet",
@@ -434,7 +434,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"14/03/1987",
-    sex:"Homme"),
+    sex:"Monsieur"),
   Demand.new(
     first_name: "Marguerite",
     last_name: "Danet",
@@ -447,7 +447,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"19/06/1986",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Brigitte",
     last_name: "Ladanette",
@@ -460,7 +460,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"10/05/1976",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Pierrot",
     last_name: "Duris",
@@ -473,20 +473,20 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"11/08/1974",
-    sex:"Homme"),
+    sex:"Monsieur"),
   Demand.new(
     first_name: "Henri",
-    last_name: "Delhomme",
+    last_name: "DelMonsieur",
     address: "7 Rue des Artisans",
     city: "Saint-Gilles-Croix-de-Vie",
     zipcode: "85800",
     illness: "Allergie",
     phone: "+33 1 3465 7865",
-    email: "hdelhomme@gmail.com",
+    email: "hdelMonsieur@gmail.com",
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"06/03/1980",
-    sex:"Homme"),
+    sex:"Monsieur"),
   Demand.new(
     first_name: "Gertrude",
     last_name: "Mavillo",
@@ -495,11 +495,11 @@ demands = [
     zipcode: "85800",
     illness: "Rhume",
     phone: "+33 1 3465 7865",
-    email: "hdelhomme@gmail.com",
+    email: "hdelMonsieur@gmail.com",
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"01/04/1952",
-    sex:"Femme"),
+    sex:"Madame"),
   Demand.new(
     first_name: "Maxime",
     last_name: "Damidot",
@@ -512,7 +512,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"11/12/1996",
-    sex:"Homme"),
+    sex:"Monsieur"),
   Demand.new(
     first_name: "Martine",
     last_name: "Maugeat",
@@ -525,7 +525,7 @@ demands = [
     request_time: Date.today,
     due_date: Date.today + 1.day,
     birthday:"14/07/1983",
-    sex:"Femme"),
+    sex:"Madame"),
 # fin vendée
 ]
 

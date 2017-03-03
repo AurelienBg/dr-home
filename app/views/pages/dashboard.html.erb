@@ -13,7 +13,7 @@
       <div  style="width: 100%;">
         <div class="message-erreur">
             <span><%= image_tag "bot.png", class: "bot" %></span>
-          <h3>Vous n'avez pas de consultations prévues.</h3> 
+          <h3>Vous n'avez pas de consultations prévues.</h3>
           <h3>Nous vous notifierons une fois que les prochaines tournées seront calculées.</h3>
         </div>
       </div>
@@ -78,9 +78,9 @@
         <div class="modal-dialog modal-custom" role="document">
           <div class="modal-content modal-elements">
             <% if current_user.photo.nil? %>
-               <% if current_user.sex == "Madame" %>
+               <% if consultation.demand.sex == "Madame" %>
                  <%= image_tag "girl.png", class: "avatar-large" %>
-               <% elsif current_user.sex == "Monsieur" %>
+               <% elsif consultation.demand.sex == "Monsieur" %>
                  <%= image_tag "boy.png", class: "avatar-large" %>
                <% end %>
             <% else %>
