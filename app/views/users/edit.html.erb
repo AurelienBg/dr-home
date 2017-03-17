@@ -3,7 +3,7 @@
 
 <div class="profile">
 
-  <div class="profile-sidebar">
+  <div class="profile-sidebar hidden-xs">
     <h1 class=text-center>
       <% if current_user.photo.nil? %>
         <% if current_user.sex == "Madame" %>
@@ -95,8 +95,8 @@
       <div class="tab-content tab-infos_perso hidden" id="infos_contact">
         <!-- <div class="col-xs-12"> -->
          <h2 class="text-center">Vos coordonnées</h2>
-        
-        <div class="container-fluid">     
+
+        <div class="container-fluid">
           <div class="row">
             <div class="col-xs-4 col-xs-offset-2">
               <h3><i class="fa fa-phone user-icon" aria-hidden="true"></i> Telephone</h3>
@@ -144,14 +144,14 @@
           <div class="row">
            <div class="col-xs-8 col-xs-offset-2">
               <h3><i class="fa fa-magic user-icon" aria-hidden="true"></i> Spécialité</h3>
-              <%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"}, prompt: "Selectionnez votre spécialité" %>  
+              <%= f.input :specialty, label: false, collection: User::SPECIALTY, input_html: {class: "simple_form_field"}, prompt: "Selectionnez votre spécialité" %>
             </div>
           </div>
 
           <div class="row">
            <div class="col-xs-8 col-xs-offset-2">
               <h3><i class="fa fa-id-card-o user-icon" aria-hidden="true"></i> Carte professionnelle</h3>
-              <%= f.input :photo_prof_doc, as: :attachinary, label: false %>  
+              <%= f.input :photo_prof_doc, as: :attachinary, label: false %>
             </div>
           </div>
 
@@ -168,7 +168,7 @@
       <div class="tab-content tab-configurations hidden" id="configurations">
 
         <h2 class="text-center">Paramètres de tournées</h2>
-        
+
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
@@ -192,7 +192,7 @@
           </div>
           <div class="row">
             <div class="col-xs-4 col-xs-offset-2">
-              <h3><i class="fa fa-calendar user-icon" aria-hidden="true"></i> Nombre minimum par jour</h3> 
+              <h3><i class="fa fa-calendar user-icon" aria-hidden="true"></i> Nombre minimum par jour</h3>
               <%= f.input :min_nb_consult, placeholder: "Nombre recommandé: 7 - 10 ", label: false, input_html: {class: "simple_form_field"} %>
             </div>
             <div class="col-xs-4">
