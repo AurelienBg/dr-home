@@ -8,6 +8,9 @@
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+  .fa-bars{
+    font-size: 150%;
+  }
 }
 
 .navbar-home {
@@ -18,6 +21,9 @@
   .navbar-wagon-link {
     color: #616668;
     font-weight: 14px;
+  }
+ .fa-bars{
+    font-size: 150%;
   }
 }
 
