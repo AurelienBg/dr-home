@@ -21,48 +21,12 @@ $color: #41110f;
 .bot-container {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .message-erreur {
   margin: 0 100px;
   h3 {
     font-weight: 300;
-  }
-}
-
-.thermometer {
-  position: relative;
-  margin: 400px auto 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 3px solid $color;
-  background: $red;
-  animation: colorChange 3s linear 0s infinite alternate;
-
-  &:before,
-  &:after {
-    content: '';
-    width: 15px;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translate(-50%,0);
-    z-index: -1;
-  }
-
-  &:before {
-    content: '';
-    height: 50px;
-    background: $red;
-    animation: thermometer 3s linear 0s infinite alternate;
-    z-index: 9;
-  }
-
-  &:after {
-    content: '';
-    height: 150px;
-    border: 3px solid $color;
-    border-radius: 50px 50px 0 0;
   }
 }
