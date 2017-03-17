@@ -38,7 +38,7 @@ class User < ApplicationRecord
   geocoded_by :set_long_address
   after_validation :geocode
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
 
   has_many :consultations
