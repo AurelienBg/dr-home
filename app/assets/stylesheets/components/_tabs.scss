@@ -56,6 +56,11 @@
   display: flex;
 }
 
+.block-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .left {
   width: 50%;
   height: calc(100vh - 70px);
@@ -64,7 +69,12 @@
 
 .map {
   width: 50%;
+  #map2 {
+    width: 100%;
+    height: calc(100vh - 70px);
+  }
 }
+
 .demand-info {
   text-align: left;
 }

@@ -1,317 +1,322 @@
+<!-- start of the 2 seconds gif for while loading -->
 <div class="dashboard-loader">
   <div class="dashboard-loader-content">
     <%= image_tag 'spin.gif' %>
     <h3>Votre itinéraire est en cours de chargement ...</h3>
   </div>
 </div>
+<!-- end of the 2 seconds gif for while loading -->
 
 
+<!-- start of the container : case of ROUND is empty -->
 <div class="tab-content tab-next-round" id="next">
-    <% if @next_round.count == 0 %>
-
-    <div class="container text-center left bot-container">
-      <div  style="width: 100%;">
-        <div class="message-erreur">
-          <h2>Votre profil a bien été validé !</h2>
-          <span><%= image_tag "bot.png", class: "bot" %></span>
-          <h3>Vous n'avez pas de consultations prévues.</h3>
-          <h3>Nous vous notifierons une fois que les prochaines tournées seront calculées.</h3>
-          <br>
-          <div>
-            <%= link_to "Revenir à la Page d'accueil", root_path, class: "how-btn", style: "margin: 20px" %>
-          </div>
+  <% if @next_round.count == 0 %>
+  <div class="container text-center left bot-container block-content">
+    <div style="width: 100%;">
+      <div class="message-erreur">
+        <h2>Votre profil a bien été validé!</h2>
+        <span><%= image_tag "bot.png", class: "bot" %></span>
+        <h3>Vous n'avez pas de consultations prévues.</h3>
+        <h3>Nous vous notifierons une fois que les prochaines tournées seront calculées.</h3>
+        <br>
+        <div>
+          <%= link_to "Revenir à la Page d'accueil", root_path, class: "how-btn", style: "margin: 20px" %>
         </div>
       </div>
     </div>
-    <div class="map">
-      <div id="map2" style="width: 100%; height: calc(100vh - 70px);"></div>
+  </div>
+  <div class="map block-content">
+    <div id="map2"></div>
+  </div>
+</div>
+<!-- end of the container : case of ROUND is empty  -->
+
+<% else %>
+<!-- start of the container : case of ROUND not empty -->
+<div class="container text-center left">
+  <div class="title" style="margin-bottom: 20px;">
+    <h3 style="margin: 15px 0;">Vous avez <%= @next_round.count %>  consultations <%= @date_wording %></h3>
+  </div>
+  <!-- start-tine and end-tine of the day   -->
+  <div class="row">
+    <div class="col-sm-5 col-sm-offset-1">
+      <%= image_tag 'clock-blue.png', style: 'width: 15px;' %>
+      <p>Heure de départ : <%= @next_round.first.start_time.strftime('%H:%M') %> </p>
+    </div>
+    <div class="col-sm-5">
+      <%= image_tag 'clock-red.png', style: 'width: 15px;' %>
+      <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
     </div>
   </div>
+  <!-- start-tine and end-tine of the day   -->
+  <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
 
-  <% else %>
-  <div class="container text-center left">
-
-    <div class="title" style="margin-bottom: 20px;">
-      <h3 style="margin: 15px 0;">Vous avez <%= @next_round.count %>  consultations <%= @date_wording %></h3>
-    </div>
-    <div class="row">
-      <div class="col-sm-5 col-sm-offset-1">
-        <%= image_tag 'clock-blue.png', style: 'width: 15px;' %>
-        <p>Heure de départ : <%= @next_round.first.start_time.strftime('%H:%M') %> </p>
-      </div>
-      <div class="col-sm-5">
-        <%= image_tag 'clock-red.png', style: 'width: 15px;' %>
-        <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
-      </div>
-    </div>
-    <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
-    <div class="demand-cards">
-      <% n = 1 %>
-      <% @next_round.each do |consultation| %>
-      <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
-        <div class="row demand-card">
-          <div style="width: 50%; margin: 0 auto 11px auto;"></div>
-          <div class="col-xs-2"  style="margin-top: 45px;">
-            <!-- <i class="fa fa-clock-o" aria-hidden="true"></i> -->
-            <%= image_tag 'clock-blue.png', style: 'width: 15px;' %>
-            <p><%= consultation.start_time.strftime('%H:%M') %></p>
-          </div>
-          <div class="col-xs-8 demand-info">
-            <h3>Consultation n°<%= n %> </h3>
-            <p><%= consultation.demand.sex == "Monsieur" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></p>
-            <p>Symptôme : <span style="font-weight: 300;"><%= consultation.demand.illness %></span></p>
-            <p>Adresse : <span style="font-weight: 300;"><%= consultation.demand.address %></span></p>
-            <p>Ville : <span style="font-weight: 300;"><%= consultation.demand.zipcode %> - <%= consultation.demand.city %></span></p>
-            <!-- <p><i>Départ à <%#= consultation.end_time.strftime('%H:%M') %></i></p> -->
-            <!-- replace with start_time of next consultation - trip time -->
-          </div>
-          <div class="col-xs-2"  style="margin-top: 45px;">
-            <%= image_tag 'clock-red.png', style: 'width: 15px;' %>
-            <p><%= consultation.end_time.strftime('%H:%M') %></p>
-          </div>
+  <!-- Start of Consultation cards   -->
+  <div class="demand-cards">
+    <% n = 1 %>
+    <% @next_round.each do |consultation| %>
+    <a style="cursor: pointer;" data-toggle="modal" data-target="#modal-<%= consultation.id %>">
+      <div class="row demand-card">
+        <div style="width: 50%; margin: 0 auto 11px auto;"></div>
+        <div class="col-xs-2"  style="margin-top: 45px;">
+          <!-- <i class="fa fa-clock-o" aria-hidden="true"></i> -->
+          <%= image_tag 'clock-blue.png', style: 'width: 15px;' %>
+          <p><%= consultation.start_time.strftime('%H:%M') %></p>
         </div>
-      </a>
-      <% n += 1 %>
-      <% end %>
-      <%= link_to "Refuser", root_path, class: "refuse-btn", style: 'margin: 20px' %>
-    </div>
-
-
-      <!-- Modal -->
-      <% @next_round.each do |consultation| %>
-      <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-custom" role="document">
-          <div class="modal-content modal-elements">
-            <% if consultation.demand.photo.nil? %>
-               <% if consultation.demand.sex == "Madame" %>
-                 <%= image_tag "girl.png", class: "avatar-large" %>
-               <% elsif consultation.demand.sex == "Monsieur" %>
-                 <%= image_tag "boy.png", class: "avatar-large" %>
-               <% end %>
-            <% else %>
-              <%= cl_image_tag consultation.demand.photo.path, width: 160, height: 160,radius: 'max',crop: :thumb, gravity: :face, class: "avatar-modal" %>
-            <% end %>
-
-            <h2><span class="content-blue"><%= consultation.demand.sex == "Monsieur" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></span></h2>
-            <p><span class="content-blue"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>Date de naissance : <%= consultation.demand.birthday.strftime('%d.%m.%Y')%></p>
-
-            <p><span class="content-blue"><i class="fa fa-commenting-o" aria-hidden="true"></i></span>Symptômes : <%= consultation.demand.illness %></p>
-
-            <p><span class="content-blue"><i class="fa fa-hourglass-start" aria-hidden="true"></i></span>Début de la consultation : <%= consultation.start_time.strftime('%H:%M')%></p>
-            <p><span class="content-blue"><i class="fa fa-hourglass-end" aria-hidden="true"></i></span>Fin de la consultation : <%= consultation.end_time.strftime('%H:%M')%></p>
-          <!--   <p><span class="content-blue">Prix de la consultation :</span> <%= consultation.estimated_price %></p> -->
-            <p><span class="content-blue"><i class="fa fa-mobile" aria-hidden="true"></i></span>Téléphone : <%= consultation.demand.phone %></p>
-            <p><span class="content-blue"><i class="fa fa-home" aria-hidden="true"></i></span>Adresse : <%= consultation.demand.address %></br>
-              <span class="spacing-right" style="margin-left: 33px;"><%= consultation.demand.city %> (<%= consultation.demand.zipcode %>)</span></p>
-          </div>
+        <div class="col-xs-8 demand-info">
+          <h3>Consultation n°<%= n %> </h3>
+          <p><%= consultation.demand.sex == "Monsieur" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name %> <%= consultation.demand.last_name %></p>
+          <p>Symptôme : <span style="font-weight: 300;"><%= consultation.demand.illness %></span></p>
+          <p>Adresse : <span style="font-weight: 300;"><%= consultation.demand.address %></span></p>
+          <p>Ville : <span style="font-weight: 300;"><%= consultation.demand.zipcode %> - <%= consultation.demand.city %></span></p>
+          <!-- <p><i>Départ à <%#= consultation.end_time.strftime('%H:%M') %></i></p> -->
+          <!-- replace with start_time of next consultation - trip time -->
+        </div>
+        <div class="col-xs-2"  style="margin-top: 45px;">
+          <%= image_tag 'clock-red.png', style: 'width: 15px;' %>
+          <p><%= consultation.end_time.strftime('%H:%M') %></p>
         </div>
       </div>
-      <% end %>
-  </div>
-      <!-- End modal -->
-
-    <!-- Integration de la Map  -->
-  <div class="map">
-    <div id="map2" style="width: 100%; height: calc(100vh - 70px);"></div>
-  </div>
-
-    <!-- Map  -->
+    </a>
+    <% n += 1 %>
     <% end %>
+    <%= link_to "Refuser", root_path, class: "refuse-btn", style: 'margin: 20px' %>
+  </div>
+  <!-- End of Consultation cards   -->
+
+  <!-- Start Modal -->
+  <% @next_round.each do |consultation| %>
+  <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-custom" role="document">
+      <div class="modal-content modal-elements">
+        <% if consultation.demand.photo.nil? %>
+        <% if consultation.demand.sex == "Madame" %>
+        <%= image_tag "girl.png", class: "avatar-large" %>
+        <% elsif consultation.demand.sex == "Monsieur" %>
+        <%= image_tag "boy.png", class: "avatar-large" %>
+        <% end %>
+        <% else %>
+        <%= cl_image_tag consultation.demand.photo.path, width: 160, height: 160,radius: 'max',crop: :thumb, gravity: :face, class: "avatar-modal" %>
+        <% end %>
+
+        <h2><span class="content-blue"><%= consultation.demand.sex == "Monsieur" ? 'M.' : 'Mme.' %> <%= consultation.demand.first_name%> <%= consultation.demand.last_name %></span></h2>
+        <p><span class="content-blue"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>Date de naissance : <%= consultation.demand.birthday.strftime('%d.%m.%Y')%></p>
+
+        <p><span class="content-blue"><i class="fa fa-commenting-o" aria-hidden="true"></i></span>Symptômes : <%= consultation.demand.illness %></p>
+
+        <p><span class="content-blue"><i class="fa fa-hourglass-start" aria-hidden="true"></i></span>Début de la consultation : <%= consultation.start_time.strftime('%H:%M')%></p>
+        <p><span class="content-blue"><i class="fa fa-hourglass-end" aria-hidden="true"></i></span>Fin de la consultation : <%= consultation.end_time.strftime('%H:%M')%></p>
+        <!--   <p><span class="content-blue">Prix de la consultation :</span> <%= consultation.estimated_price %></p> -->
+        <p><span class="content-blue"><i class="fa fa-mobile" aria-hidden="true"></i></span>Téléphone : <%= consultation.demand.phone %></p>
+        <p><span class="content-blue"><i class="fa fa-home" aria-hidden="true"></i></span>Adresse : <%= consultation.demand.address %></br>
+          <span class="spacing-right" style="margin-left: 33px;"><%= consultation.demand.city %> (<%= consultation.demand.zipcode %>)</span></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <!-- End modal -->
+
+  <!-- Integration de la Map  -->
+  <div class="map">
+    <div id="map2"></div>
+  </div>
+  <!-- End Map  -->
+
+  <% end %>
   <!-- end Tab Prochaine tournée -->
 </div>
-
+<!-- end of the container : case of ROUND not empty -->
 
 
 <!-- **************************** -->
 <!-- Javascript -->
 <% content_for(:after_js) do %>
-  <script>
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
-    var map;
-    var infoWindows = [];
+<script>
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
+  var infoWindows = [];
 
-    function initialize() {
-      if ($("#map2").length == 0) { return; }
+  function initialize() {
+    if ($("#map2").length == 0) { return; }
 
-      // Style
-      var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
-      var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
+    // Style
+    var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
+    var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
 
 
-      directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
-      var userHome = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
-      var mapOptions = {
-        // zoom: 12,
-        center: userHome,
-        mapTypeControlOptions: {
-          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-        }
-      }
-      map = new google.maps.Map(document.getElementById("map2"), mapOptions);
-      directionsDisplay.setMap(map);
-      map.mapTypes.set('map_style', styledMap);
-      map.setMapTypeId('map_style');
-    }
-
-    function calcRoute() {
-      // when there is no map
-      if ($("#map2").length == 0) { return; }
-
-      <% if @next_round.count != 0 %>
-        var set_lat = <%= @next_round[0].doctor_departure_lat %>
-        var set_lng = <%= @next_round[0].doctor_departure_lng %>
-      <% else %>
-        var set_lat = <%= @user.latitude %>
-        var set_lng = <%= @user.longitude %>
-        map.setZoom(12);
-      <% end %>
-      var start = new google.maps.LatLng(set_lat, set_lng);
-      var end = new google.maps.LatLng(set_lat, set_lng);
-      var waypts = []
-
-      <% @next_round.each do |consult| %>
-      var w = {
-        location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
-        stopover: true
-      }
-
-      createWptMarker(w['location'], "<%= j render "consultation_infowindow", consultation: consult %>");
-      waypts.push(w);
-      <% end %>
-
-      createMarker(start);
-
-      var request = {
-        origin:start,
-        destination:end,
-        waypoints: waypts,
-        optimizeWaypoints: true,
-        travelMode: google.maps.TravelMode.DRIVING
-      };
-      directionsService.route(request, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(result);
-
-          <% if @next_round.count == 0 %>
-            directionsDisplay.setOptions({ preserveViewport: true });
-          <% end %>
-        }
-      });
-
-    }
-
-    function createMarker(latlng) {
-
-        var marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            icon: "<%= image_path 'marker1.png' %>"
-        });
-    }
-
-    function createWptMarker(latlng, infowindowContent) {
-      var infowindow = new google.maps.InfoWindow({
-        content: infowindowContent
-      });
-
-      infoWindows.push(infowindow);
-
-      var marker = new google.maps.Marker({
-          position: latlng,
-          map: map,
-          icon: "<%= image_path 'marker2.png' %>"
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-        closeAllInfoWindows();
-        infowindow.open(map,marker);
-      });
-    }
-
-    function closeAllInfoWindows() {
-      for (var i=0;i<infoWindows.length;i++) {
-         infoWindows[i].close();
+    directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
+    var userHome = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+    var mapOptions = {
+      // zoom: 12,
+      center: userHome,
+      mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
       }
     }
+    map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+    directionsDisplay.setMap(map);
+    map.mapTypes.set('map_style', styledMap);
+    map.setMapTypeId('map_style');
+  }
 
-   $(document).ready(function() {
+  function calcRoute() {
+    // when there is no map
+    if ($("#map2").length == 0) { return; }
+
+    <% if @next_round.count != 0 %>
+    var set_lat = <%= @next_round[0].doctor_departure_lat %>
+    var set_lng = <%= @next_round[0].doctor_departure_lng %>
+    <% else %>
+    var set_lat = <%= @user.latitude %>
+    var set_lng = <%= @user.longitude %>
+    map.setZoom(12);
+    <% end %>
+    var start = new google.maps.LatLng(set_lat, set_lng);
+    var end = new google.maps.LatLng(set_lat, set_lng);
+    var waypts = []
+
+    <% @next_round.each do |consult| %>
+    var w = {
+      location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
+      stopover: true
+    }
+
+    createWptMarker(w['location'], "<%= j render "consultation_infowindow", consultation: consult %>");
+    waypts.push(w);
+    <% end %>
+
+    createMarker(start);
+
+    var request = {
+      origin:start,
+      destination:end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(result, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(result);
+
+        <% if @next_round.count == 0 %>
+        directionsDisplay.setOptions({ preserveViewport: true });
+        <% end %>
+      }
+    });
+
+  }
+
+  function createMarker(latlng) {
+
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      icon: "<%= image_path 'marker1.png' %>"
+    });
+  }
+
+  function createWptMarker(latlng, infowindowContent) {
+    var infowindow = new google.maps.InfoWindow({
+      content: infowindowContent
+    });
+
+    infoWindows.push(infowindow);
+
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      icon: "<%= image_path 'marker2.png' %>"
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      closeAllInfoWindows();
+      infowindow.open(map,marker);
+    });
+  }
+
+  function closeAllInfoWindows() {
+    for (var i=0;i<infoWindows.length;i++) {
+     infoWindows[i].close();
+   }
+ }
+
+ $(document).ready(function() {
+  initialize();
+  calcRoute();
+
+
+  // ************************************
+  $(".tab").on("click", function(e){
+    // Change active tab
+    $(".tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".tab-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
     initialize();
     calcRoute();
-
-
-    // ************************************
-    $(".tab").on("click", function(e){
-      // Change active tab
-      $(".tab").removeClass('active');
-      $(this).addClass('active');
-      // Hide all tab-content (use class="hidden")
-      $(".tab-content").addClass('hidden');
-      // Show target tab-content (use class="hidden")
-      $($(this).data('target')).removeClass('hidden');
-      initialize();
-      calcRoute();
-    });
   });
+});
 
-  function setmap() {
-    var handler = Gmaps.build('Google');
-    // var stylescp
-    handler.buildMap({ internal: { id: 'map' } }, function() {
-      console.log(markers.length)
-      markers = handler.addMarkers(<%= raw @hash.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      if (markers.length == 0) {
-        handler.getMap().setZoom(2);
-      } else if (markers.length == 1) {
-        handler.getMap().setZoom(30);
-      }
-    });
-  };
-
-  var ctx = document.getElementById("myChart");
-  if (ctx != null) {
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
+ function setmap() {
+  var handler = Gmaps.build('Google');
+  // var stylescp
+  handler.buildMap({ internal: { id: 'map' } }, function() {
+    console.log(markers.length)
+    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+      handler.getMap().setZoom(30);
     }
+  });
+};
+
+var ctx = document.getElementById("myChart");
+if (ctx != null) {
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+}
 </script>
-
-
 <% end %>
 
 
