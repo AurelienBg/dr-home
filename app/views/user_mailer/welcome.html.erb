@@ -1,7 +1,18 @@
-<h2>Hi <%= @user.first_name %></h2>
+<h2>Bonjour <%= @user.first_name %>,</h2>
+<p>
+Bienvenue sur <strong><%= link_to "Dr Home", root_url %></strong>!</br>
+Connectez-vous sur notre site web pour connaître votre prochaine tournée.</br>
+</p>
+<p>A très bientôt!</p>
+<h3>Team Dr Home</h3>
+
+
+<!-- VERSION IN ENGLISH
+<h2>Hi,</h2>
 <p>
 Welcome to <strong><%= link_to "Dr Home", root_url %></strong>!</br>
 Come and check our website to book your next medical tour.</br>
 </p>
 <p>See you soon!</p>
 <h3>Team Dr Home</h3>
+-->

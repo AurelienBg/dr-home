@@ -79,7 +79,7 @@ Rails.application.configure do
   # SMTP and Heroku configuration
   Rails.application.configure do
     config.action_mailer.delivery_method = :smtp
-    config.action_mailer.default_url_options = { host: "www.dr-home.co" }
+    config.action_mailer.default_url_options = { host: "www.drhome.co" }
     # host: "yourapp.herokuapp.com" or your custom domain eg. "www.yourdomain.com"
   end
 
