@@ -8,10 +8,10 @@
 <!-- end of the 2 seconds gif for while loading -->
 
 
-<!-- start of the contaainer : case of ROUND is empty -->
+<!-- start of the container : case of ROUND is empty -->
 <div class="tab-content tab-next-round" id="next">
   <% if @next_round.count == 0 %>
-  <div class="container text-center left bot-container">
+  <div class="container text-center left bot-container block-content">
     <div style="width: 100%;">
       <div class="message-erreur">
         <h2>Votre profil a bien été validé!</h2>
@@ -25,19 +25,19 @@
       </div>
     </div>
   </div>
-  <div class="map">
+  <div class="map block-content">
     <div id="map2"></div>
   </div>
 </div>
-<!-- end of the contaainer : case of ROUND is empty  -->
+<!-- end of the container : case of ROUND is empty  -->
 
 <% else %>
-<!-- start of the contaainer : case of ROUND not empty -->
+<!-- start of the container : case of ROUND not empty -->
 <div class="container text-center left">
-
   <div class="title" style="margin-bottom: 20px;">
     <h3 style="margin: 15px 0;">Vous avez <%= @next_round.count %>  consultations <%= @date_wording %></h3>
   </div>
+  <!-- start-tine and end-tine of the day   -->
   <div class="row">
     <div class="col-sm-5 col-sm-offset-1">
       <%= image_tag 'clock-blue.png', style: 'width: 15px;' %>
@@ -48,7 +48,10 @@
       <p>Heure de fin : <%= @next_round.last.end_time.strftime('%H:%M') %> </p>
     </div>
   </div>
+  <!-- start-tine and end-tine of the day   -->
   <div style="border-bottom: 1px solid #E6E6E6; width: 50%; margin: 5px 25% 15px 25%;"></div>
+
+  <!-- Start of Consultation cards   -->
   <div class="demand-cards">
     <% n = 1 %>
     <% @next_round.each do |consultation| %>
@@ -79,9 +82,9 @@
     <% end %>
     <%= link_to "Refuser", root_path, class: "refuse-btn", style: 'margin: 20px' %>
   </div>
+  <!-- End of Consultation cards   -->
 
-
-  <!-- Modal -->
+  <!-- Start Modal -->
   <% @next_round.each do |consultation| %>
   <div id="modal-<%= consultation.id %>" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-custom" role="document">
@@ -118,12 +121,12 @@
   <div class="map">
     <div id="map2"></div>
   </div>
+  <!-- End Map  -->
 
-  <!-- Map  -->
   <% end %>
   <!-- end Tab Prochaine tournée -->
 </div>
-<!-- end of the contaainer : case of ROUND not empty -->
+<!-- end of the container : case of ROUND not empty -->
 
 
 <!-- **************************** -->
@@ -138,181 +141,181 @@
   function initialize() {
     if ($("#map2").length == 0) { return; }
 
-      // Style
-      var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
-      var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
+    // Style
+    var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"},{"saturation":"-77"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"saturation":"2"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#1a3464"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"weight":"2.68"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"0"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#0050ff"},{"saturation":"0"},{"lightness":"0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-90"},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"-80"},{"lightness":"-70"},{"visibility":"off"},{"gamma":"1"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#0060ff"},{"saturation":"-85"},{"lightness":"60"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#0060ff"},{"saturation":"-70"},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#0060ff"},{"saturation":"0"},{"lightness":"-11"},{"visibility":"on"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#0060ff"},{"lightness":"0"},{"saturation":"0"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#0060ff"},{"lightness":-100},{"visibility":"off"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#0066ff"},{"saturation":"0"},{"lightness":100},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"off"}]}]
+    var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
 
 
-      directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
-      var userHome = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
-      var mapOptions = {
-        // zoom: 12,
-        center: userHome,
-        mapTypeControlOptions: {
-          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-        }
+    directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
+    var userHome = new google.maps.LatLng(<%= @user.latitude %>,<%= @user.longitude %>);
+    var mapOptions = {
+      // zoom: 12,
+      center: userHome,
+      mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
       }
-      map = new google.maps.Map(document.getElementById("map2"), mapOptions);
-      directionsDisplay.setMap(map);
-      map.mapTypes.set('map_style', styledMap);
-      map.setMapTypeId('map_style');
+    }
+    map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+    directionsDisplay.setMap(map);
+    map.mapTypes.set('map_style', styledMap);
+    map.setMapTypeId('map_style');
+  }
+
+  function calcRoute() {
+    // when there is no map
+    if ($("#map2").length == 0) { return; }
+
+    <% if @next_round.count != 0 %>
+    var set_lat = <%= @next_round[0].doctor_departure_lat %>
+    var set_lng = <%= @next_round[0].doctor_departure_lng %>
+    <% else %>
+    var set_lat = <%= @user.latitude %>
+    var set_lng = <%= @user.longitude %>
+    map.setZoom(12);
+    <% end %>
+    var start = new google.maps.LatLng(set_lat, set_lng);
+    var end = new google.maps.LatLng(set_lat, set_lng);
+    var waypts = []
+
+    <% @next_round.each do |consult| %>
+    var w = {
+      location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
+      stopover: true
     }
 
-    function calcRoute() {
-      // when there is no map
-      if ($("#map2").length == 0) { return; }
+    createWptMarker(w['location'], "<%= j render "consultation_infowindow", consultation: consult %>");
+    waypts.push(w);
+    <% end %>
 
-      <% if @next_round.count != 0 %>
-      var set_lat = <%= @next_round[0].doctor_departure_lat %>
-      var set_lng = <%= @next_round[0].doctor_departure_lng %>
-      <% else %>
-      var set_lat = <%= @user.latitude %>
-      var set_lng = <%= @user.longitude %>
-      map.setZoom(12);
-      <% end %>
-      var start = new google.maps.LatLng(set_lat, set_lng);
-      var end = new google.maps.LatLng(set_lat, set_lng);
-      var waypts = []
+    createMarker(start);
 
-      <% @next_round.each do |consult| %>
-      var w = {
-        location: new google.maps.LatLng(<%= consult.demand.latitude %>,<%= consult.demand.longitude %>),
-        stopover: true
-      }
+    var request = {
+      origin:start,
+      destination:end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(result, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(result);
 
-      createWptMarker(w['location'], "<%= j render "consultation_infowindow", consultation: consult %>");
-      waypts.push(w);
-      <% end %>
-
-      createMarker(start);
-
-      var request = {
-        origin:start,
-        destination:end,
-        waypoints: waypts,
-        optimizeWaypoints: true,
-        travelMode: google.maps.TravelMode.DRIVING
-      };
-      directionsService.route(request, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(result);
-
-          <% if @next_round.count == 0 %>
-          directionsDisplay.setOptions({ preserveViewport: true });
-          <% end %>
-        }
-      });
-
-    }
-
-    function createMarker(latlng) {
-
-      var marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-        icon: "<%= image_path 'marker1.png' %>"
-      });
-    }
-
-    function createWptMarker(latlng, infowindowContent) {
-      var infowindow = new google.maps.InfoWindow({
-        content: infowindowContent
-      });
-
-      infoWindows.push(infowindow);
-
-      var marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-        icon: "<%= image_path 'marker2.png' %>"
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-        closeAllInfoWindows();
-        infowindow.open(map,marker);
-      });
-    }
-
-    function closeAllInfoWindows() {
-      for (var i=0;i<infoWindows.length;i++) {
-       infoWindows[i].close();
-     }
-   }
-
-   $(document).ready(function() {
-    initialize();
-    calcRoute();
-
-
-    // ************************************
-    $(".tab").on("click", function(e){
-      // Change active tab
-      $(".tab").removeClass('active');
-      $(this).addClass('active');
-      // Hide all tab-content (use class="hidden")
-      $(".tab-content").addClass('hidden');
-      // Show target tab-content (use class="hidden")
-      $($(this).data('target')).removeClass('hidden');
-      initialize();
-      calcRoute();
-    });
-  });
-
-   function setmap() {
-    var handler = Gmaps.build('Google');
-    // var stylescp
-    handler.buildMap({ internal: { id: 'map' } }, function() {
-      console.log(markers.length)
-      markers = handler.addMarkers(<%= raw @hash.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      if (markers.length == 0) {
-        handler.getMap().setZoom(2);
-      } else if (markers.length == 1) {
-        handler.getMap().setZoom(30);
+        <% if @next_round.count == 0 %>
+        directionsDisplay.setOptions({ preserveViewport: true });
+        <% end %>
       }
     });
-  };
 
-  var ctx = document.getElementById("myChart");
-  if (ctx != null) {
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero:true
-            }
-          }]
-        }
-      }
+  }
+
+  function createMarker(latlng) {
+
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      icon: "<%= image_path 'marker1.png' %>"
     });
   }
+
+  function createWptMarker(latlng, infowindowContent) {
+    var infowindow = new google.maps.InfoWindow({
+      content: infowindowContent
+    });
+
+    infoWindows.push(infowindow);
+
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      icon: "<%= image_path 'marker2.png' %>"
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      closeAllInfoWindows();
+      infowindow.open(map,marker);
+    });
+  }
+
+  function closeAllInfoWindows() {
+    for (var i=0;i<infoWindows.length;i++) {
+     infoWindows[i].close();
+   }
+ }
+
+ $(document).ready(function() {
+  initialize();
+  calcRoute();
+
+
+  // ************************************
+  $(".tab").on("click", function(e){
+    // Change active tab
+    $(".tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".tab-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+    initialize();
+    calcRoute();
+  });
+});
+
+ function setmap() {
+  var handler = Gmaps.build('Google');
+  // var stylescp
+  handler.buildMap({ internal: { id: 'map' } }, function() {
+    console.log(markers.length)
+    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+      handler.getMap().setZoom(30);
+    }
+  });
+};
+
+var ctx = document.getElementById("myChart");
+if (ctx != null) {
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+}
 </script>
 <% end %>
 
