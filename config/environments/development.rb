@@ -32,12 +32,11 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # User letter opener for Developement
-  # removing the letter opener for long Seed
-  # config.action_mailer.delivery_method = :letter_opener
-# ---- TESTING SMTP
-  config.action_mailer.delivery_method = :smtp
+  # to be removed for long Seed
+  # letter_opener can be replaced by smtp
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-# --- END TESTTNG SMTP
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
