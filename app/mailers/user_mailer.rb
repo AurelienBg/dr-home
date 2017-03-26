@@ -10,6 +10,6 @@ class UserMailer < ApplicationMailer
     @greeting = "Hi"
 
     # mail(to: @user.email, subject: t en.user_mailer.welcome.subject)
-    mail(to: @user.email, subject: "Welcome to Dr Home")
+    mail(to: @user.email, subject: "#{@user.first_name}, welcome to Dr Home")
   end
 end
