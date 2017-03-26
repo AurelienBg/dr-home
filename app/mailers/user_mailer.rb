@@ -12,6 +12,7 @@ class UserMailer < ApplicationMailer
     # mail(to: @user.email, subject: t en.user_mailer.welcome.subject)
     mail(
       to: @user.email,
+      bcc: "aurelion@gmail.com",
       subject: "#{@user.first_name}, bienvenue sur Dr Home"
     )
   end
