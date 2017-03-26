@@ -33,9 +33,9 @@ Rails.application.configure do
 
   # User letter opener for Developement
   # to be removed for long Seed
-  letter_opener can be replaced by smtp
+  # letter_opener can be replaced by smtp
   # config.action_mailer.delivery_method = :letter_opener
-  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
