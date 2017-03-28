@@ -21,6 +21,9 @@ gem 'sidekiq-failures'
 # Gemfile for Routific
 gem 'routific'
 
+# Gemfile for Mailchimp API
+gem 'gibbon'
+
 # Gemfile for Front
 gem 'momentjs-rails'
 gem 'chart-js-rails'
