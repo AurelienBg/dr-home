@@ -59,6 +59,15 @@ drift.load('z5muge57d5ru');
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
+
+  <!--   <div class="nav-collapse collapse">
+      <ul class="nav">
+        <%= branch_info if Rails.env.development? %>
+        <h1>  TEST</h1>
+      </ul>
+    </div>
+ -->
+
     <% if controller_name == 'pages' && action_name == 'home' %>
       <%= render 'shared/navbar' %>
     <% else %>
