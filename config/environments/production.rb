@@ -1,5 +1,9 @@
 Rails.application.configure do
+  # SMTP and Heroku configuration
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "https://www.drhome.co" }
+  # host: "yourapp.herokuapp.com" or your custom domain eg. "www.yourdomain.com"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -75,13 +79,6 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-
-  # SMTP and Heroku configuration
-  Rails.application.configure do
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.default_url_options = { host: "www.drhome.co" }
-    # host: "yourapp.herokuapp.com" or your custom domain eg. "www.yourdomain.com"
-  end
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
