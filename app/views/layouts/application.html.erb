@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<!-- app/views/layout/application.html.erb -->
+<div class="nav-collapse collapse">
+  <ul class="nav">
+    <%= branch_info if Rails.env.development? %>
+  </ul>
+</div>
+
 <!-- Start of Async Drift Code -->
 <script>
 !function() {
