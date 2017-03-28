@@ -13,7 +13,8 @@ class UserMailer < ApplicationMailer
     mail(
       to: @user.email,
       bcc: "aurelion@gmail.com",
-      subject: "#{@user.first_name}, bienvenue sur Dr Home"
+      subject: "Bienvenue sur Dr Home"
+      # Removed "{@user.first_name}" in Subject because not yet given by user
     )
   end
 end
